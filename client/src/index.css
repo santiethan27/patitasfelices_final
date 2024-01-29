@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  width: 100%;
+}
+body {
+  font-family: 'Aclonica';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Uso general */
+
+.cursor-pointer {
+  cursor: pointer;
+
+}
+
+.bg-black {
+  background-color: #111010;
+}
+
+.txt-white {
+  color: #fff;
+}
+
+.active {
+  color: #EC058E;
+}
+
+/* Scroll personalizado */
+
+body::-webkit-scrollbar {
+  width: 7px;
+  
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #EC058E;
+  border-radius: 5px;
+}
+
+/* Animaciones */
+@keyframes show {
+    from {
+      scale: 25%;
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+      scale: 100%;
+    }
+  }
+  img{
+    view-timeline: --image;
+    view-timeline-axis: block;
+    animation-timeline: --image;
+    animation-name: show;
+    animation-range: entry 25% cover 50%;
+    animation-fill-mode: both;
+  }

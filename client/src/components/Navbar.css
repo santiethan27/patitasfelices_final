@@ -1,0 +1,101 @@
+/* Diseño del apartado del navbar */
+.nav-container {
+    display: flex;
+    position:sticky;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    justify-content: flex-end;
+    z-index: 1;
+    .icon-bar {
+      position: absolute;
+      top: 0;
+      padding: 10px;
+      height: 30px !important;
+  
+      align-items: end !important;
+    }
+  
+    .nav,
+    nav {
+      display: flex;
+      flex: auto;
+      justify-content: space-around;
+  
+      height: auto;
+    }
+  
+    .div-nav h2 {
+      width: 75px;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  
+    .div-nav img {
+      width: 60px;
+      height: 50px;
+      animation: none;
+    }
+  
+    .div-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+  
+    ul {
+      display: flex;
+      gap: 15px;
+    }
+  
+    a {
+      display: flex;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+  
+  
+    .toggle {
+      opacity: 1;
+    }
+  }
+  
+  /* Apartado responsive del navbar */
+  
+  @media(max-width: 850px) {
+    .nav {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: end;
+      padding: 15px 25px 10px 0;
+      position: absolute;
+      width: 170px;
+      text-align: start;
+      border-radius: 15px 0 0 15px;
+      height: auto;
+      top: 45px;
+      right: 0;
+      gap: 10px;
+    }
+  
+  
+    ul {
+      flex-direction: column;
+      align-items: start;
+    }
+  
+    .icon-user {
+      align-items: center;
+    }
+  
+    .toggle {
+      opacity: 1;
+    }
+  
+    .div-nav {
+      flex-direction: row-reverse;
+    }
+  }

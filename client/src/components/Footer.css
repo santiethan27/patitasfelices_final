@@ -1,0 +1,78 @@
+/* Diseño del apartado de footer */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    height: auto;
+  
+    .article {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    .footer-img {
+      width: 100px;
+    }
+  
+    .container-email {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: .7em;
+    }
+  
+    .email-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: .4em;
+      font-size: 1.2em;
+    }
+  
+    .email-icon {
+      display: flex;
+    }
+  
+    .icons-social {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: .5em;
+    }
+  
+    .icon-social {
+      display: flex;
+      justify-content: center;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      align-items: center;
+    }
+  
+    .facebook {
+      background-color: #1877f2;
+    }
+  
+    .instagram {
+      background: linear-gradient(to bottom right, #c13584, #1f2d50);
+    }
+  
+    .twitter {
+      background-color: #1DA1F2;
+    }
+  
+    .whatsapp {
+      background-color: #25D366;
+    }
+  
+    .creditos {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 2rem;
+    }
+  }

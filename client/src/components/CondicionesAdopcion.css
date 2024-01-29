@@ -1,0 +1,33 @@
+/* Diseño del apartado de CondicionesAdopcion */
+
+.container-codicionesAdopcion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.4em;
+    margin-bottom: .3rem;
+    background-color: #547AA5;
+    padding: 4rem 0;
+  
+    .container-condicion {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0 2rem;
+      font-size: 1.1rem;
+      gap: 1.5rem;
+    }
+  
+    .container-tittle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      h3 {
+        background-color: #EC058E;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    }
+  }

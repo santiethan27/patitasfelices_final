@@ -1,0 +1,28 @@
+main {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+    .c-header{
+      display: flex;
+      header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        gap: 10px;
+        width: 100%;
+        p {
+          font-size: 1.1rem;
+          width: 160px;
+        }
+    
+        img {
+          width: 100px;
+        }
+      }
+    }
+    .img-header {
+      width: 60% !important;
+    }
+  }
