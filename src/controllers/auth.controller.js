@@ -51,7 +51,7 @@ export const register = async (req, res) => {
     savedAddress = await newAddress.save();
 
     const userFound = await User.findOne({email})
-    if(userFound) return res.status(400).json(['El correo ya esta en uso'])
+    if(userFound) return res.status(400).json(["El correo ya esta en uso"])
 
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -99,13 +99,13 @@ export const login = async (req, res) => {
       const userFound = await User.findOne({email});
 
       if(!userFound) return res.status(400).json({
-        message:"User not found"
+        message:"Usuario no encontrado"
       });
 
       const isMath = await bcrypt.compare(password, userFound.password);
 
       if(!isMath) return res.status(400).json({
-        message: "Incorrect password"
+        message: "Contraseña incorrecta"
       });
 
       const token = await createAccessToken({ id: userFound._id});
@@ -134,7 +134,7 @@ export const logout = (req, res) => {
 export const profile = async (req, res) => {
   const userFound = await User.findById(req.user.id)
 
-  if(!userFound) return res.status(400).json({message: "User not found"});
+  if(!userFound) return res.status(400).json({message: "Usuario no encontrado"});
 
   return res.status(200).json(userFound)
 }

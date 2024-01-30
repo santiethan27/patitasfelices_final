@@ -24,22 +24,22 @@ const Footer = () => {
                 <section className='icons-social'>
                     <div className='icon-social facebook'>
                         <a href='https://www.facebook.com/' target='_blank' rel='noopener noreferrer'>
-                            <FontAwesomeIcon icon={faFacebookF} size='2x' color='#fff' />
+                            <FontAwesomeIcon icon={faFacebookF} color='#fff' />
                         </a>
                     </div>
                     <div className='icon-social instagram'>
                         <a href='https://www.instagram.com/' target='_blank' rel='noopener noreferrer'>
-                            <FontAwesomeIcon icon={faInstagram} size='2x' color='#fff' />
+                            <FontAwesomeIcon icon={faInstagram} color='#fff' />
                         </a>
                     </div>
                     <div className='icon-social twitter'>
                         <a href='https://twitter.com/' target='_blank' rel='noopener noreferrer'>
-                            <FontAwesomeIcon icon={faTwitter} size='2x' color='#fff' />
+                            <FontAwesomeIcon icon={faTwitter} color='#fff' />
                         </a>
                     </div>
                     <div className='icon-social whatsapp'>
                         <a href='https://web.whatsapp.com/' target='_blank' rel='noopener noreferrer'>
-                            <FontAwesomeIcon icon={faWhatsapp} size='2x' color='#fff' />
+                            <FontAwesomeIcon icon={faWhatsapp} color='#fff' />
                         </a>
                     </div>
                 </section>

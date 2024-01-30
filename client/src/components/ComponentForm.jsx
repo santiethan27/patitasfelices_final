@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 function ComponentForm({ formulario }) {
 
   //Constantes para guardar los municipios y departamentos de Colombia
@@ -61,11 +63,18 @@ function ComponentForm({ formulario }) {
         <form className='formClass' onSubmit={handleSubmit(async (values) => {
           login(values)
         })}>
+          <div>{
+            AuthErrors.map((error, i) => (
+              <p className='error' key={i}>
+                <FontAwesomeIcon icon={faTriangleExclamation} /> {error}
+              </p>
+            ))
+          }</div>
           <h3 className='title'>Iniciar Sesión</h3>
-          <div className='icon'>
+          {/*          <div className='icon'>
             <img className='g-icon' src='./icons/google.png'></img>
           </div>
-          <p className='f-text'>o usa tu email</p>
+      <p className='f-text'>o usa tu email</p>*/}
           <input type='email' placeholder='Email' className='inputClass' {...register("email", { required: true })}></input>
           {
             errors.email && (
@@ -89,8 +98,8 @@ function ComponentForm({ formulario }) {
         })}>
           <div>{
             AuthErrors.map((error, i) => (
-              <p key={i}>
-                {error}
+              <p className='error' key={i}>
+                <FontAwesomeIcon icon={faTriangleExclamation} /> {error}
               </p>
             ))
           }</div>
@@ -163,7 +172,7 @@ function ComponentForm({ formulario }) {
                 ) : (
                   <div>Cargando departamentos...</div>
                 )}
-                              {
+              {
                 errors.state && (
                   <p className='error'>Este campo es requerido</p>
                 )

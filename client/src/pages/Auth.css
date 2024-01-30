@@ -11,6 +11,7 @@
     transition: all .3s ease-in-out;
     height: 100%;
     box-shadow: 1px 1px 4px 1px rgb(146, 146, 146); 
+    justify-content: center;
 }
 .formClass .title{
     text-align: center;
@@ -36,8 +37,9 @@
 .formClass .linkClass{
     text-decoration: none;
     margin: 10px 0px;
-    text-align: center;
+    text-align: end;
     color: #1CA6DC;
+    font-size: 12px;
 }
 
 .formClass .formButton{
@@ -130,7 +132,7 @@
 }
 
 .authForm.inverso{
-    margin: 5px auto;
+    margin: 20px auto;
 }
 
 .authForm.inverso .formClass{
@@ -156,18 +158,18 @@
     width: 100%;
 }
 
-.formClass .error{
-    background: #52FFB8;
-    font-size: 13px;
+.authForm .error{
+    color: #07f390;
+    font-size: 15px;
+    font-weight: 500;
     padding: 5px 5px;
     border-radius: 10px;
     width:max-content;
-    color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
     
 }
 .authForm.inverso .error{
-    background-color: #ec058f;
+    color: #ec058f;
 }
 .formClass .group{
     display: flex;

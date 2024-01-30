@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthPage from './pages/AuthPage'
 import HomePage from './pages/HomePage'
@@ -12,16 +12,24 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Navbar/>
         <Routes>
-          <Route path='/' element={<HomePage/>} />
-          <Route path='/auth' element={<AuthPage />} />
-          <Route path='/Adoptar' element={<Adopcion/>} />
+          <Route path='/auth' element={<AuthPage />}/>
+          <Route path='/*' element={<MainApp/>} />
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </AuthProvider>
   )
 }
-
+function MainApp() {
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/Adoptar' element={<Adopcion />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+}
 export default App
