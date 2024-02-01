@@ -1,1 +1,1 @@
-export const TOKEN_SECRET = 's'
+export const TOKEN_SECRET = 'patitasfelices2024'

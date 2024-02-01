@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
     const login = async (user) => {
         try {
             const res = await authLogin(user);
-            console.log(res.data);
             setUser(res.data);
             setIsAuthen(true);
         } catch (error) {
@@ -56,25 +55,23 @@ export const AuthProvider = ({ children }) => {
             }
                 try {
                     const res = await verityTokenRequest(cookies.token)
-                    console.log(res);
                     if (!res.data){
                         setIsAuthen(false);
                         setLoading(false);
-
                         return;
                     } 
                     setLoading(false);
                     setIsAuthen(true);
-                    setUser(res.data);
+                    setUser(res.data); 
                 } catch (error) {
                     setIsAuthen(false);
                     setUser(null);
                     setLoading(false);
                 }
         }
+
         checkLogin();
     }, []);
-
     return (
         <AuthContext.Provider value={{ signup, login, user, isAuthen, errors, loading }}>
             {children}

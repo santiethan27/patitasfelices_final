@@ -27,8 +27,27 @@ const userSchema = new mongoose.Schema(
       unique: true, // único
     },
     address: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Address",
+      street: {
+        type: String,
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      state: {
+        type: String,
+        required: true,
+      },
+      postal_code: {
+        type: String,
+        required: true,
+      },
+      country: {
+        type: String,
+        required: true,
+        default: "Colombia",
+      },
     },
     yearbirth: {
       type: Date,
@@ -46,8 +65,8 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
     },
     photo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Multimedia",
+        public_id: String,
+        secure_url: String
     },
     status: {
       type: String,

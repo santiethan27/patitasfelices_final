@@ -23,10 +23,10 @@ const Navbar = () => {
 
   useEffect(() => {
     // Actualiza el estado showIconMenu basado en el tamaño de la pantalla
-    if(screenSize <= 850){
+    if (screenSize <= 850) {
       setshowIconMenu(true);
       setShowMenu(false);
-    }else if(screenSize >= 850){
+    } else if (screenSize >= 850) {
       setshowIconMenu(false);
       setShowMenu(true);
     }
@@ -38,29 +38,29 @@ const Navbar = () => {
   return (
     // Version navbar 1.0 (Posibles cambios !)
     <div className='nav-container'>
-      {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar bg-black' onClick={toggleShow}/>): null}
+      {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar bg-black' onClick={toggleShow} />) : null}
       {showMenu ? (<nav>
         <section className='nav bg-black'>
           <div className='div-nav'>
             <NavLink to={`/`}>
-            <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
-            <img src="./logo.png" alt='Logo' className='cursor-pointer' />
+              <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
+              <img src="./logo.png" alt='Logo' className='cursor-pointer' />
             </NavLink>
           </div>
           <div className='div-nav'>
             <ul>
-              <NavLink to={`/`} className='cursor-pointer txt-white' activeClassName="active">Inicio</NavLink>
-              <NavLink to={`/Adoptar`} className='cursor-pointer txt-white' activeClassName="active">Adoptar</NavLink>
-              <NavLink to={`/Fundacion`} className='cursor-pointer txt-white' activeClassName="active">Fundacion</NavLink>
-              <NavLink to={`/Rescates`} className='cursor-pointer txt-white' activeClassName="active">Rescatados</NavLink>
-              <NavLink to={`/Donaciones`} className='cursor-pointer txt-white' activeClassName="active">Donaciones</NavLink>
-              <NavLink to={`/Blog`} className='cursor-pointer txt-white' activeClassName="active">Blog</NavLink>
+              <NavLink to={`/`} className='cursor-pointer txt-white' activeclassname="active">Inicio</NavLink>
+              <NavLink to={`/adoptar`} className='cursor-pointer txt-white' activeclassname="active">Adoptar</NavLink>
+              <NavLink to={`/fundacion`} className='cursor-pointer txt-white' activeclassname="active">Fundacion</NavLink>
+              <NavLink to={`/rescates`} className='cursor-pointer txt-white' activeclassname="active">Rescatados</NavLink>
+              <NavLink to={`/donaciones`} className='cursor-pointer txt-white' activeclassname="active">Donaciones</NavLink>
+              <NavLink to={`/blog`} className='cursor-pointer txt-white' activeclassname="active">Blog</NavLink>
             </ul>
           </div>
           <div className='div-nav'>
             {/* Se crea un contenedor para poder mover el icono desde el css ya que sin el contenedor es imposible o no encontre forma */}
             <div className='icon-user'>
-              <FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer txt-white' />
+              <NavLink to={`/perfil`} className='cursor-pointer txt-white' activeclassname="active"><FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' /></NavLink>
             </div>
           </div>
         </section>
