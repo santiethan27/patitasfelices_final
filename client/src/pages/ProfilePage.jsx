@@ -37,7 +37,6 @@ function ProfilePage() {
     setLoading(true);
     const formData = new FormData();
 
-    console.log(data.image[0])
 
     if (data.image && data.image[0] !== undefined) {
       formData.append('image', data.image[0]);
@@ -67,7 +66,6 @@ function ProfilePage() {
         <img src="./Fondo.jpg" alt="" />
       </div>
       <div className='changeProfile'>
-        {console.log(res)}
         <img src={res && res.photo && res.photo.secure_url ? res.photo.secure_url : './perfil.png'} />
         <div className='contBot'>
           <div className='contUser'>
