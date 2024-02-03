@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ProtectedRoute from './ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
 import { UserProvider } from './context/UserContext';
+import BlogPage from './pages/BlogPage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function MainApp() {
         <Route path='/' element={<HomePage />} />
         <Route path='/adoptar' element={<Adopcion />} />
         <Route path='/perfil' element={<ProfilePage />} />
+        <Route path='/blog' element={<BlogPage/>}> </Route>
       </Routes>
       <Footer />
     </>
