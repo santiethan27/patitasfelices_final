@@ -50,7 +50,7 @@ function ProfilePage() {
     formData.append('city', data.city);
 
     try {
-      await updateUser(user.id, formData);
+      await updateUser(res._id, formData);
       const updatedProfile = await getProfile(user);
       setRes(updatedProfile);
       setLoading(false);
