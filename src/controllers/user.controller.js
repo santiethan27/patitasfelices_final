@@ -13,46 +13,49 @@ export const getUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  console.log(req.files)
-  try {
-    let photo = {};
-    let result = {};
-    if (req.files?.image) {
-      photo = req.files.image;
-      if (photo.mimetype !== "image/png" && photo.mimetype !== "image/jpeg") {
-        fs.unlink(req.files.image.tempFilePath);
-        return res.status(404).send({ message: "Extension no valida" });
-      }
-      result = await uploadImage(req.files.image.tempFilePath);
-    }
 
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: id },
-      {
-        ...req.body,
-        photo: { public_id: result.public_id, secure_url: result.secure_url },
-      },
-      { new: true }
-    );
-    if (!updatedUser) {
-      fs.unlink(req.files.image.tempFilePath);
+  try {
+    let result = {};
+
+    if (req.files?.image) {
+      const photo = req.files.image;
+      console.log(photo);
+      if (photo.mimetype !== "image/png" && photo.mimetype !== "image/jpeg") {
+        await fs.unlink(photo.tempFilePath);
+        return res.status(400).send({ message: "Extensión no válida" });
+      }
+
+      result = await uploadImage(photo.tempFilePath);
+      await fs.unlink(photo.tempFilePath); // Eliminar el archivo temporal después de usarlo
+    }
+    const existingUser = await User.findById(id);
+
+    if (!existingUser) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
-    fs.unlink(req.files.image.tempFilePath);
+    const updateData = {
+      ...(req.files?.image && {
+        photo: { public_id: result.public_id, secure_url: result.secure_url },
+      }),
+      ...(req.body.phone && { phone: req.body.phone }),
+      ...(req.body.street && { "address.street": req.body.street }),
+      ...(req.body.postal_code && {
+        "address.postal_code": req.body.postal_code,
+      }),
+      ...(req.body.state && { "address.state": req.body.state }),
+      ...(req.body.city && { "address.city": req.body.city }),
+    };
+
+    const updatedUser = await User.findOneAndUpdate({ _id: id }, updateData, {
+      new: true,
+    });
+
     return res.json(updatedUser);
   } catch (error) {
-    if(req.files?.image){
-      fs.unlink(req.files.image.tempFilePath, (unlinkError) => {
-        if (unlinkError) {
-          console.error('Error al eliminar el archivo temporal:', unlinkError);
-        } else {
-          console.log('Archivo temporal eliminado con éxito.');
-        }
-        });
-      console.log(error)
+    console.error(error);
+
     return res.status(500).json({
-      message: error.message,
+      message: "Error interno del servidor",
     });
   }
-}
 };

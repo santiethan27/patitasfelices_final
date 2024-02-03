@@ -40,27 +40,25 @@ const Navbar = () => {
     <div className='nav-container'>
       {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar bg-black' onClick={toggleShow} />) : null}
       {showMenu ? (<nav>
-        <section className='nav bg-black'>
+        <section className='nav bg-rosa'>
           <div className='div-nav'>
-            <NavLink to={`/`}>
-              <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
-              <img src="./logo.png" alt='Logo' className='cursor-pointer' />
-            </NavLink>
+            <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
+            <img src="./logo3.png" alt='Logo' className='cursor-pointer' />
           </div>
           <div className='div-nav'>
             <ul>
-              <NavLink to={`/`} className='cursor-pointer txt-white' activeclassname="active">Inicio</NavLink>
-              <NavLink to={`/adoptar`} className='cursor-pointer txt-white' activeclassname="active">Adoptar</NavLink>
-              <NavLink to={`/fundacion`} className='cursor-pointer txt-white' activeclassname="active">Fundacion</NavLink>
-              <NavLink to={`/rescates`} className='cursor-pointer txt-white' activeclassname="active">Rescatados</NavLink>
-              <NavLink to={`/donaciones`} className='cursor-pointer txt-white' activeclassname="active">Donaciones</NavLink>
-              <NavLink to={`/blog`} className='cursor-pointer txt-white' activeclassname="active">Blog</NavLink>
+              <NavLink to={`/`} className='cursor-pointer txt-white link' activeclassname="active">Inicio</NavLink>
+              <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' activeclassname="active">Adoptar</NavLink>
+              <NavLink to={`/fundacion`} className='cursor-pointer txt-white link' activeclassname="active">Fundacion</NavLink>
+              <NavLink to={`/rescates`} className='cursor-pointer txt-white link' activeclassname="active">Rescatados</NavLink>
+              <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' activeclassname="active">Donaciones</NavLink>
+              <NavLink to={`/blog`} className='cursor-pointer txt-white link' activeclassname="active">Blog</NavLink>
             </ul>
           </div>
           <div className='div-nav'>
             {/* Se crea un contenedor para poder mover el icono desde el css ya que sin el contenedor es imposible o no encontre forma */}
             <div className='icon-user'>
-              <NavLink to={`/perfil`} className='cursor-pointer txt-white' activeclassname="active"><FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' /></NavLink>
+              <NavLink to={`/perfil`} className='cursor-pointer txt-white link' activeclassname="active"><FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' /></NavLink>
             </div>
           </div>
         </section>

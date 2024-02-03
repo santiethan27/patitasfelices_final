@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data);
             setIsAuthen(true)
         } catch (error) {
-            console.log(error.response)
+            console.log(error)
             setErrors(error.response.data)
         }
     }
@@ -47,27 +47,26 @@ export const AuthProvider = ({ children }) => {
         async function checkLogin() {
             const cookies = Cookies.get()
 
-            if (!cookies.token) 
-            {
+            if (!cookies.token) {
                 setIsAuthen(false);
                 setLoading(false);
                 return setUser(null);
             }
-                try {
-                    const res = await verityTokenRequest(cookies.token)
-                    if (!res.data){
-                        setIsAuthen(false);
-                        setLoading(false);
-                        return;
-                    } 
-                    setLoading(false);
-                    setIsAuthen(true);
-                    setUser(res.data); 
-                } catch (error) {
+            try {
+                const res = await verityTokenRequest(cookies.token)
+                if (!res.data) {
                     setIsAuthen(false);
-                    setUser(null);
                     setLoading(false);
+                    return;
                 }
+                setLoading(false);
+                setIsAuthen(true);
+                setUser(res.data);
+            } catch (error) {
+                setIsAuthen(false);
+                setUser(null);
+                setLoading(false);
+            }
         }
 
         checkLogin();

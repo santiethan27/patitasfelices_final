@@ -6,7 +6,7 @@
     width: 60%;
     margin: auto;
     padding: 10px;
-    height: 85vh;
+    min-height: 85vh;
 
     .banner {
         width: 100%;
@@ -27,7 +27,6 @@
         align-items: center;
         border-radius: 10px;
         color: black;
-        font-family: Arial, Helvetica, sans-serif;
         font-weight: 300;
         padding: 5px;
         margin: 5px 0;
@@ -70,7 +69,6 @@
         .text {
             font-size: 16px;
             font-weight: 500;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         .bInformacion {
@@ -90,6 +88,7 @@
             border-radius: 5px;
             outline: none;
             border: 1px solid gray;
+
             &&:focus {
                 outline: none;
             }

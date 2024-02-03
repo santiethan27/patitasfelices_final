@@ -65,8 +65,14 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
     },
     photo: {
-        public_id: String,
-        secure_url: String
+      public_id: {
+        type: String,
+        default: null,
+      },
+      secure_url: {
+        type: String,
+        default: null,
+      },
     },
     status: {
       type: String,

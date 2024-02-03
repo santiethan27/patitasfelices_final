@@ -6,14 +6,17 @@
   box-sizing: border-box;
 }
 
-html{
+html {
   width: 100%;
 }
+
 body {
-  font-family: 'Aclonica';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 97.8;
 }
 
 
@@ -33,11 +36,25 @@ code {
   background-color: #111010;
 }
 
+.bg-azul {
+  background-color: #547AA5;
+}
+
+.bg-rosa {
+  background-color: #EC058E;
+}
+
+.bg-verde {
+  background-color: #52FFB8;
+}
+
 .txt-white {
   color: #fff;
 }
 
 .active {
+  background-color: white;
+  border-radius: 5px;
   color: #EC058E;
 }
 
@@ -45,31 +62,32 @@ code {
 
 body::-webkit-scrollbar {
   width: 7px;
-  
+
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: #EC058E;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 
 /* Animaciones */
 @keyframes show {
-    from {
-      scale: 25%;
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-      scale: 100%;
-    }
+  from {
+    scale: 25%;
+    opacity: 0;
   }
-  img{
-    view-timeline: --image;
-    view-timeline-axis: block;
-    animation-timeline: --image;
-    animation-name: show;
-    animation-range: entry 25% cover 50%;
-    animation-fill-mode: both;
+
+  to {
+    opacity: 1;
+    scale: 100%;
   }
+}
+
+img {
+  view-timeline: --image;
+  view-timeline-axis: block;
+  animation-timeline: --image;
+  animation-name: show;
+  animation-range: entry 25% cover 50%;
+  animation-fill-mode: both;
+}

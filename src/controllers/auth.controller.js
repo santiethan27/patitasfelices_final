@@ -16,15 +16,11 @@ export const register = async (req, res) => {
       email,
       yearbirth,
       password,
-      photo,
       street,
       city,
       state,
       postal_code,
-      country,
     } = req.body;
-
-    const userPhoto = photo || null;
 
     if (
       !name ||
@@ -43,15 +39,6 @@ export const register = async (req, res) => {
         .json({ error: "Todos los campos son requeridos." });
     }
 
-    const newAddress = new Address({
-      street,
-      city,
-      state,
-      postal_code,
-    });
-
-    savedAddress = await newAddress.save();
-
     const userFound = await User.findOne({ email });
     if (userFound) return res.status(400).json(["El correo ya esta en uso"]);
 
@@ -62,10 +49,14 @@ export const register = async (req, res) => {
       last_name,
       phone,
       email,
-      address: savedAddress._id,
+      address: {
+        street,
+        city,
+        state,
+        postal_code
+      },
       yearbirth,
       password: passwordHash,
-      photo: userPhoto,
     });
     const userSaved = await newUser.save();
 

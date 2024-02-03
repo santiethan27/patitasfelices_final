@@ -1,48 +1,51 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.formClass{
+
+.formClass {
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 2px 10px;
     transition: all .3s ease-in-out;
     height: 100%;
-    box-shadow: 1px 1px 4px 1px rgb(146, 146, 146); 
+    box-shadow: 1px 1px 4px 1px rgb(146, 146, 146);
     justify-content: center;
 }
-.formClass .title{
+
+.formClass .title {
     text-align: center;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 40px;
     margin: 10px 0px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.formClass .inputClass{
+
+.formClass .inputClass {
     height: 50px;
     padding: 10px;
     margin: 10px 0px;
     border: none;
     background-color: gainsboro;
-    font-weight: 500;  
+    font-weight: 200;
     width: 100%;
     border-radius: 5px
 }
-.formClass .inputClass:focus{
+
+.formClass .inputClass:focus {
     outline: none;
 }
 
-.formClass .linkClass{
+.formClass .linkClass {
     text-decoration: none;
     margin: 10px 0px;
     text-align: end;
-    color: #1CA6DC;
+    color: #547AA5;
     font-size: 12px;
 }
 
-.formClass .formButton{
+.formClass .formButton {
     width: 40%;
     height: 45px;
     display: flex;
@@ -51,14 +54,14 @@
     margin: 10px auto;
     border-radius: 20px;
     border: none;
-    background-color: #52FFB8;
+    background-color: #547AA5;
     color: white;
     font-size: 15px;
     cursor: pointer;
-    
+
 }
 
-.formClass .icon{
+.formClass .icon {
     width: 80px;
     height: 40px;
     padding: 10px;
@@ -70,122 +73,131 @@
     border: 1px solid rgb(165, 165, 165);
     background-color: transparent;
     cursor: pointer;
-    
+
 }
-.formClass .g-icon{
+
+.formClass .g-icon {
     width: 100%;
 }
 
-.formClass .f-text{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 400;
+.formClass .f-text {
+    font-weight: 200;
     text-align: center;
     margin: 10px 0;
 }
 
-.colForm{
+.colForm {
     padding: 10px;
     width: 100%;
-    background-color: #52FFB8;
+    background-color: #547AA5;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: black;
-    transition: all .3s ease-in-out; 
+    color: white;
+    transition: all .3s ease-in-out;
 }
 
-.colForm .title{
+.colForm .title {
     font-size: 40px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 100;
     margin: 10px 0;
 }
 
-.colForm .colButton{
+.colForm .colButton {
     width: 50%;
     height: 40px;
     display: inline-block;
     margin: 10px auto;
     color: inherit;
     border-radius: 20px;
-    border: 2px solid black;
+    border: 2px solid white;
     background-color: transparent;
     font-size: 15px;
     cursor: pointer;
 }
 
-.colForm .subtitle{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.colForm .subtitle {
     letter-spacing: 2px;
     margin: 10px 0;
+    font-weight: 10;
 }
 
-.authForm{
+.authForm {
     display: flex;
-    flex-direction: row;  
+    flex-direction: row;
     width: 60%;
     margin: 10vh auto;
     min-height: 500px;
 }
 
-.authForm.inverso{
+.authForm.inverso {
     margin: 20px auto;
 }
 
-.authForm.inverso .formClass{
-    transform: translateX(100%);  
+.authForm.inverso .formClass {
+    transform: translateX(100%);
 }
-.authForm.inverso .colForm{
-    transform: translateX(-100%); 
+
+.authForm.inverso .colForm {
+    transform: translateX(-100%);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     background-color: #ec058f;
-    color:white;
+    color: white;
 }
 
-.authForm.inverso .colButton{
+.authForm.inverso .colButton {
     border-color: white;
 }
-.authForm.inverso .formButton{
+
+.authForm.inverso .formButton {
     background-color: #ec058f;
 }
-.contForm{
+
+.contForm {
     width: 100%;
 }
 
-.authForm .error{
-    color: #07f390;
+label {
+    font-weight: 200;
+}
+
+.authForm .error {
+    color: #547AA5;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 200;
     padding: 5px 5px;
     border-radius: 10px;
-    width:max-content;
-    font-family:Arial, Helvetica, sans-serif;
-    
+    width: max-content;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
-.authForm.inverso .error{
+
+.authForm.inverso .error {
     color: #ec058f;
 }
-.formClass .group{
+
+.formClass .group {
     display: flex;
     flex-direction: row;
     gap: 5px;
 }
-.formClass .subgroup{
+
+.formClass .subgroup {
     width: 100%;
 }
 
-select{
+select {
     width: 100%;
     margin: 10px 0px;
 }
 
-label{
+label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }

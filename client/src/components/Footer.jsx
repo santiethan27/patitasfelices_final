@@ -15,7 +15,7 @@ const Footer = () => {
         <footer className='bg-black'>
             <article className='article'>
                 <section className='icon-footer container-email'>
-                    <img src='./logo.png' alt='Logo' className='cursor-pointer footer-img' />
+                    <img src='./logo3.png' alt='Logo' className='cursor-pointer footer-img' />
                     <div className='email-container cursor-pointer'>
                         <FontAwesomeIcon icon={faEnvelope} size='2x' color='#fff' className='email-icon' />
                         <p className='txt-white'>Patitasfelices@gmail.com</p>
