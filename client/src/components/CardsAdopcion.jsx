@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState} from 'react';
 
-
-// Creamos un rafc para poder exportar este componente
-const CardsAdopcion = () => {
+//Se crea un rafc
+const CardsAdopcion = ({onModify}) => {
   return (
     <article className='card'>
       <section>
@@ -14,10 +13,10 @@ const CardsAdopcion = () => {
         <p>Descripcion : <span>Sacha es una gata muy cariñosa y busca un amor que le de amor y proteccion </span></p>
         <p>Raza : <span> Pues normal </span></p>
         <p>Contacto: <span> 3208776 </span></p>
-      </section>
-      <div></div>
+        <button onClick={onModify} className='cursor-pointer'>Modificar</button>
+      </section>    
     </article>
-  )
-}
+  );
+};
 
-export default CardsAdopcion
+export default CardsAdopcion;

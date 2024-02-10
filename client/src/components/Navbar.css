@@ -1,5 +1,5 @@
 /* Diseño del apartado del navbar */
-.nav-container {
+nav{
   display: flex;
   position: sticky;
   top: 0;

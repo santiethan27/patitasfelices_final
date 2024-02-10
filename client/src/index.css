@@ -83,7 +83,7 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-img {
+img,.card{
   view-timeline: --image;
   view-timeline-axis: block;
   animation-timeline: --image;

@@ -37,7 +37,7 @@ const Navbar = () => {
   };
   return (
     // Version navbar 1.0 (Posibles cambios !)
-    <div className='nav-container'>
+    <div>
       {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar bg-black' onClick={toggleShow} />) : null}
       {showMenu ? (<nav>
         <section className='nav bg-rosa'>
