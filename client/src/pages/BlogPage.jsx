@@ -38,13 +38,13 @@ function BlogPage() {
     <details>
       <summary>¿CUÁLES SON LOS BENEFICIOS DE ADOPTAR?</summary>
       <div class="accordion-content">
-        <li typeof='disc'>Enseña a niños valores como respeto a la vida, amistad y amor.</li>
-        <li typeof='disc'>Crea sentido de responsabilidad y promueve la comunicación entre padres e hijos.</li>
-        <li typeof='disc'>Disminuyen la soledad, la ansiedad, el estrés y subiendo el ánimo y la autoestima.</li>
-        <li typeof='disc'>Estimulan el contacto social y nos ayudan a estar en forma.</li>
-        <li typeof='disc'>Podrás escoger entre más de 130 perritos, él que concuerde con tu personalidad (ya seas hiperactivo, calmado o consentidor).</li>
-        <li typeof='disc'>Te entregamos un perro sano, vacunado y esterilizado.</li>
-        <li typeof='disc'>Costos que usualmente tu asumirías al comprarlo.</li>
+        <li>Enseña a niños valores como respeto a la vida, amistad y amor.</li>
+        <li>Crea sentido de responsabilidad y promueve la comunicación entre padres e hijos.</li>
+        <li>Disminuyen la soledad, la ansiedad, el estrés y subiendo el ánimo y la autoestima.</li>
+        <li>Estimulan el contacto social y nos ayudan a estar en forma.</li>
+        <li>Podrás escoger entre más de 130 perritos, él que concuerde con tu personalidad (ya seas hiperactivo, calmado o consentidor).</li>
+        <li>Te entregamos un perro sano, vacunado y esterilizado.</li>
+        <li>Costos que usualmente tu asumirías al comprarlo.</li>
       </div>
     </details>
   </div>
@@ -66,12 +66,12 @@ function BlogPage() {
     <details>
       <summary>¿QUÉ CUIDADOS ESPECIALES SE DEBE TENER?</summary>
       <div class="accordion-content">
-        <p>No sacarlo a la calle sin collar, correa, ni placa de identificación.
-          Tener precaución al dejar puertas abiertas para evitar que el animal huya, se extravíe o sufra un accidente.
-          Vacunarlo en el momento correspondiente (esquema de vacunación completo y/o reforzarlas anualmente).
-          Desparasitarlo por lo menos dos veces al año.
-          Recoger sus desechos fisiológicos, tanto en el lugar de vivienda como en espacios públicos y parques. Garantizar un hábitat limpio y libre de desechos y malos olores.
-          Cepillarlo una vez a la semana, bañarlo cuando sea necesario y limpiar con frecuencia sus dientes.</p>
+          <li>No sacarlo a la calle sin collar, correa, ni placa de identificación.</li>
+          <li>Tener precaución al dejar puertas abiertas para evitar que el animal huya, se extravíe o sufra un accidente.</li>
+          <li>Vacunarlo en el momento correspondiente (esquema de vacunación completo y/o reforzarlas anualmente).</li>
+          <li>Desparasitarlo por lo menos dos veces al año.</li>
+          <li>Recoger sus desechos fisiológicos, tanto en el lugar de vivienda como en espacios públicos y parques. Garantizar un hábitat limpio y libre de desechos y malos olores.</li>
+          <li>Cepillarlo una vez a la semana, bañarlo cuando sea necesario y limpiar con frecuencia sus dientes.</li>
       </div>
     </details>
   </div>
@@ -91,11 +91,11 @@ function BlogPage() {
   </div>
   <div class="image-pair">
     <img src="blog3.jpeg" alt="Imagen 3"/>
-    <img src="blog4.jpeg" alt="Imagen 4"/>
+    <img src="blog4.jpg" alt="Imagen 4"/>
   </div>
   <div class="image-pair">
     <img src="blog5.jpg" alt="Imagen 5"/>
-    <img src="blog6.jpg" alt="Imagen 6"/>
+    <img src="blog6.jpeg" alt="Imagen 6"/>
   </div>
 </div>
 </div>

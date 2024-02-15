@@ -5,6 +5,7 @@
     margin: 20px;
     flex-direction: column;
     align-items: center;
+   
   }
   
   .div-one {
@@ -15,6 +16,7 @@
   
   .div-texto {
     max-width: 800px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     border: 2px solid black;
     padding: 20px;
     display: flex;
@@ -28,6 +30,7 @@
   
   .contenido {
     flex-basis: calc(50% - 5px);
+    padding: 10px;
   }
   
   .contenido-doble {
@@ -73,6 +76,7 @@
 
   .accordion-item summary {
     background-color: #547AA5;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     color: #fff;
     padding: 10px;
     border-radius: 5px;
@@ -80,7 +84,10 @@
   }
 
   .accordion-content{
-    background-color: #EC058E;
+    background-color:  white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
   }
 
   .accordion-item summary::-webkit-details-marker {
@@ -88,7 +95,7 @@
   }
 
   .accordion-item summary:hover {
-    background-color: #0056b3;
+    background-color:  #52FFB8;
   }
 
   .accordion-item summary:focus {
@@ -96,25 +103,24 @@
   }
 
   .accordion-item details[open] summary {
-    background-color: #0056b3;
+    background-color:  #52FFB8;;
   }
 
   .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+  
   }
   
   .image-pair {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 20px; 
+   
   }
   
   .image-pair img {
-    width: 320px;
-    height: auto;
-    margin-bottom: 10px; 
+    width: 260px;
+    height: 200px;
   }
