@@ -1,3 +1,12 @@
+.back.active {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
 .container-iconBar {
   display: flex;
   position: fixed;
@@ -17,6 +26,7 @@ nav {
 }
 
 .div-nav {
+
   display: flex;
   align-items: center;
   gap: 1rem;
