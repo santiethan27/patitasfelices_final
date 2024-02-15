@@ -1,5 +1,4 @@
 import User from "../models/user.model.js";
-import Address from "../models/address.model.js";
 import bcrypt from "bcryptjs";
 import { createAccessToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
@@ -71,9 +70,6 @@ export const register = async (req, res) => {
       res.status(400).json({ error: validationErrors });
     } else {
       res.status(500).json({ error: error.message });
-    }
-    if (error) {
-      await Address.findByIdAndDelete(savedAddress._id);
     }
   }
 };
