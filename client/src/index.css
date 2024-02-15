@@ -52,6 +52,12 @@ code {
   color: #fff;
 }
 
+.txt-black{
+  color: #111;
+}
+
+
+
 .active {
   background-color: white;
   border-radius: 5px;
@@ -83,7 +89,7 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-img {
+img,.card{
   view-timeline: --image;
   view-timeline-axis: block;
   animation-timeline: --image;
