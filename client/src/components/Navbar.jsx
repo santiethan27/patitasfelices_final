@@ -63,12 +63,12 @@ const Navbar = () => {
           </div>
           <div className='div-nav'>
             <ul>
-              <NavLink to={`/`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Inicio</NavLink>
-              <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Adoptar</NavLink>
-              <NavLink to={`/fundacion`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Fundacion</NavLink>
-              <NavLink to={`/rescates`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Rescatados</NavLink>
-              <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Donaciones</NavLink>
-              <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Blog</NavLink>
+              <NavLink to={`/`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Inicio</NavLink>
+              <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Adoptar</NavLink>
+              <NavLink to={`/fundacion`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Fundacion</NavLink>
+              <NavLink to={`/rescates`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Rescatados</NavLink>
+              <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
+              <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
             </ul>
           </div>
           <div className='div-nav'>
