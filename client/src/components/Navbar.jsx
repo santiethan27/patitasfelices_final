@@ -3,20 +3,24 @@ import React, { useEffect, useState } from 'react';
 // Separar los componentes creados por nosotros la comunidad 
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBars,faX } from '@fortawesome/free-solid-svg-icons';
 // Creamos un rafc para poder exportar este componente
 import './Navbar.css';
 import { set } from 'mongoose';
+
 
 const Navbar = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [showIconMenu, setshowIconMenu] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
+  const [changeIcon, setChangeIcon] = useState(false);
+  const [txtChangeColor, setTextChangeColor] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
-    window.addEventListener('resize', handleResize);
 
+    window.addEventListener('resize', handleResize);
+    
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -24,31 +28,37 @@ const Navbar = () => {
 
   useEffect(() => {
     // Actualiza el estado showIconMenu basado en el tamaño de la pantalla
-    if (screenSize <= 850) {
+    if (screenSize < 850) {
       setshowIconMenu(true);
       setShowMenu(false);
     }else{
       if(screenSize > 850){
         setshowIconMenu(false);
-        setShowMenu(true)
+        setShowMenu(true);
+        setChangeIcon(false);
+        setTextChangeColor(false);
       }
     }
   }, [screenSize]);
 
   const toggleShow = () => {
     setShowMenu(!showMenu);
+    setChangeIcon(!changeIcon);
+    setTextChangeColor(!txtChangeColor);
+    
   };
+
+  
   return (
-    // Version navbar 1.0 (Posibles cambios !)
-    <div>
-      <div className='contianer-iconBar'>
-      {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar txt-black' onClick={toggleShow} />) : null}
+    // Version navbar 2.0 (Posibles cambios !)
+    <div className='container-navbar'>
+      <div className='container-iconBar'>
+      {showIconMenu ? (<FontAwesomeIcon icon={changeIcon ? faX : faBars} size='2x' color='#fff' className={`cursor-pointer icon-bar transition ${txtChangeColor ? 'txt-white' : 'txt-black'}`}  onClick={toggleShow} />) : null}
       </div>
-      {showMenu ? (<nav>
-        <section className='nav bg-rosa'>
+      {showMenu ? (<nav className='bg-rosa transition'>
           <div className='div-nav'>
             <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
-            <img src="./logo3.png" alt='Logo' className='cursor-pointer' />
+            <img src="./logo3.png" alt='Logo' className='cursor-pointer logoPatitas' />
           </div>
           <div className='div-nav'>
             <ul>
@@ -66,7 +76,6 @@ const Navbar = () => {
               <NavLink to={`/perfil`} className='cursor-pointer txt-white link' activeclassname="active"><FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' /></NavLink>
             </div>
           </div>
-        </section>
       </nav>) : null}
     </div>
   )

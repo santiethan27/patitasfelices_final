@@ -44,6 +44,10 @@ code {
   background-color: #EC058E;
 }
 
+.txt-verde-lima{
+  color: #98FB98;
+}
+
 .bg-verde {
   background-color: #52FFB8;
 }
@@ -55,8 +59,21 @@ code {
 .txt-black{
   color: #111;
 }
+  
+.logoPatitas {
+  width: 60px;
+  animation: none;
+}
+.transition{
+  transition: all 1s;
+}
 
-
+.opacity1{
+  opacity: 1;
+}
+.opacity0{
+  opacity: 0;
+}
 
 .active {
   background-color: white;

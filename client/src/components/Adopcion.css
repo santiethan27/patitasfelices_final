@@ -2,7 +2,9 @@
 
 .container-adopcion{
   header{
+    padding: 3rem;
     position: relative;
+
     /*background-color: #547AA5;*/
     background-image: url('./Fondo.jpg');
     background-repeat: no-repeat;
@@ -16,7 +18,7 @@
     
     button{
       position: absolute;
-      bottom: 10rem;
+      bottom: 5rem;
       width: 10rem;
       height: 3rem;
       border: none;
