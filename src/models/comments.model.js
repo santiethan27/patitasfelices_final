@@ -14,14 +14,10 @@ const commentsShema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  multimedia: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Multimedia",
-  }],
-  publication: [{
+  publication: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Publication",
-  }],
+  },
 });
 
-export default moongose.model("Publication", publicationShema);
+export default mongoose.model("Comment", commentsShema);

@@ -6,7 +6,11 @@ const publicationShema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  title: {
+  name: {
+    type: String,
+    required: true,
+  },
+  age: {
     type: String,
     required: true,
   },
@@ -14,10 +18,22 @@ const publicationShema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  multimedia: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Multimedia",
-  }],
+  raza: {
+    type: String,
+    required: true,
+  },
+  multimedia: [
+    {
+      public_id: {
+        type: String,
+        default: null,
+      },
+      secure_url: {
+        type: String,
+        default: null,
+      },
+    },
+  ],
   status: {
     type: String,
     enum: ["active", "close", "expired", "alert"],
@@ -25,4 +41,4 @@ const publicationShema = new mongoose.Schema({
   },
 });
 
-export default moongose.model("Publication", publicationShema);
+export default mongoose.model("Publication", publicationShema);
