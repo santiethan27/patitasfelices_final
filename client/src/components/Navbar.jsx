@@ -52,7 +52,7 @@ const Navbar = () => {
   return (
     // Version navbar 2.0 (Posibles cambios !)
     <div className={showMenu && showIconMenu ? "back active" : "back"} onClick={showMenu && showIconMenu ? toggleShow : null}>
-      <div className='container-navbar'>
+      <div className='container-navbar' onClick={(e) => e.stopPropagation()}>
         <div className='container-iconBar'>
           {showIconMenu ? (<FontAwesomeIcon icon={changeIcon ? faX : faBars} size='2x' color='#fff' className={`cursor-pointer icon-bar transition ${txtChangeColor ? 'txt-white' : 'txt-black'}`} onClick={toggleShow} />) : null}
         </div>
@@ -63,12 +63,12 @@ const Navbar = () => {
           </div>
           <div className='div-nav'>
             <ul>
-              <NavLink to={`/`} className='cursor-pointer txt-white link' activeclassname="active">Inicio</NavLink>
-              <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' activeclassname="active">Adoptar</NavLink>
-              <NavLink to={`/fundacion`} className='cursor-pointer txt-white link' activeclassname="active">Fundacion</NavLink>
-              <NavLink to={`/rescates`} className='cursor-pointer txt-white link' activeclassname="active">Rescatados</NavLink>
-              <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' activeclassname="active">Donaciones</NavLink>
-              <NavLink to={`/blog`} className='cursor-pointer txt-white link' activeclassname="active">Blog</NavLink>
+              <NavLink to={`/`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Inicio</NavLink>
+              <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Adoptar</NavLink>
+              <NavLink to={`/fundacion`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Fundacion</NavLink>
+              <NavLink to={`/rescates`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Rescatados</NavLink>
+              <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Donaciones</NavLink>
+              <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={toggleShow} activeclassname="active">Blog</NavLink>
             </ul>
           </div>
           <div className='div-nav'>
