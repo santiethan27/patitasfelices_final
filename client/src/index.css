@@ -52,6 +52,12 @@ code {
   color: #fff;
 }
 
+.txt-black{
+  color: #111;
+}
+
+
+
 .active {
   background-color: white;
   border-radius: 5px;

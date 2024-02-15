@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
 // Creamos un rafc para poder exportar este componente
 import './Navbar.css';
+import { set } from 'mongoose';
 
 const Navbar = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -26,9 +27,11 @@ const Navbar = () => {
     if (screenSize <= 850) {
       setshowIconMenu(true);
       setShowMenu(false);
-    } else if (screenSize >= 850) {
-      setshowIconMenu(false);
-      setShowMenu(true);
+    }else{
+      if(screenSize > 850){
+        setshowIconMenu(false);
+        setShowMenu(true)
+      }
     }
   }, [screenSize]);
 
@@ -38,7 +41,9 @@ const Navbar = () => {
   return (
     // Version navbar 1.0 (Posibles cambios !)
     <div>
-      {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar bg-black' onClick={toggleShow} />) : null}
+      <div className='contianer-iconBar'>
+      {showIconMenu ? (<FontAwesomeIcon icon={faBars} size='2x' color='#fff' className='cursor-pointer icon-bar txt-black' onClick={toggleShow} />) : null}
+      </div>
       {showMenu ? (<nav>
         <section className='nav bg-rosa'>
           <div className='div-nav'>
