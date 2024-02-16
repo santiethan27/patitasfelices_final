@@ -56,7 +56,7 @@ const Navbar = () => {
         <div className='container-iconBar'>
           {showIconMenu ? (<FontAwesomeIcon icon={changeIcon ? faX : faBars} size='2x' color='#fff' className={`cursor-pointer icon-bar transition ${txtChangeColor ? 'txt-white' : 'txt-black'}`} onClick={toggleShow} />) : null}
         </div>
-        {showMenu ? (<nav className='bg-rosa transition'>
+        {showMenu ? (<nav className='bg-azul transition'>
           <div className='div-nav'>
             <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
             <img src="./logo3.png" alt='Logo' className='cursor-pointer logoPatitas' />

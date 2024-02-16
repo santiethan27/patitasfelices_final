@@ -22,9 +22,8 @@ const Adopcion = () => {
   return (
     <div className="container-adopcion">
       <header>
-        {/* <img src='./adoptar.png' alt='Amigos peludos' className='img-header'/> */}
         <button type="button" className="txt-white cursor-pointer">
-          Sube la mascota
+          Sube una mascota
         </button>
         <p className="active">
           Aquí puedes subir un animal que quieras ayudar para que tenga un hogar

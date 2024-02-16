@@ -54,8 +54,9 @@
     width: 300px;
     border-radius: 10px;
     padding-top: 17px;
-    background-color: #52FFB8;
+    background-color: #547AA5;
     box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.322);
+
     .cont {
       display: flex;
       gap: 10px;
@@ -69,7 +70,7 @@
       padding: 10px;
 
       .title {
-        color: #52FFB8;
+        color: #547AA5;
         text-align: center;
         font-weight: 600;
         font-size: 20px;
@@ -107,7 +108,7 @@
       border: none;
       border-bottom-left-radius: 15px;
       border-bottom-right-radius: 15px;
-      background-color: #52FFB8;
+      background-color: #547AA5;
       color: white;
     }
   }
