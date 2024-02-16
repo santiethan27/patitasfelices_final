@@ -16,7 +16,6 @@
     padding-bottom: 1.5rem;
 
     button {
-      position: absolute;
       bottom: 5rem;
       width: 10rem;
       height: 3rem;
@@ -28,14 +27,8 @@
     }
 
     p {
-      padding-top: 2rem;
-      width: 500px;
+      width: 50%;
       text-align: center;
-    }
-
-    .img-header {
-      width: 30% !important;
-      animation: none;
     }
   }
 
