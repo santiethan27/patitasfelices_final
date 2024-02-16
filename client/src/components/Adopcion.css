@@ -1,22 +1,21 @@
 /* Diseño del apartado de adopcion */
 
-.container-adopcion{
-  header{
-    padding: 3rem;
+.container-adopcion {
+  header {
     position: relative;
 
     /*background-color: #547AA5;*/
     background-image: url('./Fondo.jpg');
     background-repeat: no-repeat;
-    background-attachment:fixed;
+    background-attachment: fixed;
     background-size: cover;
     min-height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 1.5rem;
-    
-    button{
+
+    button {
       position: absolute;
       bottom: 5rem;
       width: 10rem;
@@ -27,111 +26,156 @@
       border-radius: .5rem;
       background-color: #EC058E;
     }
-    p{
+
+    p {
       padding-top: 2rem;
       width: 500px;
       text-align: center;
     }
+
     .img-header {
-      width: 30% !important; 
+      width: 30% !important;
       animation: none;
     }
   }
-  .container-cards{
+
+  .container-cards {
+    margin: 20px 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     justify-items: center;
-    gap: 2em  0;
+    gap: 2em 0;
   }
-  .card{
+
+  .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: .4em;
-    width: 200px;
-    border-radius: .3em;
-    background-color: #bcd7d74e;
-      p{
-        font-size: 15px;
-        span{
-          color: #EC058E;
+    width: 300px;
+    border-radius: 10px;
+    padding-top: 17px;
+    background-color: #52FFB8;
+    box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.322);
+    .cont {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      background-color: white;
+      overflow: hidden;
+      padding: 10px;
+
+      .title {
+        color: #52FFB8;
+        text-align: center;
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        color: #000000a4;
+        text-align: center;
+      }
+
+      img {
+        width: 80%;
+        height: 200px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 20px;
+      }
+
+      .info {
+        width: 100%;
+
+        p {
+          text-align: start;
         }
       }
-      button{
-        width: 60%;
-        height: 1.5rem;
-        margin: 0 2.5rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        border: none;
-        border-radius: .2rem;
-        background-color: #EC058E;
-        color: #111;
-      }
-  }
+    }
 
-  img{
-    width: 10em;
+    button {
+      width: 100%;
+      height: 35px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      background-color: #52FFB8;
+      color: white;
+    }
   }
 }
+
 /* Estilos para el modal */
 .modal {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
-z-index: 1000; 
-display: flex;
-justify-content: center;
-align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo oscuro semi-transparente */
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-position: relative;
-background-color: white;
-padding: 20px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-max-width: 80%; 
-max-height: 80%; 
-overflow: auto; 
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
 
-.form-group {
-  margin-bottom: 20px;
-}
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.form-group input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-.form-group input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-.form-group input[type="submit"]:hover {
-  background-color: #45a049;
-} 
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .form-group input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .form-group input[type="submit"]:hover {
+    background-color: #45a049;
+  }
 }
 
 .close {
-color: #EC058E;
-position: absolute;
-top: 10px;
-right: 10px;
-cursor: pointer;
+  color: #EC058E;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }

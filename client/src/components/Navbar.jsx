@@ -17,8 +17,9 @@ const Navbar = () => {
   const [txtChangeColor, setTextChangeColor] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
-
+    const handleResize = () => {
+      setScreenSize(window.innerWidth)
+    };
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     // Actualiza el estado showIconMenu basado en el tamaño de la pantalla
-    if (screenSize < 850) {
+    if (showIconMenu === false && screenSize < 850) {
       setshowIconMenu(true);
       setShowMenu(false);
     } else {
@@ -45,7 +46,6 @@ const Navbar = () => {
     setShowMenu(!showMenu);
     setChangeIcon(!changeIcon);
     setTextChangeColor(!txtChangeColor);
-
   };
 
 
