@@ -11,11 +11,13 @@ import ProfilePage from './pages/ProfilePage';
 import { UserProvider } from './context/UserContext';
 import BlogPage from './pages/BlogPage';
 import { AnimalProvider } from './context/AnimalContext';
+import { ProductProvider } from './context/ProductContext';
 
 function App() {
   return (
     <AuthProvider>
       <AnimalProvider>
+        <ProductProvider>
         <UserProvider>
           <BrowserRouter>
             <Routes>
@@ -26,6 +28,7 @@ function App() {
             </Routes>
           </BrowserRouter>
         </UserProvider>
+        </ProductProvider>
       </AnimalProvider>
     </AuthProvider>
   )
