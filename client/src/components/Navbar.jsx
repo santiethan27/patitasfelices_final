@@ -7,6 +7,7 @@ import { faUser, faBars, faX } from '@fortawesome/free-solid-svg-icons';
 // Creamos un rafc para poder exportar este componente
 import './Navbar.css';
 import { useAuth } from '../context/AuthContext';
+import Dropdown from './Dropdown';
 
 
 const Navbar = () => {
@@ -15,8 +16,17 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(true);
   const [changeIcon, setChangeIcon] = useState(false);
   const [txtChangeColor, setTextChangeColor] = useState(false);
-  const { user } = useAuth();
-
+  const { user, _logout } = useAuth();
+  const items = [
+    {
+      slug: "/perfil",
+      anchor: "Ver perfil"
+    },
+    {
+      onClick: _logout,
+      anchor: "Cerrar sesion"
+    },
+  ];
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth)
@@ -75,12 +85,14 @@ const Navbar = () => {
           <div className='div-nav'>
             {/* Se crea un contenedor para poder mover el icono desde el css ya que sin el contenedor es imposible o no encontre forma */}
             <div className='icon-user'>
-              <Link to={`/perfil`} className='cursor-pointer txt-white link' activeclassname="active">{user.photo ? <img src={user.photo} alt="Perfil" /> : <FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' />}</Link>
+              <Dropdown dropdownTitle="Dropdown" items={items} _logout={_logout}>
+                {user.photo ? <img src={user.photo} className='perfil' alt="Perfil" /> : <FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' />}
+              </Dropdown>
             </div>
           </div>
         </nav>) : null}
       </div>
-    </div>
+    </div >
 
   )
 }

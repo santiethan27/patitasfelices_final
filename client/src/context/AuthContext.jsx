@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { authRegister, authLogin, verityTokenRequest } from '../api/auth';
+import { authRegister, authLogin, verityTokenRequest, logout } from '../api/auth';
 import Cookies from 'js-cookie'
 import { profile, update } from './../api/user';
 
@@ -64,6 +64,14 @@ export const AuthProvider = ({ children }) => {
             console.error(error)
         }
     }
+    const _logout = async () => {
+        try {
+            logout();
+            setIsAuthen(false);
+        } catch (error) {
+            console.error(error)
+        }
+    }
     useEffect(() => {
         async function checkLogin() {
             const cookies = Cookies.get()
@@ -96,7 +104,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ signup, login, user, isAuthen, errors, loading, rol, getProfile, updateUser }}>
+        <AuthContext.Provider value={{ signup, login, user, isAuthen, errors, loading, rol, getProfile, updateUser, _logout }}>
             {children}
         </AuthContext.Provider>
     )
