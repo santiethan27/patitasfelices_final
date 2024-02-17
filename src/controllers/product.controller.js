@@ -46,7 +46,7 @@ export const postProduct = async (req, res) => {
     }
 };
 
-export const editPublication = async (req, res) => {
+export const editProduct = async (req, res) => {
     try {
         const {
             idProduct,

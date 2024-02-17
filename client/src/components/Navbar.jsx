@@ -69,6 +69,7 @@ const Navbar = () => {
               <NavLink to={`/productos`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
               <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
               <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
+              {user.rol == "admin" && <NavLink to={`/administracion`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Administracion</NavLink>}
             </ul>
           </div>
           <div className='div-nav'>
