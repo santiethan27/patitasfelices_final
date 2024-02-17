@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useUser } from '../context/UserContext';
 import { useAuth } from '../context/AuthContext';
 import useLocationData from '../hooks/useLocationData';
 import './Profile.css';
 
 function ProfilePage() {
-  const { user } = useAuth();
-  const { getProfile, updateUser } = useUser();
+  const { user, getProfile, updateUser } = useAuth();
   const [res, setRes] = useState({});
   const [loading, setLoading] = useState(false);
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 // El import react es el principal por lo tanto tiene que ir en la primera linea
 // Separar los componentes creados por nosotros la comunidad 
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars, faX } from '@fortawesome/free-solid-svg-icons';
 // Creamos un rafc para poder exportar este componente
 import './Navbar.css';
-import { set } from 'mongoose';
+import { useAuth } from '../context/AuthContext';
 
 
 const Navbar = () => {
@@ -15,6 +15,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(true);
   const [changeIcon, setChangeIcon] = useState(false);
   const [txtChangeColor, setTextChangeColor] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,8 +66,7 @@ const Navbar = () => {
             <ul>
               <NavLink to={`/`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Inicio</NavLink>
               <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Adoptar</NavLink>
-              <NavLink to={`/fundacion`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Fundacion</NavLink>
-              <NavLink to={`/rescates`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Rescatados</NavLink>
+              <NavLink to={`/productos`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
               <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
               <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
             </ul>
@@ -74,7 +74,7 @@ const Navbar = () => {
           <div className='div-nav'>
             {/* Se crea un contenedor para poder mover el icono desde el css ya que sin el contenedor es imposible o no encontre forma */}
             <div className='icon-user'>
-              <NavLink to={`/perfil`} className='cursor-pointer txt-white link' activeclassname="active"><FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' /></NavLink>
+              <Link to={`/perfil`} className='cursor-pointer txt-white link' activeclassname="active">{user.photo ? <img src={user.photo} alt="Perfil" /> : <FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' />}</Link>
             </div>
           </div>
         </nav>) : null}
