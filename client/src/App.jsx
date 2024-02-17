@@ -11,11 +11,13 @@ import ProfilePage from './pages/ProfilePage';
 import BlogPage from './pages/BlogPage';
 import { AnimalProvider } from './context/AnimalContext';
 import SetAnimalPage from './pages/SetAnimalPage';
+import { ProductProvider } from './context/ProductContext';
 
 function App() {
   return (
     <AuthProvider>
       <AnimalProvider>
+        <ProductProvider>
         <BrowserRouter>
           <Routes>
             <Route path='/auth' element={<AuthPage />} />
@@ -24,6 +26,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        </ProductProvider>
       </AnimalProvider>
     </AuthProvider>
   )
