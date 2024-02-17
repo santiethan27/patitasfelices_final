@@ -4,12 +4,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"; // Importa el icono
 
 import CardsAdopcion from "./CardsAdopcion";
 import "./Adopcion.css";
+import { useAnimal } from "../context/AnimalContext";
 
 // Creamos un rafc para poder exportar este componente
 const Adopcion = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPetKey, setSelectedPetKey] = useState(null);
-
+  const { animals } = useAnimal();
   const openModal = (key) => {
     setSelectedPetKey(key);
     setIsModalOpen(true);
@@ -29,7 +30,11 @@ const Adopcion = () => {
           Aquí puedes subir un animal que quieras ayudar para que tenga un hogar
         </p>
       </header>
-      <div className="container-cards">{cards}</div>
+      <div className="container-cards">{
+        animals.map((animal) => (
+          <CardsAdopcion key={animal.key} animal={animal} onModify={() => openModal(animal.key)} />
+        ))
+      }</div>
       {isModalOpen && (
         <div className="container-modal">
           <div className="modal">

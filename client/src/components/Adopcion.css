@@ -7,13 +7,14 @@
     /*background-color: #547AA5;*/
     background-image: url('./Fondo.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: local;
     background-size: cover;
     min-height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 1.5rem;
+    padding-bottom: 5rem;
+    justify-content: flex-end;
 
     button {
       bottom: 5rem;
@@ -69,13 +70,6 @@
         font-size: 20px;
       }
 
-      p {
-        font-size: 14px;
-        font-weight: 100;
-        color: #000000a4;
-        text-align: center;
-      }
-
       img {
         width: 80%;
         height: 200px;
@@ -86,9 +80,10 @@
 
       .info {
         width: 100%;
+        font-weight: 500;
 
         p {
-          text-align: start;
+          text-align: center;
         }
       }
     }

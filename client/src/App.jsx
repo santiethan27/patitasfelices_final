@@ -10,20 +10,23 @@ import ProtectedRoute from './ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
 import { UserProvider } from './context/UserContext';
 import BlogPage from './pages/BlogPage';
+import { AnimalProvider } from './context/AnimalContext';
 
 function App() {
   return (
     <AuthProvider>
-      <UserProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/auth' element={<AuthPage />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path='/*' element={<MainApp />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </UserProvider>
+      <AnimalProvider>
+        <UserProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/auth' element={<AuthPage />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path='/*' element={<MainApp />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
+      </AnimalProvider>
     </AuthProvider>
   )
 }
@@ -35,7 +38,7 @@ function MainApp() {
         <Route path='/' element={<HomePage />} />
         <Route path='/adoptar' element={<Adopcion />} />
         <Route path='/perfil' element={<ProfilePage />} />
-        <Route path='/blog' element={<BlogPage/>}> </Route>
+        <Route path='/blog' element={<BlogPage />}> </Route>
       </Routes>
       <Footer />
     </>

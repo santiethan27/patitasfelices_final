@@ -14,13 +14,35 @@ const publicationShema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
+  history: {
     type: String,
     required: true,
   },
   raza: {
     type: String,
     required: true,
+  },
+  gender: {
+    type: String,
+    enum: ["MACHO","HEMBRA"],
+    required: true
+  },
+  color: {
+    type: String,
+    required: true
+  },
+  size: {
+    type: String,
+    required: true,
+    enum: ["GRANDE",  "MEDIANO", "PEQUEÑO"]
+  },
+  isVaccinated: {
+    type: Boolean,
+    required: true
+  },
+  isCastrated: {
+    type: Boolean,
+    required: true
   },
   multimedia: [
     {
@@ -36,8 +58,8 @@ const publicationShema = new mongoose.Schema({
   ],
   status: {
     type: String,
-    enum: ["active", "close", "expired", "alert"],
-    default: "active",
+    enum: ["ACTIVE", "CLOSE"],
+    default: "ACTIVE",
   },
 });
 
