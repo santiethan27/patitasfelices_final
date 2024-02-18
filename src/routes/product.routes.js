@@ -2,7 +2,7 @@ import { Router } from "express";
 import fileUpload from "express-fileupload";
 import { 
     deleteProduct,
-    editPublication,
+    editProduct,
     getProduct,
     postProduct,
 } from "../controllers/product.controller";
@@ -17,5 +17,5 @@ router.post("/product", fileUp,postProduct);
 router.get("/products", getProduct);
 router.get("/product/:id", getProduct);
 router.delete("/product/:id", deleteProduct);
-router.put("/product", editPublication)
+router.put("/product", editProduct)
 export default router;

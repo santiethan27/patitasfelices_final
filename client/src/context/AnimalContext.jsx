@@ -27,7 +27,7 @@ export const AnimalProvider = ({ children }) => {
     const _getAnimals = async () => {
         try {
             const resAnimals = await getAnimals();
-            setAnimals(resAnimals.data());
+            setAnimals(resAnimals.data);
         } catch (error) {
             console.log(error);
         }
@@ -42,8 +42,9 @@ export const AnimalProvider = ({ children }) => {
     }
     const _putAnimal = async (animal) => {
         try {
+            console.log(animal)
             const resAnimal = await putAnimal(animal);
-            console.log(resAnimal);
+            _getAnimals();
         } catch (error) {
             console.log(error);
         }

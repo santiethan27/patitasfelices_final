@@ -52,7 +52,7 @@ export const register = async (req, res) => {
         street,
         city,
         state,
-        postal_code
+        postal_code,
       },
       yearbirth,
       password: passwordHash,
@@ -61,7 +61,13 @@ export const register = async (req, res) => {
 
     const token = await createAccessToken({ id: userSaved._id });
     res.cookie("token", token);
-    res.status(200).json(userSaved);
+    res.status(200).json({
+      id: userSaved._id,
+      name: userSaved.name,
+      email: userSaved.email,
+      rol: userSaved.rol,
+      photo: userSaved.photo.secure_url
+    });
   } catch (error) {
     if (error.name === "ValidationError") {
       const validationErrors = Object.values(error.errors).map(
@@ -100,7 +106,13 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: userFound._id });
     res.cookie("token", token);
-    res.status(200).json(userFound);
+    res.status(200).json({
+      id: userFound._id,
+      name: userFound.name,
+      email: userFound.email,
+      rol: userFound.rol,
+      photo: userFound.photo.secure_url
+    });
   } catch (error) {
     if (error.name === "ValidationError") {
       const validationErrors = Object.values(error.errors).map(
@@ -115,6 +127,8 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   res.cookie("token", "", {
+    httpOnly: true,
+    secure: true,
     expires: new Date(0),
   });
   return res.sendStatus(200);
@@ -135,6 +149,8 @@ export const verify = async (req, res) => {
       id: userFound._id,
       name: userFound.name,
       email: userFound.email,
+      rol: userFound.rol,
+      photo: userFound.photo.secure_url
     });
   });
 };

@@ -19,7 +19,8 @@ export const postPublication = async (req, res) => {
 
     let infoMultimedia = [];
     if (req.files?.images) {
-      const images = req.files.images;
+      console.log(req.files);
+      let images = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
       await Promise.all(
         images.map(async (image) => {
           if (
@@ -77,7 +78,6 @@ export const editPublication = async (req, res) => {
     const updatePublication = await Publication.findOneAndUpdate(
       { _id: idPublication },
       {
-        user: idUser,
         name,
         age,
         history,

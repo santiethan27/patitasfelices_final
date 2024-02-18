@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { authRegister, authLogin, verityTokenRequest } from '../api/auth';
+import { authRegister, authLogin, verityTokenRequest, logout } from '../api/auth';
 import Cookies from 'js-cookie'
+import { profile, update } from './../api/user';
 
 export const AuthContext = createContext()
 
@@ -15,15 +16,18 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null)
-    const [isAuthen, setIsAuthen] = useState(false)
+    const [user, setUser] = useState(null);
+    const [isAuthen, setIsAuthen] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [rol, setRol] = useState(null);
+
     const signup = async (user) => {
         try {
             const res = await authRegister(user);
             console.log(res.data);
             setUser(res.data);
+            setRol(res.data?.rol);
             setIsAuthen(true)
         } catch (error) {
             console.log(error)
@@ -34,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await authLogin(user);
             setUser(res.data);
+            setRol(res.data?.rol);
             setIsAuthen(true);
         } catch (error) {
             if (Array.isArray(error.response.data)) {
@@ -42,7 +47,31 @@ export const AuthProvider = ({ children }) => {
             setErrors([error.response.data.message])
         }
     }
-
+    const getProfile = async (user) => {
+        try {
+            const res = await profile(user);
+            return res.data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const updateUser = async (id, user) => {
+        try {
+            const res = await update(id, user);
+            console.log(res.data)
+            setUser(res.data);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    const _logout = async () => {
+        try {
+            logout();
+            setIsAuthen(false);
+        } catch (error) {
+            console.error(error)
+        }
+    }
     useEffect(() => {
         async function checkLogin() {
             const cookies = Cookies.get()
@@ -62,6 +91,7 @@ export const AuthProvider = ({ children }) => {
                 setLoading(false);
                 setIsAuthen(true);
                 setUser(res.data);
+                setRol(res.data?.rol);
             } catch (error) {
                 setIsAuthen(false);
                 setUser(null);
@@ -71,8 +101,10 @@ export const AuthProvider = ({ children }) => {
 
         checkLogin();
     }, []);
+
+
     return (
-        <AuthContext.Provider value={{ signup, login, user, isAuthen, errors, loading }}>
+        <AuthContext.Provider value={{ signup, login, user, isAuthen, errors, loading, rol, getProfile, updateUser, _logout }}>
             {children}
         </AuthContext.Provider>
     )

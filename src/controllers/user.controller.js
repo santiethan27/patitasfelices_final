@@ -50,7 +50,13 @@ export const updateUser = async (req, res) => {
       new: true,
     });
 
-    return res.json(updatedUser);
+    return res.status(200).json({
+      id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      rol: updatedUser.rol,
+      photo: updatedUser.photo.secure_url
+    });
   } catch (error) {
     console.error(error);
 
