@@ -18,16 +18,16 @@ function App() {
     <AuthProvider>
       <AnimalProvider>
         <ProductProvider>
-        <UserProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/auth' element={<AuthPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path='/*' element={<MainApp />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </UserProvider>
+          <UserProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/auth' element={<AuthPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path='/*' element={<MainApp />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </UserProvider>
         </ProductProvider>
       </AnimalProvider>
     </AuthProvider>
