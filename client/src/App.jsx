@@ -12,6 +12,7 @@ import BlogPage from './pages/BlogPage';
 import { AnimalProvider } from './context/AnimalContext';
 import SetAnimalPage from './pages/SetAnimalPage';
 import { ProductProvider } from './context/ProductContext';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function MainApp() {
         <Route path='/adoptar' element={<Adopcion />} />
         <Route path='/perfil' element={<ProfilePage />} />
         <Route path='/blog' element={<BlogPage />}> </Route>
+        <Route path='administracion' element={<AdminPage/>}></Route>
         <Route path='/test' element={<SetAnimalPage />}></Route>
       </Routes>
       <Footer />
