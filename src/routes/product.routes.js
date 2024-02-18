@@ -4,8 +4,9 @@ import {
     deleteProduct,
     editProduct,
     getProduct,
+    getProducts,
     postProduct,
-} from "../controllers/product.controller";
+} from "../controllers/product.controller.js";
 
 const router = Router();
 const fileUp = fileUpload({
@@ -14,7 +15,7 @@ const fileUp = fileUpload({
 });
 
 router.post("/product", fileUp,postProduct);
-router.get("/products", getProduct);
+router.get("/products", getProducts);
 router.get("/product/:id", getProduct);
 router.delete("/product/:id", deleteProduct);
 router.put("/product", editProduct)

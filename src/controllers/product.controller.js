@@ -1,6 +1,5 @@
 import fs from 'fs-extra';
 import Product from '../models/product.model.js';
-import { getProducts } from './product.controller.js';
 
 export const postProduct = async (req, res) => {
     try {
