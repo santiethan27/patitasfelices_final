@@ -7,6 +7,7 @@ export const postProduct = async (req, res) => {
             name,
             price,
             stock,
+            description,
             category,
         } = req.body;
 
@@ -35,6 +36,7 @@ export const postProduct = async (req, res) => {
             name,
             price,
             stock,
+            description,
             category,
             multimedia: infoMultimedia,
         });
@@ -52,6 +54,7 @@ export const editProduct = async (req, res) => {
             name,
             price,
             stock,
+            description,
             category,
         } = req.body
 
@@ -61,6 +64,7 @@ export const editProduct = async (req, res) => {
                 name,
                 price,
                 stock,
+                description,
                 category,
             },
             { new: true }

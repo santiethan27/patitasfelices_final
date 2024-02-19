@@ -1,0 +1,11 @@
+.container-adminPage{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.container-crudProductos{
+    display: flex;
+}
+.formController-Productos{
+    display: flex;
+}
