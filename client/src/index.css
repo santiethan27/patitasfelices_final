@@ -5,9 +5,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-:root{
+
+:root {
   --primary-color: #black;
 }
+
 html {
   width: 100%;
 }
@@ -46,7 +48,7 @@ code {
   background-color: #EC058E;
 }
 
-.txt-verde-lima{
+.txt-verde-lima {
   color: #98FB98;
 }
 
@@ -58,29 +60,25 @@ code {
   color: #fff;
 }
 
-.txt-black{
+.txt-black {
   color: #111;
 }
-  
+
 .logoPatitas {
   width: 60px;
   animation: none;
 }
-.transition{
+
+.transition {
   transition: all 1s;
 }
 
-.opacity1{
+.opacity1 {
   opacity: 1;
 }
-.opacity0{
-  opacity: 0;
-}
 
-.active {
-  background-color: white;
-  border-radius: 5px;
-  color: #EC058E;
+.opacity0 {
+  opacity: 0;
 }
 
 /* Scroll personalizado */
@@ -108,6 +106,7 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+/*
 img,.card{
   view-timeline: --image;
   view-timeline-axis: block;
@@ -116,3 +115,4 @@ img,.card{
   animation-range: entry 25% cover 50%;
   animation-fill-mode: both;
 }
+*/

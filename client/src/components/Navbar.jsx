@@ -76,7 +76,7 @@ const Navbar = () => {
             <ul>
               <NavLink to={`/`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Inicio</NavLink>
               <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Adoptar</NavLink>
-              <NavLink to={`/productos`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
+              <NavLink to={`/products`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
               <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
               <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
               {user.rol == "admin" && <NavLink to={`/administracion`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Administracion</NavLink>}

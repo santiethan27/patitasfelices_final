@@ -18,6 +18,7 @@
   position: fixed;
   top: 1rem;
   right: 1rem;
+  z-index: 3;
 }
 
 nav {
@@ -59,9 +60,16 @@ nav {
   }
 }
 
+.active {
+  background-color: white;
+  border-radius: 5px;
+  color: #547AA5 !important;
+  text-decoration: none;
+}
 
 @media(max-width: 850px) {
   nav {
+    position: absolute;
     flex-direction: column;
     width: 15rem;
     height: 100%;

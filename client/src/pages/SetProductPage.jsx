@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useProduct } from '../context/ProductContext'
 import { useForm } from 'react-hook-form';
-
+import '../components/Forms.css'
 
 function SetProductPage() {
     const { product } = useProduct();
-    console.log(product.id)
-    const{ register, handleSubmit, formState: {
+    const { register, handleSubmit, formState: {
         errors
-    }} = useForm();
+    } } = useForm();
     const [loading, setLoading] = useState();
     const { _postProducts } = useProduct();
     const onSubmit = async (data) => {
@@ -27,45 +26,50 @@ function SetProductPage() {
             await _postProducts(formData);
         } catch (error) {
             setLoading(false);
-            console.error('Error al actualizar el producto: ',error)
-        }finally{
+            console.error('Error al actualizar el producto: ', error)
+        } finally {
             setLoading(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label>Nombre:</label>
-                <input type="text" name="name" {...register("name", { required: true })}/>
-                {errors.name && <span>Es necesario rellenar este campo</span>}
+        <form className='w50 m5' onSubmit={handleSubmit(onSubmit)}>
+            <h2 className='title'>AGREGAR PRODUCTO</h2>
+            <div className="groups">
+                <div className='group'>
+                    <label>Nombre:</label>
+                    <input type="text" name="name" {...register("name", { required: true })} />
+                    {errors.name && <span>Es necesario rellenar este campo</span>}
+                </div>
+                <div className='group'>
+                    <label>Price:</label>
+                    <input type="text" name="price" {...register("price", { required: true })} />
+                    {errors.price && <span>Es necesario rellenar este campo</span>}
+                </div>
             </div>
-            <div>
-                <label>Price:</label>
-                <input type="text" name="price" {...register("price", { required: true })}/>
-                {errors.price && <span>Es necesario rellenar este campo</span>}
+            <div className="groups">
+                <div className='group'>
+                    <label>Stock:</label>
+                    <input type="text" name="stock" {...register("stock", { required: true })} />
+                    {errors.stock && <span>Es necesario rellenar este campo</span>}
+                </div>
+                <div className='group'>
+                    <label>Category:</label>
+                    <input type="text" name="category" {...register("category", { required: true })} />
+                    {errors.category && <span>Es necesario rellenar este campo</span>}
+                </div>
             </div>
-            <div>
-                <label>Stock:</label>
-                <input type="text" name="stock" {...register("stock", { required: true })}/>
-                {errors.stock && <span>Es necesario rellenar este campo</span>}
-            </div>
-            <div>
+            <div className='group'>
                 <label>Description:</label>
-                <textarea type="text" name="description" {...register("description", { required: true })}/>
+                <textarea type="text" name="description" {...register("description", { required: true })} />
                 {errors.description && <span>Es necesario rellenar este campo</span>}
             </div>
-            <div>
-                <label>Category:</label>
-                <textarea type="text" name="category" {...register("category", { required: true })}/>
-                {errors.category && <span>Es necesario rellenar este campo</span>}
-            </div>
-            <div>
+            <div className='group'>
                 <label>Imagenes:</label>
-                <input type="file" name="image" {...register("image", { required: true })}/>
+                <input type="file" name="image" {...register("image", { required: true })} />
                 {errors.image && <span>Es necesario rellenar este campo</span>}
             </div>
-            <button type='submit'>Submit</button>
+            <button className='bg-azul' type='submit'>Agregar</button>
         </form>
     )
 }

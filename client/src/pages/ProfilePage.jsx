@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import useLocationData from '../hooks/useLocationData';
 import './Profile.css';
+import '../components/Forms.css'
 
 function ProfilePage() {
   const { user, getProfile, updateUser } = useAuth();
@@ -58,7 +59,7 @@ function ProfilePage() {
     }
   };
   return (
-    <form className='contProfile' encType='multipart/form-data' onSubmit={handleSubmit(onSubmit)}>
+    <form className='contProfile w80 m5' encType='multipart/form-data' onSubmit={handleSubmit(onSubmit)}>
       <h2>Editar perfil</h2>
       <div className="banner">
         <img src="./Fondo.jpg" alt="" />
@@ -73,40 +74,55 @@ function ProfilePage() {
           <input type="file" name='image' {...register("image")} />
         </div>
       </div>
-      <div className="changeProfile cont2">
-        <p className='text'>Celular <input type="number" {...register("phone")} className='inputChange' placeholder={`+57 ${res.phone}`} /></p>
-        <p className='text'>Calle <input type="text" {...register("street")} className='inputChange' placeholder={res.address ? res.address.street : ''} /></p>
-        <p className='text'>Codigo postal <input type="number" {...register("postal_code")} className='inputChange' placeholder={res.address ? res.address.postal_code : ''} /></p>
-        <div className='text'>Departamento {departamentos.length > 0 ?
-          (
-
-            <select {...register("state", { required: true })} value={departamento} onChange={(e) => {
-              handleDepartamentoChange(e.target.value);
-              setValue("city", municipio);
-            }
-
-            }>
-              {departamentos.map((departamento, index) => (
-                <option key={index}>{departamento}</option>
-              ))}
-            </select>
-          ) : (
-            <div>Cargando departamentos...</div>
-          )}</div>
-        <div className='text'>Municipio {municipios.length > 0 ?
-          (
-            <select {...register("city", { required: true })} value={watch("city")} onChange={(e) => setValue("city", e.target.value)}>
-              {municipios.map((municipio, index) => (
-                <option option key={index} > {municipio}</option>
-              ))}
-            </select>
-
-          ) : (
-            <div>No se encontraron municipios para el departamento seleccionado</div>
-          )}</div>
-        <button className='bInformacion'>GUARDAR CAMBIOS</button>
-        {loading && <p>Actualizando informacion...</p>}
+      <div className="groups">
+        <div className="group">
+          <label className='text'>Celular</label>
+          <input type="number" {...register("phone")} placeholder={`+57 ${res.phone}`} />
+        </div>
+        <div className="group">
+          <label className='text'>Calle</label>
+          <input type="text" {...register("street")} className='inputChange' placeholder={res.address ? res.address.street : ''} />
+        </div>
+        <div className="group">
+          <label className='text'>Codigo postal</label>
+          <input type="number" {...register("postal_code")} className='inputChange' placeholder={res.address ? res.address.postal_code : ''} />
+        </div>
       </div>
+      <div className="groups">
+        <div className='group'>
+          <label>Departamento</label>
+          {departamentos.length > 0 ?
+            (
+
+              <select {...register("state", { required: true })} value={departamento} onChange={(e) => {
+                handleDepartamentoChange(e.target.value);
+                setValue("city", municipio);
+              }
+
+              }>
+                {departamentos.map((departamento, index) => (
+                  <option key={index}>{departamento}</option>
+                ))}
+              </select>
+            ) : (
+              <div>Cargando departamentos...</div>
+            )}</div>
+        <div className='group'>
+          <label>Municipio</label>
+          {municipios.length > 0 ?
+            (
+              <select {...register("city", { required: true })} value={watch("city")} onChange={(e) => setValue("city", e.target.value)}>
+                {municipios.map((municipio, index) => (
+                  <option option key={index} > {municipio}</option>
+                ))}
+              </select>
+
+            ) : (
+              <div>No se encontraron municipios para el departamento seleccionado</div>
+            )}</div>
+      </div>
+      <button className='bg-azul'>GUARDAR CAMBIOS</button>
+      {loading && <p>Actualizando informacion...</p>}
     </form >
   )
 }

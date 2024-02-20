@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { deleteProduct, getProduct, postProduct, putProduct } from "../api/product.js";
+import { deleteProduct, getProduct, getProducts, postProduct, putProduct } from "../api/product.js";
 
 export const ProductContext = createContext();
 
@@ -11,7 +11,7 @@ export const useProduct = () => {
     return context;
 }
 export const ProductProvider = ({ children }) => {
-    const [product, setProduct] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const _getProduct = async (id) => {
         try {
@@ -24,8 +24,8 @@ export const ProductProvider = ({ children }) => {
 
     const _getProducts = async () => {
         try {
-            const resProducts = await getProduct();
-            setProduct(resProducts.data());
+            const resProducts = await getProducts();
+            setProducts(resProducts.data);
         } catch (error) {
             console.log(error);
         }
@@ -51,14 +51,14 @@ export const ProductProvider = ({ children }) => {
     const _deleteProduct = async (id) => {
         try {
             const resProduct = await deleteProduct(id);
-            if (resProduct.status === 200) setProduct(product.filter((product) => product._id !== id));
+            if (resProduct.status === 200) setProduct(products.filter((product) => product._id !== id));
         } catch (error) {
             console.log(error);
         }
     }
 
     return (
-        <ProductContext.Provider value={{ _getProduct, _getProducts, _postProducts, _putProduct, _deleteProduct, product }}>
+        <ProductContext.Provider value={{ _getProduct, _getProducts, _postProducts, _putProduct, _deleteProduct, products }}>
             {children}
         </ProductContext.Provider>
     )

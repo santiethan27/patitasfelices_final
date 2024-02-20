@@ -60,12 +60,6 @@ const Adopcion = () => {
     <>
       <div className="container-adopcion">
         <header>
-          <button type="button" className="txt-white cursor-pointer">
-            Sube una mascota
-          </button>
-          <p className="active">
-            Aquí puedes subir un animal que quieras ayudar para que tenga un hogar
-          </p>
         </header>
         <div className="container-cards">{
           animals.map((animal) => (

@@ -13,20 +13,23 @@ import { AnimalProvider } from './context/AnimalContext';
 import SetAnimalPage from './pages/SetAnimalPage';
 import { ProductProvider } from './context/ProductContext';
 import AdminPage from './pages/AdminPage';
+import CardProduct from './components/CardProduct';
+import ProductsPage from './pages/ProductsPage';
+import SetProductPage from './pages/SetProductPage';
 
 function App() {
   return (
     <AuthProvider>
       <AnimalProvider>
         <ProductProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/auth' element={<AuthPage />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path='/*' element={<MainApp />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/auth' element={<AuthPage />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path='/*' element={<MainApp />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
         </ProductProvider>
       </AnimalProvider>
     </AuthProvider>
@@ -41,8 +44,10 @@ function MainApp() {
         <Route path='/adoptar' element={<Adopcion />} />
         <Route path='/perfil' element={<ProfilePage />} />
         <Route path='/blog' element={<BlogPage />}> </Route>
-        <Route path='administracion' element={<AdminPage/>}></Route>
-        <Route path='/test' element={<SetAnimalPage />}></Route>
+        <Route path='/administracion' element={<AdminPage />}></Route>
+        <Route path='/pet' element={<SetAnimalPage />}></Route>
+        <Route path='/product' element={<SetProductPage />}></Route>
+        <Route path='/products' element={<ProductsPage />}></Route>
       </Routes>
       <Footer />
     </>
