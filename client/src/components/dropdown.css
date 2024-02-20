@@ -23,7 +23,7 @@
     background: white;
     display: none !important;
     margin: 0;
-    z-index: 1000;
+    z-index: 2;
     position: absolute;
     box-shadow: 0 0 2px 0 gray;
     border-radius: 5px;

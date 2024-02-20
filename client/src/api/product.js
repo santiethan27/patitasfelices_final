@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios";
 
 export const getProduct = async (id) => axios.get(`/product/${id}`);
 export const getProducts = async () => axios.get("/products");

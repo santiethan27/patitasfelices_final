@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import Product from '../models/product.model.js';
+import { uploadImage } from "../utils/cloudinary.js";
 
 export const postProduct = async (req, res) => {
     try {
@@ -13,7 +14,7 @@ export const postProduct = async (req, res) => {
 
         let infoMultimedia = [];
         if (req.files?.images) {
-            const images = req.files.images;
+            let images = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
             await Promise.all(
                 images.map(async (image) => {
                     if (
