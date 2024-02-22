@@ -7,8 +7,11 @@ import { useForm } from "react-hook-form";
 import "./Forms.css";
 
 const Adopcion = () => {
-  const [selectedItem, setSelectedPetKey] = useState(null);
   const { animals, _getAnimals, _deleteAnimal } = useAnimal();
+  const [selectedItem, setSelectedPetKey] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
 
   useEffect((() => {
     _getAnimals();
@@ -16,15 +19,16 @@ const Adopcion = () => {
 
   const { register, handleSubmit, formState: {
     errors
-  } } = useForm();
+  }, reset } = useForm();
   const { _putAnimal } = useAnimal();
 
-  const [modal, setModal] = useState(false);
-  const [modal2, setModal2] = useState(false);
-  const [modal3, setModal3] = useState(false);
+
 
 
   const Toggle = (animal) => {
+    if (animal == undefined) {
+      reset();
+    }
     setSelectedPetKey(animal);
     setModal(!modal)
   };
@@ -60,6 +64,13 @@ const Adopcion = () => {
     <>
       <div className="container-adopcion">
         <header>
+          <div className="container-txt">
+            <h3>PERROS Y GATOS DISPONIBLES PARA SER ADOPTADOS</h3>
+            <h4>Click en la foto de la mascota para abrir una nueva ventana con informacion adicional sobre la mascota</h4>
+          </div>
+          <div className="container-img">
+            <img src="./images/petspage.png" alt="" />
+          </div>
         </header>
         <div className="container-cards">{
           animals.map((animal) => (
@@ -70,7 +81,7 @@ const Adopcion = () => {
 
       {/* */}
       <Modal show={modal} title={`EDITAR MASCOTA: ${selectedItem?.name}`} close={Toggle} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
-        {selectedItem && (<form className="w80" onSubmit={handleSubmit(onSubmit)}>
+        {selectedItem && (<form className="w80 formPatitas" onSubmit={handleSubmit(onSubmit)}>
           <input type="text" {...register("idPublication", { required: true })} value={selectedItem._id} hidden />
           <div className="groups">
             <div className="group">

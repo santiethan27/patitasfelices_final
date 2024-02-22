@@ -10,16 +10,17 @@ const CardsAdopcion = ({ onModify, onDelete, animal }) => {
         <p className='title'>{animal.name}</p>
         <img src={animal.multimedia[0]?.secure_url} alt='' />
         <section className='info'>
-          <p>{animal.age} - {animal.raza}</p>
+          <p><span>Edad: </span>{animal.age}</p>
+          <p><span>Raza: </span>{animal.raza}</p>
         </section>
       </div>
       {rol === 'user' ? (
         <div className="buttons">
-          <button onClick={onModify} className='cursor-pointer'>Adoptar</button>
+          <button onClick={onModify} className='cursor-pointer'>Adoptar Ahora!</button>
         </div>
       ) : (
         <div className="buttons">
-          <button onClick={onModify} className='cursor-pointer'>Modificar</button>
+          <button onClick={onModify} className='cursor-pointer agregar'>Modificar</button>
           <button onClick={onDelete} className='cursor-pointer eliminar'>Eliminar</button>
         </div>
       )

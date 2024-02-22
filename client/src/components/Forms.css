@@ -1,4 +1,4 @@
-form {
+form.formPatitas {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -9,16 +9,17 @@ form {
         height: 30px;
         padding: 5px;
         border: none;
-        border-bottom: #6893c4 solid 2px;
+        border-bottom: #454fc7 solid 2px;
         border-radius: 3px;
         outline: none;
+
         &::file-selector-button {
             display: none;
         }
     }
 
     .title {
-        color: #6893c4;
+        color: #454fc7;
     }
 
     .groups {
@@ -33,7 +34,7 @@ form {
         width: 100%;
 
         label {
-            color: #6893c4;
+            color: #454fc7;
         }
 
         input,
@@ -42,19 +43,19 @@ form {
             height: 30px;
             padding: 5px;
             border: none;
-            border-bottom: #6893c4 solid 2px;
+            border-bottom: #454fc7 solid 2px;
             border-radius: 3px;
             outline: none;
 
             &:focus {
-                background-color: rgba(104, 147, 196, 0.1);
+                background-color: rgba(69, 79, 199, 0.1);
             }
         }
 
         textarea {
             outline: none;
             border: none;
-            border-bottom: #6893c4 solid 2px;
+            border-bottom: #454fc7 solid 2px;
             border-radius: 5px;
             min-height: 100px;
             max-height: 100px;
@@ -63,7 +64,7 @@ form {
             padding: 5px;
 
             &:focus {
-                background-color: rgba(104, 147, 196, 0.1);
+                background-color: rgba(69, 79, 199, 0.1);
             }
         }
     }
@@ -98,5 +99,5 @@ form {
 }
 
 .m5 {
-    margin: 2rem auto;
+    margin: 5rem auto !important;
 }

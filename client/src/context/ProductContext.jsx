@@ -34,6 +34,7 @@ export const ProductProvider = ({ children }) => {
     const _postProducts = async (product) => {
         try {
             await postProduct(product);
+            await _getProducts();
         } catch (error) {
             console.log(error);
         }
@@ -41,8 +42,8 @@ export const ProductProvider = ({ children }) => {
 
     const _putProduct = async (product) => {
         try {
-            const resProduct = await putProduct(product);
-            console.log(resProduct);
+            await putProduct(product);
+            await _getProducts();
         } catch (error) {
             console.log(error);
         }
@@ -51,7 +52,8 @@ export const ProductProvider = ({ children }) => {
     const _deleteProduct = async (id) => {
         try {
             const resProduct = await deleteProduct(id);
-            if (resProduct.status === 200) setProduct(products.filter((product) => product._id !== id));
+            await _getProducts();
+            if (resProduct.status === 200) setProducts(products.filter((product) => product._id !== id));
         } catch (error) {
             console.log(error);
         }

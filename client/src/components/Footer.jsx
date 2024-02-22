@@ -12,13 +12,13 @@ const Footer = () => {
     const name = 'Fundación Patitas Felices';
     const reserve = 'Todos los derechos reservados';
     return (
-        <footer className='bg-black'>
+        <footer>
             <article className='article'>
                 <section className='icon-footer container-email'>
-                    <img src='./logo3.png' alt='Logo' className='cursor-pointer logoPatitas' />
+                    <img src='./logo4.png' alt='Logo' className='cursor-pointer logoPatitas' />
                     <div className='email-container cursor-pointer'>
-                        <FontAwesomeIcon icon={faEnvelope} size='2x' color='#fff' className='email-icon' />
-                        <p className='txt-white'>Patitasfelices@gmail.com</p>
+                        <FontAwesomeIcon icon={faEnvelope} size='2x' color='black' className='email-icon' />
+                        <p className='txt-black'>Patitasfelices@gmail.com</p>
                     </div>
                 </section>
                 <section className='icons-social'>
@@ -44,7 +44,7 @@ const Footer = () => {
                     </div>
                 </section>
             </article>
-            <p className='creditos txt-white'>@{year} - {name}, {reserve}</p>
+            <p className='creditos txt-black'>@{year} - {name}, {reserve}</p>
         </footer>
     )
 }

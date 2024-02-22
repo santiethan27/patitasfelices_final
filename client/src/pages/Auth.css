@@ -11,8 +11,8 @@
     padding: 2px 10px;
     transition: all .3s ease-in-out;
     height: 100%;
-    box-shadow: 1px 1px 4px 1px rgb(146, 146, 146);
     justify-content: center;
+    background: white;
 }
 
 .formClass .title {
@@ -20,6 +20,7 @@
     font-weight: 100;
     font-size: 40px;
     margin: 10px 0px;
+    color: #dd6e84;
 }
 
 .formClass .inputClass {
@@ -41,7 +42,7 @@
     text-decoration: none;
     margin: 10px 0px;
     text-align: end;
-    color: #547AA5;
+    color: #dd6e84;
     font-size: 12px;
 }
 
@@ -54,7 +55,7 @@
     margin: 10px auto;
     border-radius: 20px;
     border: none;
-    background-color: #547AA5;
+    background-color: #dd6e84;
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -89,21 +90,18 @@
 .colForm {
     padding: 10px;
     width: 100%;
-    background-color: #547AA5;
+    background-color: #dd6e84;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
     transition: all .3s ease-in-out;
-}
 
-.colForm .title {
-    font-size: 40px;
-    font-weight: 100;
-    margin: 10px 0;
+    img {
+        width: 80%;
+    }
 }
 
 .colForm .colButton {
@@ -111,18 +109,12 @@
     height: 40px;
     display: inline-block;
     margin: 10px auto;
-    color: inherit;
+    color: white;
     border-radius: 20px;
     border: 2px solid white;
     background-color: transparent;
     font-size: 15px;
     cursor: pointer;
-}
-
-.colForm .subtitle {
-    letter-spacing: 2px;
-    margin: 10px 0;
-    font-weight: 10;
 }
 
 .authForm {
@@ -131,6 +123,7 @@
     width: 60%;
     margin: 10vh auto;
     min-height: 500px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .authForm.inverso {
@@ -147,7 +140,7 @@
     border-bottom-left-radius: 10px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: #ec058f;
+    background-color: #692e82;
     color: white;
 }
 
@@ -156,7 +149,7 @@
 }
 
 .authForm.inverso .formButton {
-    background-color: #ec058f;
+    background-color: #692e82;
 }
 
 .contForm {
@@ -168,7 +161,7 @@ label {
 }
 
 .authForm .error {
-    color: #547AA5;
+    color: #dd6e84;
     font-size: 15px;
     font-weight: 200;
     padding: 5px 5px;
@@ -178,8 +171,9 @@ label {
 
 }
 
-.authForm.inverso .error {
-    color: #ec058f;
+.authForm.inverso .error,
+.authForm.inverso .title {
+    color: #692e82;
 }
 
 .formClass .group {

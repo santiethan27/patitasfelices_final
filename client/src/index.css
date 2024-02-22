@@ -21,6 +21,7 @@ body {
   font-style: normal;
   font-variation-settings:
     "wdth" 97.8;
+  background-color: #fef4ea;
 }
 
 
@@ -41,11 +42,51 @@ code {
 }
 
 .bg-azul {
-  background-color: #547AA5;
+  background-color: #5b54ca;
+}
+
+.bg-azul3 {
+  background-color: #5b54ca;
+}
+
+.bg-azul4 {
+  background-color: #85d4f2;
+}
+
+.bg-morado {
+  background-color: #ab6afe;
+}
+
+.bg-morado2 {
+  background-color: #ac66c3;
+}
+
+.txt-morado {
+  color: #ac66c3;
+}
+
+.txt-rosado {
+  color: #e6a4d0;
+}
+
+.bg-morado3 {
+  background-color: #ac66c3;
+}
+
+.bg-amarillo {
+  background-color: #feed02;
+}
+
+.bg-naranja {
+  background-color: #f67a58;
 }
 
 .bg-rosa {
-  background-color: #EC058E;
+  background-color: #e6a4d0;
+}
+
+.bg-azul2 {
+  background-color: #5b54ca;
 }
 
 .txt-verde-lima {
@@ -85,12 +126,12 @@ code {
 
 body::-webkit-scrollbar {
   width: 7px;
+  border: none;
 
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #EC058E;
-  border-radius: 7px;
+  background-color: #05182c;
 }
 
 /* Animaciones */

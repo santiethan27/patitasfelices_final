@@ -2,12 +2,12 @@ import React from 'react'
 import "./CardProduct.css"
 import { useAuth } from '../context/AuthContext';
 
-function CardProduct({ product }) {
+function CardProduct({ onModify, onDelete, product }) {
     const { rol } = useAuth();
     return (
         <div className='card'>
             <div className="img">
-                <img src="./celular.png" alt="" />
+                <img src={product.multimedia[0].secure_url} alt="" />
             </div>
             <div className="body">
                 <h4>{product.name}</h4>
@@ -16,8 +16,8 @@ function CardProduct({ product }) {
                     <div className="money">${product.price}</div>
                     {rol == 'admin' ?
                         <div className="buttons">
-                            <button className='editar'>Editar</button>
-                            <button className='eliminar'>Eliminar</button>
+                            <button onClick={onModify} className='editar'>Editar</button>
+                            <button onClick={onDelete} className='eliminar'>Eliminar</button>
                         </div>
                         :
                         <button>Hacer pedido</button>

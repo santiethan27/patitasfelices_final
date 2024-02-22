@@ -1,33 +1,107 @@
 /* Diseño del apartado de CondicionesAdopcion */
+.container-condiciones {
+  width: 100%;
+  background-color: #ac66c3;
+  display: flex;
 
-.container-codicionesAdopcion {
+  .container-b {
+    display: flex;
+    justify-content: center;
+
+    a {
+      position: relative;
+      color: #ac66c3;
+      text-decoration: none;
+      background-color: #ffebf3;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-top: 2rem;
+      width: 30%;
+      text-align: center;
+
+      .hand {
+        position: absolute;
+        font-size: 1.5rem;
+        color: white;
+        bottom: -1.5rem;
+        left: 0;
+      }
+    }
+  }
+
+
+  .container-codicionesAdopcion {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 1.4em;
-    margin-bottom: .3rem;
-    background-color: #547AA5;
-    padding: 4rem 0;
-  
+    padding: 2rem;
+
     .container-condicion {
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: 0 2rem;
+      margin-top: 2rem;
       font-size: 1.1rem;
       gap: 1.5rem;
     }
-  
+
     .container-tittle {
       display: flex;
       align-items: center;
       justify-content: center;
-  
+
       h3 {
-        background-color: #EC058E;
+        font-weight: 600;
+        font-size: 2rem;
         text-align: center;
         padding: 10px;
         border-radius: 10px;
       }
     }
+
+    .container-condicion {
+      color: white;
+    }
   }
+
+  .c-img-condiones {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      position: relative;
+      height: 400px;
+      width: 400px;
+      border-radius: 100%;
+      background-color: #e6a4d0;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        bottom: -1.5rem;
+        left: 0;
+        height: 100%;
+      }
+    }
+
+    .line1 {
+      position: absolute;
+      bottom: 10%;
+      right: 0;
+      width: 50%;
+      transform: rotate(-30deg);
+    }
+
+    .line2 {
+      position: absolute;
+      top: 20%;
+      left: 0;
+      width: 40%;
+      transform: rotate(-65deg);
+    }
+  }
+}

@@ -1,28 +1,81 @@
 main {
-    height: auto;
-    width: 100%;
-    overflow: hidden;
-    .c-header{
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+
+  .c-header {
+    display: flex;
+
+    header {
+      position: relative;
       display: flex;
-      header {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-        gap: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      gap: 10px;
+      width: 100%;
+      background-color: #5c54ca80;
+      color: white;
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 800;
         width: 100%;
-        p {
-          font-size: 1.1rem;
-          width: 160px;
+      }
+
+      a {
+        position: relative;
+        color: #5b54ca;
+        text-decoration: none;
+        background-color: #ffebf3;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 2rem;
+
+        .hand {
+          position: absolute;
+          font-size: 1.5rem;
+          color: white;
+          bottom: -1.5rem;
         }
-    
+      }
+
+      .header-icon {
+        position: relative;
+        width: 25%;
+        height: 30%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top-right-radius: 60%;
+
         img {
-          width: 100px;
+          position: absolute;
+          height: 150%;
+          bottom: 0;
         }
       }
     }
+
     .img-header {
-      width: 60% !important;
+      width: 50%;
     }
   }
+
+  .infos {
+    display: flex;
+    width: 100%;
+
+    .section {
+      width: 100%;
+      display: flex;
+      height: 100px;
+
+      p {
+        padding: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+}

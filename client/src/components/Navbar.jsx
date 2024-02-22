@@ -67,19 +67,18 @@ const Navbar = () => {
         <div className='container-iconBar'>
           {showIconMenu ? (<FontAwesomeIcon icon={changeIcon ? faX : faBars} size='2x' color='#fff' className={`cursor-pointer icon-bar transition ${txtChangeColor ? 'txt-white' : 'txt-black'}`} onClick={toggleShow} />) : null}
         </div>
-        {showMenu ? (<nav className='bg-azul transition'>
-          <div className='div-nav'>
-            <h2 className='cursor-pointer txt-white'>Patitas Felices</h2>
-            <img src="./logo3.png" alt='Logo' className='cursor-pointer logoPatitas' />
+        {showMenu ? (<nav className='transition'>
+          <div className='brand'>
+            <Link to='/' className='cursor-pointer txt-black'>Patitas Felices</Link>
           </div>
           <div className='div-nav'>
             <ul>
-              <NavLink to={`/`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Inicio</NavLink>
-              <NavLink to={`/adoptar`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Adoptar</NavLink>
-              <NavLink to={`/products`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
-              <NavLink to={`/donaciones`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
-              <NavLink to={`/blog`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
-              {user.rol == "admin" && <NavLink to={`/administracion`} className='cursor-pointer txt-white link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Administracion</NavLink>}
+              <NavLink to={`/`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Inicio</NavLink>
+              <NavLink to={`/adoptar`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Adoptar</NavLink>
+              <NavLink to={`/products`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
+              <NavLink to={`/donaciones`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
+              <NavLink to={`/blog`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
+              {user.rol == "admin" && <NavLink to={`/administracion`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Administracion</NavLink>}
             </ul>
           </div>
           <div className='div-nav'>

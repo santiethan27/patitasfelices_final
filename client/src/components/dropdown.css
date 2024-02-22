@@ -28,6 +28,7 @@
     box-shadow: 0 0 2px 0 gray;
     border-radius: 5px;
     padding: 0;
+    right: 10%;
 }
 
 .dropdown_item_list.active {

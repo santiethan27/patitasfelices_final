@@ -3,8 +3,9 @@ import React from 'react'
 import CondicionesAdopcion from './../components/CondicionesAdopcion';
 // Separar los componentes creados por nosotros la comunidad 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaw } from '@fortawesome/free-solid-svg-icons';
+import { faHandPointer, faPaw } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
+import { Link } from 'react-router-dom';
 function HomePage() {
 
     return (
@@ -12,10 +13,8 @@ function HomePage() {
             <main>
                 <div className='c-header'>
                     <header>
-                        <img src='./Inicio.jpg' alt='imagen de perrito sonriendo' />
-                        <p>Bienvenido a Patitas Felices</p>
-                        <FontAwesomeIcon icon={faPaw} size='3x' />
-                        <img src='./CorazonesInicio.png' alt='Corazones' />
+                        <p>NO SOLO LAS PERSONAS NECESITAN UNA CASA, TAMBIEN LOS ANIMALES</p>
+                        <Link to='/adoptar'>ADOPTAR AHORA!<FontAwesomeIcon className='hand' icon={faHandPointer} /></Link>
                     </header>
                     <img src='./1.png' alt='imagen central de gatos y perritos' className='img-header' />
                 </div>
