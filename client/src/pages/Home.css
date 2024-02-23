@@ -15,8 +15,6 @@ main {
       padding: 30px;
       gap: 10px;
       width: 100%;
-      background-color: #5c54ca80;
-      color: white;
 
       p {
         font-size: 1.5rem;
@@ -26,9 +24,7 @@ main {
 
       a {
         position: relative;
-        color: #5b54ca;
         text-decoration: none;
-        background-color: #ffebf3;
         padding: 5px 10px;
         border-radius: 5px;
         margin-top: 2rem;
@@ -36,7 +32,6 @@ main {
         .hand {
           position: absolute;
           font-size: 1.5rem;
-          color: white;
           bottom: -1.5rem;
         }
       }

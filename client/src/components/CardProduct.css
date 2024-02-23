@@ -34,7 +34,6 @@
             align-items: center;
 
             .money {
-                color: #dd6e84;
                 font-weight: 500;
             }
 
@@ -81,7 +80,6 @@
 
             .editar {
                 border-bottom-right-radius: 0;
-                background-color: #dd6e84;
             }
         }
     }

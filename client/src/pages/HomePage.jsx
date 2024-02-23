@@ -12,9 +12,9 @@ function HomePage() {
         <div>
             <main>
                 <div className='c-header'>
-                    <header>
+                    <header className='bg-amethyst txt-white'>
                         <p>NO SOLO LAS PERSONAS NECESITAN UNA CASA, TAMBIEN LOS ANIMALES</p>
-                        <Link to='/adoptar'>ADOPTAR AHORA!<FontAwesomeIcon className='hand' icon={faHandPointer} /></Link>
+                        <Link to='/adoptar' className='bg-lavender txt-amethyst'>ADOPTAR AHORA!<FontAwesomeIcon className='hand txt-white' icon={faHandPointer} /></Link>
                     </header>
                     <img src='./1.png' alt='imagen central de gatos y perritos' className='img-header' />
                 </div>

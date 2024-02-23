@@ -37,6 +37,10 @@ code {
 
 }
 
+.bg-lavender{
+  background-color: #ffebf3;
+}
+
 .bg-black {
   background-color: #111010;
 }
@@ -61,6 +65,18 @@ code {
   background-color: #ac66c3;
 }
 
+.bg-amethyst{
+  background-color: #8f79e7;
+}
+
+.txt-blue{
+ color: #454fc7;
+}
+
+.txt-amethyst{
+  color: #8f79e7;
+}
+
 .txt-morado {
   color: #ac66c3;
 }
@@ -81,12 +97,20 @@ code {
   background-color: #f67a58;
 }
 
+.bg-palorosa{
+  background-color: #dd6e84;
+}
+
 .bg-rosa {
   background-color: #e6a4d0;
 }
 
 .bg-azul2 {
   background-color: #5b54ca;
+}
+
+.txt.palorosa{
+  background-color: #dd6e84;
 }
 
 .txt-verde-lima {

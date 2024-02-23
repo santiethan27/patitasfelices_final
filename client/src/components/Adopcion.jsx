@@ -62,7 +62,7 @@ const Adopcion = () => {
   };
   return (
     <>
-      <div className="container-adopcion">
+      <div className="container-adopcion bg-rosa">
         <header>
           <div className="container-txt">
             <h3>PERROS Y GATOS DISPONIBLES PARA SER ADOPTADOS</h3>
@@ -72,7 +72,7 @@ const Adopcion = () => {
             <img src="./images/petspage.png" alt="" />
           </div>
         </header>
-        <div className="container-cards">{
+        <div className="container-cards bg-white">{
           animals.map((animal) => (
             <CardsAdopcion key={animal._id} animal={animal} onDelete={() => Toggle2(animal._id)} onModify={() => Toggle(animal)} />
           ))

@@ -13,10 +13,10 @@ function CardProduct({ onModify, onDelete, product }) {
                 <h4>{product.name}</h4>
                 <div className="description">{product.description}</div>
                 <div className="price">
-                    <div className="money">${product.price}</div>
+                    <div className="money txt-palorosa">${product.price}</div>
                     {rol == 'admin' ?
                         <div className="buttons">
-                            <button onClick={onModify} className='editar'>Editar</button>
+                            <button onClick={onModify} className='editar bg-palorosa'>Editar</button>
                             <button onClick={onDelete} className='eliminar'>Eliminar</button>
                         </div>
                         :

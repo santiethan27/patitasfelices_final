@@ -18,13 +18,13 @@ const Modal = ({
             {
                 show && createPortal(
                     <div className={`modalContainer ${!showOverlay && "noOverlay"} ${align}`} onClick={iClose ? () => close() : undefined}>
-                        <div className={`modal ${size}`} onClick={(e) => e.stopPropagation()}>
+                        <div className={`modal bg-white${size}`} onClick={(e) => e.stopPropagation()}>
                             {showHeader &&
                                 <header className="modal_header">
-                                    <h3 className="modal_header-title"> {title} </h3>
+                                    <h3 className="modal_header-title txt-blue"> {title} </h3>
                                 </header>
                             }
-                            {iClose && <button className="close" onClick={() => close()}>
+                            {iClose && <button className="close txt-blue" onClick={() => close()}>
                                 <FontAwesomeIcon icon={faTimes} />
                             </button>}
                             <main> {children} </main>

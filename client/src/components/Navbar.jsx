@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     // Version navbar 2.0 (Posibles cambios !)
-    <div className={showMenu && showIconMenu ? "back active" : "back"} onClick={showMenu && showIconMenu ? toggleShow : null}>
+    <div className={showMenu && showIconMenu ? "back active" : "back bg-lavender"} onClick={showMenu && showIconMenu ? toggleShow : null}>
       <div className='container-navbar' onClick={(e) => e.stopPropagation()}>
         <div className='container-iconBar'>
           {showIconMenu ? (<FontAwesomeIcon icon={changeIcon ? faX : faBars} size='2x' color='#fff' className={`cursor-pointer icon-bar transition ${txtChangeColor ? 'txt-white' : 'txt-black'}`} onClick={toggleShow} />) : null}
