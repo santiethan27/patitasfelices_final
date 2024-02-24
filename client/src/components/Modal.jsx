@@ -18,7 +18,7 @@ const Modal = ({
             {
                 show && createPortal(
                     <div className={`modalContainer ${!showOverlay && "noOverlay"} ${align}`} onClick={iClose ? () => close() : undefined}>
-                        <div className={`modal bg-white${size}`} onClick={(e) => e.stopPropagation()}>
+                        <div className={`modal bg-white ${size}`} onClick={(e) => e.stopPropagation()}>
                             {showHeader &&
                                 <header className="modal_header">
                                     <h3 className="modal_header-title txt-blue"> {title} </h3>

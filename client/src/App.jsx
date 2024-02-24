@@ -16,6 +16,11 @@ import AdminPage from './pages/AdminPage';
 import CardProduct from './components/CardProduct';
 import ProductsPage from './pages/ProductsPage';
 import SetProductPage from './pages/SetProductPage';
+import CitaAdopcion from './components/citaadopcion';
+
+
+
+
 
 function App() {
   return (
@@ -44,6 +49,7 @@ function MainApp() {
         <Route path='/adoptar' element={<Adopcion />} />
         <Route path='/perfil' element={<ProfilePage />} />
         <Route path='/blog' element={<BlogPage />}> </Route>
+        <Route path='/citas' element={<CitaAdopcion />}></Route>
         <Route path='/administracion' element={<AdminPage />}></Route>
         <Route path='/pet' element={<SetAnimalPage />}></Route>
         <Route path='/product' element={<SetProductPage />}></Route>

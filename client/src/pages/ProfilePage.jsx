@@ -85,7 +85,7 @@ function ProfilePage() {
             <input type="text" {...register("street")} className='inputChange' placeholder={res.address ? res.address.street : ''} />
           </div>
           <div className="group">
-            <label className='text'>Codigo postal</label>
+            <label className='text txt-morado'>Codigo postal</label>
             <input type="number" {...register("postal_code")} className='inputChange' placeholder={res.address ? res.address.postal_code : ''} />
           </div>
         </div>
@@ -122,7 +122,7 @@ function ProfilePage() {
                 <div>No se encontraron municipios para el departamento seleccionado</div>
               )}</div>
         </div>
-        <button className='bg-azul'>GUARDAR CAMBIOS</button>
+        <button className='bg-morado2'>GUARDAR CAMBIOS</button>
         {loading && <p>Actualizando informacion...</p>}
       </form >
     </div>

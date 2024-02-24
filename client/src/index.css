@@ -41,6 +41,10 @@ code {
   background-color: #ffebf3;
 }
 
+.bg-white{
+  background-color: white;
+}
+
 .bg-black {
   background-color: #111010;
 }
