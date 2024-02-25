@@ -7,10 +7,12 @@
   position: fixed;
   top: 0;
   z-index: 2;
+  background-color: rgba(0, 0, 0, 0.557);
 }
 
 .back {
-  position: relative;
+  position: sticky;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   top: 0;
   z-index: 2;
   font-family: "Raleway", sans-serif;
@@ -34,7 +36,6 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  background-color: transparent;
 
   .brand {
     display: flex;
@@ -59,10 +60,10 @@ nav {
     height: 100%;
 
     img {
-      height: 50px;
-      width: 50px;
+      height: 55px;
+      width: 55px;
       border-radius: 100%;
-      border: 2px solid black;
+      border: 3px solid #ac66c3;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 

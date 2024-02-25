@@ -21,7 +21,7 @@ const Modal = ({
                         <div className={`modal bg-white ${size}`} onClick={(e) => e.stopPropagation()}>
                             {showHeader &&
                                 <header className="modal_header">
-                                    <h3 className="modal_header-title txt-blue"> {title} </h3>
+                                    <h3 className="modal_header-title"> {title} </h3>
                                 </header>
                             }
                             {iClose && <button className="close txt-blue" onClick={() => close()}>

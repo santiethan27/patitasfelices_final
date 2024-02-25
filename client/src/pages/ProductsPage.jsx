@@ -60,18 +60,15 @@ function ProductsPage() {
     return (
         <>
             <header className="txt-white">
-                <div className="col2 bg-morado3">
-                    <img className="img1" src="./images/dog3.png" alt="" />
+                <div className="col2 bg-morado2">
+                    <img className="img1 bg-rosa-gradient2" src="./images/dog3.png" alt="" />
                 </div>
                 <div className="col1 bg-morado2">
                     <h3>AYUDA A LA FUNDACIÓN COMPRANDO PRODUCTOS</h3>
                     <p>Comprando productos ayudas a la fundacion a mantener a los animales con un hogar digno mientras alguien los adopta, ademas de ayudar a la fundacion a pagar a sus empleados y mantener nuestro sueño de restacar perritos</p>
                 </div>
-                <div className="col2 bg-morado3">
-                    <img className="img2" src="./images/gato3.png" alt="" />
-                </div>
             </header>
-            <div className="container-cards">
+            <div className="container-cards bg-white">
                 {products.map((product) => (
                     <CardProduct key={product._id} product={product} onDelete={() => Toggle2(product._id)} onModify={() => Toggle(product)} />
                 ))}
@@ -108,13 +105,13 @@ function ProductsPage() {
                         <textarea type="text" name="description" defaultValue={selectedItem.description} {...register("description")} />
                         {errors.description && <span>Es necesario rellenar este campo</span>}
                     </div>
-                    <button className='bg-azul' type='submit'>Actualizar</button>
+                    <button className='bg-morado2' type='submit'>Actualizar</button>
                 </form>)}
             </Modal>
             <Modal className="modal" show={modal2} title="¿ESTAS SEGURO?" close={Toggle2} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
                 <div className="buttons">
-                    <button onClick={() => onDelete()}>ACEPTAR</button>
-                    <button onClick={() => Toggle2()}>CANCELAR</button>
+                    <button onClick={() => onDelete()} className="bg-morado2">ACEPTAR</button>
+                    <button onClick={() => Toggle2()} className="bg-morado2">CANCELAR</button>
                 </div>
             </Modal>
             <Modal className="modalLoading" show={modal3} title="CARGANDO..." close={Toggle3} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>

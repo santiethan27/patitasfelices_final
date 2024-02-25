@@ -4,6 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
 
 :root {
@@ -37,11 +38,11 @@ code {
 
 }
 
-.bg-lavender{
+.bg-lavender {
   background-color: #ffebf3;
 }
 
-.bg-white{
+.bg-white {
   background-color: white;
 }
 
@@ -53,31 +54,46 @@ code {
   background-color: #5b54ca;
 }
 
-.bg-azul3 {
-  background-color: #5b54ca;
-}
-
-.bg-azul4 {
-  background-color: #85d4f2;
-}
-
-.bg-morado {
-  background-color: #ab6afe;
-}
-
 .bg-morado2 {
-  background-color: #ac66c3;
+  background: #ac66c3;
 }
 
-.bg-amethyst{
+.bg-amethyst {
   background-color: #8f79e7;
 }
 
-.txt-blue{
- color: #454fc7;
+.bg-amethyst2 {
+  background-color: #8f79e7bd;
 }
 
-.txt-amethyst{
+.bg-rosa {
+  background-color: #e6a4d0;
+}
+
+.bg-rosa2 {
+  background-color: #e6a4d090;
+}
+
+.bg-rosa-gradient {
+  background: rgb(230, 164, 208);
+  background: radial-gradient(circle, rgba(230, 164, 208, 1) 0%, rgba(255, 235, 243, 1) 73%);
+}
+
+.bg-morado-gradient {
+  background: rgb(230, 164, 208);
+  background: linear-gradient(270deg, rgba(230, 164, 208, 1) 10%, rgba(172, 102, 195, 1) 100%);
+}
+
+.bg-rosa-gradient2 {
+  background: rgb(172, 102, 195);
+  background: linear-gradient(270deg, rgba(172, 102, 195, 1) 10%, rgba(230, 164, 208, 1) 100%);
+}
+
+.txt-blue {
+  color: #454fc7;
+}
+
+.txt-amethyst {
   color: #8f79e7;
 }
 
@@ -89,40 +105,8 @@ code {
   color: #e6a4d0;
 }
 
-.bg-morado3 {
-  background-color: #ac66c3;
-}
-
-.bg-amarillo {
-  background-color: #feed02;
-}
-
-.bg-naranja {
-  background-color: #f67a58;
-}
-
-.bg-palorosa{
-  background-color: #dd6e84;
-}
-
-.bg-rosa {
-  background-color: #e6a4d0;
-}
-
-.bg-azul2 {
-  background-color: #5b54ca;
-}
-
-.txt.palorosa{
-  background-color: #dd6e84;
-}
-
-.txt-verde-lima {
-  color: #98FB98;
-}
-
-.bg-verde {
-  background-color: #52FFB8;
+.txt-palorosa {
+  color: #dd6e84;
 }
 
 .txt-white {

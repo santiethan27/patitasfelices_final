@@ -73,7 +73,7 @@ function SetProductPage() {
                     <input type="file" name="image" {...register("image", { required: true })} />
                     {errors.image && <span>Es necesario rellenar este campo</span>}
                 </div>
-                <button className='bg-azul' type='submit'>Agregar</button>
+                <button className='bg-morado2' type='submit'>Agregar</button>
             </form>
             <Modal className="modalLoading" show={modal} title="CARGANDO..." close={Toggle} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>
                 <h3>CARGANDO...</h3>

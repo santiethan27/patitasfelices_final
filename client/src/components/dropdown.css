@@ -1,3 +1,8 @@
+:root {
+    --color1: #e6a4d0;
+    --color2: #ac66c3;
+}
+
 .dropdown_wrapper {
     position: relative;
     display: inline-block;
@@ -34,6 +39,7 @@
 .dropdown_item_list.active {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    border: none !important;
 }
 
 .item_list {
@@ -55,6 +61,6 @@
 }
 
 .item_list a:hover {
-    background-color: gray;
+    background-color: var(--color2);
     color: white;
 }

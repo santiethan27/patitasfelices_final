@@ -1,7 +1,6 @@
 /* Diseño del apartado de CondicionesAdopcion */
 .container-condiciones {
   width: 100%;
-  background-color: #ac66c3;
   display: flex;
 
   .container-b {
@@ -10,7 +9,6 @@
 
     a {
       position: relative;
-      color: #ac66c3;
       text-decoration: none;
       background-color: #ffebf3;
       padding: 5px 10px;

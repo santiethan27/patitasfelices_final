@@ -1,8 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --color1: #e6a4d0;
+    --color2: #ac66c3;
 }
+
 
 .formClass {
     width: 100%;
@@ -20,7 +20,7 @@
     font-weight: 100;
     font-size: 40px;
     margin: 10px 0px;
-    color: #dd6e84;
+    color: var(--color1);
 }
 
 .formClass .inputClass {
@@ -42,7 +42,7 @@
     text-decoration: none;
     margin: 10px 0px;
     text-align: end;
-    color: #dd6e84;
+    color: var(--color1);
     font-size: 12px;
 }
 
@@ -55,7 +55,7 @@
     margin: 10px auto;
     border-radius: 20px;
     border: none;
-    background-color: #dd6e84;
+    background-color: var(--color1);
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -90,7 +90,7 @@
 .colForm {
     padding: 10px;
     width: 100%;
-    background-color: #dd6e84;
+    background-color: var(--color1);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     display: flex;
@@ -140,7 +140,7 @@
     border-bottom-left-radius: 10px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: #692e82;
+    background-color: var(--color2);
     color: white;
 }
 
@@ -149,7 +149,7 @@
 }
 
 .authForm.inverso .formButton {
-    background-color: #692e82;
+    background-color: var(--color2);
 }
 
 .contForm {
@@ -173,7 +173,7 @@ label {
 
 .authForm.inverso .error,
 .authForm.inverso .title {
-    color: #692e82;
+    color: var(--color2);
 }
 
 .formClass .group {

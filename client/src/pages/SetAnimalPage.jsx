@@ -109,7 +109,7 @@ function SetAnimalPage() {
                     {errors.image && <span>This field is required</span>}
                 </div>
 
-                <button className='bg-azul' type="submit">Guardar</button>
+                <button className='bg-morado2' type="submit">Guardar</button>
             </form>
             <Modal className="modalLoading" show={loading} title="CARGANDO..." close={Toggle} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>
                 <h3>CARGANDO...</h3>

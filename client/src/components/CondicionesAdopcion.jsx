@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 // Creamos un rafc para poder exportar este componente
 const CondicionesAdopcion = () => {
     return (
-        <div className="container-condiciones">
+        <div className="container-condiciones bg-morado2">
             <section className='container-codicionesAdopcion'>
                 <div className='container-tittle txt-white'>
                     <h3>¡Recuerda que al adoptar tienes que tener en cuenta lo siguiente!</h3>
@@ -26,7 +26,7 @@ const CondicionesAdopcion = () => {
                     <FontAwesomeIcon icon={faPaw} size='2x' />
                     <p className='txt-white'>Garantizarle alimento, agua, abrigo, y protección contra el clima.</p>
                 </div>
-                <div className="container-b">
+                <div className="container-b txt-morado">
                     <Link to='/adoptar'>VER MAS... <FontAwesomeIcon className='hand' icon={faHandPointer} /></Link>
                 </div>
                 {/*                <div className='container-condicion'>

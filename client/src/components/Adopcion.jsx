@@ -62,14 +62,14 @@ const Adopcion = () => {
   };
   return (
     <>
-      <div className="container-adopcion bg-rosa">
-        <header>
-          <div className="container-txt">
-            <h3>PERROS Y GATOS DISPONIBLES PARA SER ADOPTADOS</h3>
-            <h4>Click en la foto de la mascota para abrir una nueva ventana con informacion adicional sobre la mascota</h4>
+      <div className="container-adopcion">
+        <header className="txt-white">
+          <div className="col2 bg-rosa">
+            <img className="img1 bg-morado-gradient" src="./images/gato3.png" alt="" />
           </div>
-          <div className="container-img">
-            <img src="./images/petspage.png" alt="" />
+          <div className="col1 bg-rosa">
+            <h3>AYUDA A LA FUNDACIÓN COMPRANDO PRODUCTOS</h3>
+            <p>Comprando productos ayudas a la fundacion a mantener a los animales con un hogar digno mientras alguien los adopta, ademas de ayudar a la fundacion a pagar a sus empleados y mantener nuestro sueño de restacar perritos</p>
           </div>
         </header>
         <div className="container-cards bg-white">{
@@ -139,14 +139,14 @@ const Adopcion = () => {
 
 
 
-          <button type="submit" className="bg-azul">Actualizar</button>
+          <button type="submit" className="bg-morado2">Actualizar</button>
         </form>)}
 
       </Modal>
       <Modal className="modal" show={modal2} title="¿ESTAS SEGURO?" close={Toggle2} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
         <div className="buttons">
-          <button onClick={() => onDelete()}>ACEPTAR</button>
-          <button onClick={() => Toggle2()}>CANCELAR</button>
+          <button onClick={() => onDelete()} className="bg-morado2">ACEPTAR</button>
+          <button onClick={() => Toggle2()} className="bg-morado2">CANCELAR</button>
         </div>
       </Modal>
       <Modal className="modalLoading" show={modal3} title="CARGANDO..." close={Toggle3} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>

@@ -18,7 +18,7 @@ export const AnimalProvider = ({ children }) => {
     const _getAnimal = async (id) => {
         try {
             const animal = await getAnimal(id);
-            return animal.data();
+            return animal.data;
         } catch (error) {
             console.log(error);
         }

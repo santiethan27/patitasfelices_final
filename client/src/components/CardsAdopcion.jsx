@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 const CardsAdopcion = ({ onModify, onDelete, animal }) => {
   const { rol } = useAuth();
   return (
-    <article className='card'>
+    <article className='card-adoption'>
       <div className="cont">
         <p className='title'>{animal.name}</p>
         <img src={animal.multimedia[0]?.secure_url} alt='' />
@@ -16,12 +16,12 @@ const CardsAdopcion = ({ onModify, onDelete, animal }) => {
       </div>
       {rol === 'user' ? (
         <div className="buttons">
-          <button onClick={onModify} className='cursor-pointer'>Adoptar Ahora!</button>
+          <button onClick={onModify} className='cursor-pointer bg-amethyst'>Adoptar Ahora!</button>
         </div>
       ) : (
         <div className="buttons">
-          <button onClick={onModify} className='cursor-pointer agregar'>Modificar</button>
-          <button onClick={onDelete} className='cursor-pointer eliminar'>Eliminar</button>
+          <button onClick={onModify} className='cursor-pointer agregar bg-amethyst'>Modificar</button>
+          <button onClick={onDelete} className='cursor-pointer eliminar bg-amethyst2'>Eliminar</button>
         </div>
       )
       }
