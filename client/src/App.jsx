@@ -17,6 +17,8 @@ import CardProduct from './components/CardProduct';
 import ProductsPage from './pages/ProductsPage';
 import SetProductPage from './pages/SetProductPage';
 import CitaAdopcion from './components/citaadopcion';
+import DetailAdoption from './components/DetailAdoption';
+import DetailProduct from './components/DetailProduct';
 
 
 
@@ -54,6 +56,8 @@ function MainApp() {
         <Route path='/pet' element={<SetAnimalPage />}></Route>
         <Route path='/product' element={<SetProductPage />}></Route>
         <Route path='/products' element={<ProductsPage />}></Route>
+        <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
+        <Route path='/product/:id' element={<DetailProduct />}></Route>
       </Routes>
       <Footer />
     </>

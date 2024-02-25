@@ -37,6 +37,11 @@ function AdminPage() {
                     <Link to={'/pet'} className='txt-morado'>Agregar</Link>
                     <p>Numero de mascotas: {animals.length}</p>
                 </div>
+                <div className='section bg-amethyst txt-white'>
+                    <h4>Usuarios</h4>
+                    <Link to={'/users'} className='bg-white txt-amethyst'>Ver usuarios</Link>
+                    <p>Numero de usuarios :</p>
+                </div>
             </div>
         </div>
     )

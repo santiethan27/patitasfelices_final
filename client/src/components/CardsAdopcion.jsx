@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 //Se crea un rafc
 const CardsAdopcion = ({ onModify, onDelete, animal }) => {
@@ -8,7 +9,9 @@ const CardsAdopcion = ({ onModify, onDelete, animal }) => {
     <article className='card-adoption'>
       <div className="cont">
         <p className='title'>{animal.name}</p>
-        <img src={animal.multimedia[0]?.secure_url} alt='' />
+        <Link to={`/adoption/${animal._id}`} className='cursor-pointer' key={animal._id}>
+          <img src={animal.multimedia[0]?.secure_url} alt='' />
+        </Link>
         <section className='info'>
           <p><span>Edad: </span>{animal.age}</p>
           <p><span>Raza: </span>{animal.raza}</p>

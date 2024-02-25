@@ -1,13 +1,16 @@
 import React from 'react'
 import "./CardProduct.css"
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 function CardProduct({ onModify, onDelete, product }) {
     const { rol } = useAuth();
     return (
         <div className='card'>
             <div className="img bg-rosa-gradient">
-                <img src={product.multimedia[0].secure_url} alt="" />
+                <Link to={`/product/${product._id}`} key={product._id} className='cursor-pointer'>
+                    <img src={product.multimedia[0].secure_url} alt="" />
+                </Link>
             </div>
             <div className="body">
                 <h4>{product.name}</h4>
