@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import CardProduct from "../components/CardProduct";
 import "./ProductsPage.css";
 import { useProduct } from "../context/ProductContext";
@@ -12,6 +12,7 @@ function ProductsPage() {
     const [modal, setModal] = useState(false);
     const [modal2, setModal2] = useState(false);
     const [modal3, setModal3] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const { products, _getProducts, _deleteProduct, _putProduct } = useProduct();
     useEffect(() => {
         const get = async () => {
@@ -26,6 +27,7 @@ function ProductsPage() {
         if (animal == undefined) {
             reset();
         }
+        setSelectedImage(null);
         setSelectedPetKey(animal);
         setModal(!modal)
     };
@@ -39,7 +41,15 @@ function ProductsPage() {
     const onSubmit = async (data) => {
         try {
             Toggle3(true);
-            await _putProduct(data);
+            const formData = new FormData();
+            if (selectedImage) {
+                formData.append('images', selectedImage);
+            }
+            for (const key in data) {
+                formData.append(key, data[key]);
+            }
+            const res = await _putProduct(formData);
+            setSelectedPetKey(await res);
         } catch (error) {
             Toggle3(false);
             console.log(error);
@@ -56,6 +66,17 @@ function ProductsPage() {
             console.error(error)
         }
 
+    };
+    const fileInputRef = useRef(null);
+
+    const handleImageClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleFileInputChange = (event) => {
+        const file = event.target.files[0];
+        console.log(file)
+        setSelectedImage(file);
     };
     return (
         <>
@@ -105,6 +126,17 @@ function ProductsPage() {
                         <textarea type="text" name="description" defaultValue={selectedItem.description} {...register("description")} />
                         {errors.description && <span>Es necesario rellenar este campo</span>}
                     </div>
+                    <div className="edit-image" onClick={handleImageClick}>
+                        <img className="img-edit" src={selectedItem.multimedia[0].secure_url} alt="" />
+                    </div>
+                    <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileInputChange} />
+                    {selectedImage && (
+                        <div className="alert-load">
+                            <p className="exito">Imagen cargada con exitoo:</p>
+                            <p>{selectedImage.name}</p>
+                        </div>
+                    )
+                    }
                     <button className='bg-morado2' type='submit'>Actualizar</button>
                 </form>)}
             </Modal>

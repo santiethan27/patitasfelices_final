@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import fs from "fs-extra";
-import { uploadImage } from "../utils/cloudinary.js";
+import { deleteImage, uploadImage } from "../utils/cloudinary.js";
 
 export const getUser = async (req, res) => {
   const userFound = await User.findById(req.user.id);
@@ -13,26 +13,30 @@ export const getUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  console.log(id)
+  console.log(id);
   try {
     let result = {};
 
+    const existingUser = await User.findById(id);
+
+    if (!existingUser) {
+      await fs.unlink(photo.tempFilePath);
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
     if (req.files?.image) {
       const photo = req.files.image;
-      console.log(photo);
       if (photo.mimetype !== "image/png" && photo.mimetype !== "image/jpeg") {
         await fs.unlink(photo.tempFilePath);
         return res.status(400).send({ message: "Extensión no válida" });
       }
-
+      if(existingUser.photo?.public_id){
+        await deleteImage(existingUser.photo?.public_id);
+      }
       result = await uploadImage(photo.tempFilePath);
       await fs.unlink(photo.tempFilePath); // Eliminar el archivo temporal después de usarlo
     }
-    const existingUser = await User.findById(id);
 
-    if (!existingUser) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
     const updateData = {
       ...(req.files?.image && {
         photo: { public_id: result.public_id, secure_url: result.secure_url },
@@ -55,7 +59,7 @@ export const updateUser = async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       rol: updatedUser.rol,
-      photo: updatedUser.photo.secure_url
+      photo: updatedUser.photo.secure_url,
     });
   } catch (error) {
     console.error(error);

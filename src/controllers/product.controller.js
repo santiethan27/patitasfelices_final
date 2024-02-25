@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import Product from "../models/product.model.js";
-import { uploadImage } from "../utils/cloudinary.js";
+import { deleteImage, uploadImage } from "../utils/cloudinary.js";
 
 export const postProduct = async (req, res) => {
   try {
@@ -48,6 +48,38 @@ export const editProduct = async (req, res) => {
   try {
     const { idProduct, name, price, stock, description, category } = req.body;
 
+    const existingProduct = await Product.findById(idProduct);
+
+    if (!existingProduct) {
+      await fs.unlink(photo.tempFilePath);
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+
+    let infoMultimedia = [];
+    if (req.files?.images) {
+      let images = Array.isArray(req.files.images)
+        ? req.files.images
+        : [req.files.images];
+      await Promise.all(
+        images.map(async (image) => {
+          if (
+            image.mimetype !== "image/png" &&
+            image.mimetype !== "image/jpeg"
+          ) {
+            await fs.unlink(image.tempFilePath);
+            throw new Error("Extensión no válida");
+          }
+          const media = await uploadImage(image.tempFilePath);
+          let obj = {};
+          obj["public_id"] = media.public_id;
+          obj["secure_url"] = media.secure_url;
+          infoMultimedia.push(obj);
+          await deleteImage(existingProduct.multimedia[0]?.public_id);
+          await fs.unlink(image.tempFilePath);
+        })
+      );
+    }
+
     const updateProduct = await Product.findOneAndUpdate(
       { _id: idProduct },
       {
@@ -56,6 +88,9 @@ export const editProduct = async (req, res) => {
         stock,
         description,
         category,
+        ...(req.files?.images && {
+          multimedia: infoMultimedia,
+        }),
       },
       { new: true }
     );

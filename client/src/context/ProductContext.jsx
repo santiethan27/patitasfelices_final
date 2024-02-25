@@ -42,8 +42,9 @@ export const ProductProvider = ({ children }) => {
 
     const _putProduct = async (product) => {
         try {
-            await putProduct(product);
+            const res = await putProduct(product);
             await _getProducts();
+            return res.data;
         } catch (error) {
             console.log(error);
         }

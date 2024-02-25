@@ -11,3 +11,7 @@ export async function uploadImage(filePath){
         folder: 'media'
     })
 }
+
+export async function deleteImage(fileId){
+    return await cloudinary.uploader.destroy(fileId);
+}

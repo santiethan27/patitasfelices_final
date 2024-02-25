@@ -18,5 +18,5 @@ router.post("/product", fileUp,postProduct);
 router.get("/products", getProducts);
 router.get("/product/:id", getProduct);
 router.delete("/product/:id", deleteProduct);
-router.put("/product", editProduct)
+router.put("/product", fileUp, editProduct);
 export default router;

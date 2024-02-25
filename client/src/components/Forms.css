@@ -1,4 +1,4 @@
-:root{
+:root {
     --color-primary: #8f79e7bd;
 }
 
@@ -19,6 +19,52 @@ form.formPatitas {
 
         &::file-selector-button {
             display: none;
+        }
+    }
+
+    .edit-image {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        img {
+            position: relative;
+            height: 100%;
+        }
+
+        &::after {
+            content: "";
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            &::after {
+                content: "Editar";
+                background-color: rgba(0, 0, 0, 0.299);
+            }
+        }
+    }
+
+    .alert-load p {
+        font-weight: 500;
+        width: 100%;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &.exito {
+            color: palevioletred;
         }
     }
 
