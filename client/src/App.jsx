@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthPage from './pages/AuthPage'
 import HomePage from './pages/HomePage'
@@ -13,12 +13,12 @@ import { AnimalProvider } from './context/AnimalContext';
 import SetAnimalPage from './pages/SetAnimalPage';
 import { ProductProvider } from './context/ProductContext';
 import AdminPage from './pages/AdminPage';
-import CardProduct from './components/CardProduct';
 import ProductsPage from './pages/ProductsPage';
 import SetProductPage from './pages/SetProductPage';
-import CitaAdopcion from './components/citaadopcion';
+import CitasAdopcion from './components/CitasAdopcion';
 import DetailAdoption from './components/DetailAdoption';
 import DetailProduct from './components/DetailProduct';
+
 
 
 
@@ -51,7 +51,7 @@ function MainApp() {
         <Route path='/adoptar' element={<Adopcion />} />
         <Route path='/perfil' element={<ProfilePage />} />
         <Route path='/blog' element={<BlogPage />}> </Route>
-        <Route path='/citas' element={<CitaAdopcion />}></Route>
+        <Route path='/citas' element={<CitasAdopcion />}></Route>
         <Route path='/administracion' element={<AdminPage />}></Route>
         <Route path='/pet' element={<SetAnimalPage />}></Route>
         <Route path='/product' element={<SetProductPage />}></Route>

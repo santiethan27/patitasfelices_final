@@ -1,0 +1,17 @@
+.formPatitas{
+    width: 80%;
+    display: flex;
+    border-radius: 10px;
+    font-weight: 300;
+    padding: 5px;
+}
+
+.imagen{
+    border-radius: 10px;
+    height: 250px;
+    border: 2px solid #ac66c3;
+}
+
+button:hover{
+    background-color: #e6a4d0;
+}
