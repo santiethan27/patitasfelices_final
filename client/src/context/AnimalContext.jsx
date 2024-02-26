@@ -42,9 +42,9 @@ export const AnimalProvider = ({ children }) => {
     }
     const _putAnimal = async (animal) => {
         try {
-            console.log(animal)
             const resAnimal = await putAnimal(animal);
-            _getAnimals();
+            await _getAnimals();
+            return resAnimal.data;
         } catch (error) {
             console.log(error);
         }

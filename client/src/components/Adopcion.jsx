@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CardsAdopcion from "./CardsAdopcion";
 import "./Adopcion.css";
 import { useAnimal } from "../context/AnimalContext";
@@ -12,7 +12,7 @@ const Adopcion = () => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
-
+  const [selectedImage, setSelectedImage] = useState(null);
   useEffect((() => {
     _getAnimals();
   }), []);
@@ -22,13 +22,11 @@ const Adopcion = () => {
   }, reset } = useForm();
   const { _putAnimal } = useAnimal();
 
-
-
-
   const Toggle = (animal) => {
     if (animal == undefined) {
       reset();
     }
+    setSelectedImage(null);
     setSelectedPetKey(animal);
     setModal(!modal)
   };
@@ -41,8 +39,15 @@ const Adopcion = () => {
   };
   const onSubmit = async (data) => {
     try {
-      Toggle3(true);
-      await _putAnimal(data);
+      const formData = new FormData();
+      if (selectedImage) {
+        formData.append('images', selectedImage);
+      }
+      for (const key in data) {
+        formData.append(key, data[key]);
+      }
+      const res = await _putAnimal(formData);
+      setSelectedPetKey(await res);
     } catch (error) {
       Toggle3(false);
       console.log(error);
@@ -59,6 +64,16 @@ const Adopcion = () => {
       console.error(error)
     }
 
+  };
+  const fileInputRef = useRef(null);
+
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
   };
   return (
     <>
@@ -81,7 +96,7 @@ const Adopcion = () => {
 
       {/* */}
       <Modal show={modal} title={`EDITAR MASCOTA: ${selectedItem?.name}`} close={Toggle} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
-        {selectedItem && (<form className="w80 formPatitas" onSubmit={handleSubmit(onSubmit)}>
+        {selectedItem && selectedItem.multimedia && (<form className="w80 formPatitas" onSubmit={handleSubmit(onSubmit)}>
           <input type="text" {...register("idPublication", { required: true })} value={selectedItem._id} hidden />
           <div className="groups">
             <div className="group">
@@ -136,9 +151,17 @@ const Adopcion = () => {
             <textarea type="text" name="history" defaultValue={selectedItem.history} {...register("history", { required: true })} />
             {errors.history && <span>This field is required</span>}
           </div>
-
-
-
+          <div className="edit-image" onClick={handleImageClick}>
+            <img className="img-edit" src={selectedItem.multimedia[0]?.secure_url} alt="" />
+          </div>
+          <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileInputChange} />
+          {selectedImage && (
+            <div className="alert-load">
+              <p className="exito">Imagen cargada con exitoo:</p>
+              <p>{selectedImage.name}</p>
+            </div>
+          )
+          }
           <button type="submit" className="bg-morado2">Actualizar</button>
         </form>)}
 

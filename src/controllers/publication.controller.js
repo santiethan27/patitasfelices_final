@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import { uploadImage } from "../utils/cloudinary.js";
+import { deleteImage, uploadImage } from "../utils/cloudinary.js";
 import Publication from "../models/publication.model.js";
 
 export const postPublication = async (req, res) => {
@@ -75,6 +75,38 @@ export const editPublication = async (req, res) => {
       isCastrated,
     } = req.body;
 
+    const existingPublication = await Publication.findById(idPublication);
+
+    if (!existingPublication) {
+      await fs.unlink(photo.tempFilePath);
+      return res.status(404).json({ message: "Mascota no encontrada" });
+    }
+
+    let infoMultimedia = [];
+    if (req.files?.images) {
+      let images = Array.isArray(req.files.images)
+        ? req.files.images
+        : [req.files.images];
+      await Promise.all(
+        images.map(async (image) => {
+          if (
+            image.mimetype !== "image/png" &&
+            image.mimetype !== "image/jpeg"
+          ) {
+            await fs.unlink(image.tempFilePath);
+            throw new Error("Extensión no válida");
+          }
+          const media = await uploadImage(image.tempFilePath);
+          let obj = {};
+          obj["public_id"] = media.public_id;
+          obj["secure_url"] = media.secure_url;
+          infoMultimedia.push(obj);
+          await deleteImage(existingPublication.multimedia[0]?.public_id);
+          await fs.unlink(image.tempFilePath);
+        })
+      );
+    }
+
     const updatePublication = await Publication.findOneAndUpdate(
       { _id: idPublication },
       {
@@ -87,6 +119,9 @@ export const editPublication = async (req, res) => {
         size,
         isVaccinated,
         isCastrated,
+        ...(req.files?.images && {
+          multimedia: infoMultimedia,
+        }),
       },
       { new: true }
     );
