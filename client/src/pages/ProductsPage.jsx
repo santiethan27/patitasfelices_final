@@ -95,7 +95,7 @@ function ProductsPage() {
                 ))}
             </div>
             <Modal show={modal} title={`EDITAR PRODUCTO: ${selectedItem?.name}`} close={Toggle} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
-                {selectedItem && (<form className='w80 formPatitas' onSubmit={handleSubmit(onSubmit)}>
+                {selectedItem && selectedItem.multimedia && (<form className='w80 formPatitas' onSubmit={handleSubmit(onSubmit)}>
                     <input type="text" {...register("idProduct")} value={selectedItem._id} hidden />
                     <div className="groups">
                         <div className='group'>
@@ -127,7 +127,7 @@ function ProductsPage() {
                         {errors.description && <span>Es necesario rellenar este campo</span>}
                     </div>
                     <div className="edit-image" onClick={handleImageClick}>
-                        <img className="img-edit" src={selectedItem.multimedia[0].secure_url} alt="" />
+                        <img className="img-edit" src={selectedItem.multimedia[0]?.secure_url} alt="" />
                     </div>
                     <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileInputChange} />
                     {selectedImage && (

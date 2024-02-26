@@ -5,7 +5,6 @@ import cors from "cors";
 
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
-import commentRoutes from "./routes/comment.routes.js";
 import publicationRoutes from "./routes/publication.routes.js";
 import productRoutes from "./routes/product.routes.js";
 //INICIALIZACIONES
@@ -26,7 +25,6 @@ app.use(cookieParser());
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", publicationRoutes);
-app.use("/api", commentRoutes);
 app.use("/api", productRoutes );
 app.set("port", process.env.PORT || 3000);
 
