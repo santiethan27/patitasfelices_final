@@ -1,66 +1,63 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AuthPage from './pages/AuthPage'
-import HomePage from './pages/HomePage'
-import { AuthProvider } from './context/AuthContext';
-import Adopcion from './components/Adopcion';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ProtectedRoute from './ProtectedRoute';
-import ProfilePage from './pages/ProfilePage';
-import BlogPage from './pages/BlogPage';
-import { AnimalProvider } from './context/AnimalContext';
-import SetAnimalPage from './pages/SetAnimalPage';
-import { ProductProvider } from './context/ProductContext';
-import AdminPage from './pages/AdminPage';
-import ProductsPage from './pages/ProductsPage';
-import SetProductPage from './pages/SetProductPage';
-import CitasAdopcion from './components/CitasAdopcion';
-import DetailAdoption from './components/DetailAdoption';
-import DetailProduct from './components/DetailProduct';
-
-
-
-
-
+import { AuthProvider } from './contexts/AuthContext';
+import { ProductProvider } from './contexts/ProductContext';
+import Navbar from './components/Navbar/Navbar';
+import Adopcion from './pages/AdoptionPage/Adopcion';
+import AdminPage from './pages/AdminPage/AdminPage';
+import ListUser from './pages/DashBoard/User/ListUser';
+import { AnimalProvider } from './contexts/AnimalContext';
+import ProtectedRoute from './utils/hooks/ProtectedRoute';
+import AuthPage from './pages/AuthPage/AuthPage';
+import HomePage from './pages/HomePage/HomePage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import BlogPage from './pages/BlogPage/BlogPage';
+import { CitasAdopcion } from './pages/CitasPage/CitasAdopcion';
+import SetAnimalPage from './pages/AddAnimalPage/SetAnimalPage';
+import SetProductPage from './pages/AddProductPage/SetProductPage';
+import ProductsPage from './pages/ProductPage/ProductsPage';
+import DetailAdoption from './pages/PetPage/DetailAdoption';
+import DetailProduct from './pages/DetailProductPage/DetailProduct';
+import Footer from './components/Footer/Footer';
 
 function App() {
-  return (
-    <AuthProvider>
-      <AnimalProvider>
-        <ProductProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path='/auth' element={<AuthPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path='/*' element={<MainApp />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </ProductProvider>
-      </AnimalProvider>
-    </AuthProvider>
-  )
+    return (
+        <AuthProvider>
+            <AnimalProvider>
+                <ProductProvider>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path='/auth' element={<AuthPage />} />
+                            <Route element={<ProtectedRoute />}>
+                                <Route path='/*' element={<MainApp />} />
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </ProductProvider>
+            </AnimalProvider>
+        </AuthProvider>
+    )
 }
 function MainApp() {
-  return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/adoptar' element={<Adopcion />} />
-        <Route path='/perfil' element={<ProfilePage />} />
-        <Route path='/blog' element={<BlogPage />}> </Route>
-        <Route path='/citas' element={<CitasAdopcion />}></Route>
-        <Route path='/administracion' element={<AdminPage />}></Route>
-        <Route path='/pet' element={<SetAnimalPage />}></Route>
-        <Route path='/product' element={<SetProductPage />}></Route>
-        <Route path='/products' element={<ProductsPage />}></Route>
-        <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
-        <Route path='/product/:id' element={<DetailProduct />}></Route>
-      </Routes>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Navbar />
+            <Routes>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/adoptar' element={<Adopcion />} />
+                <Route path='/perfil' element={<ProfilePage />} />
+                <Route path='/blog' element={<BlogPage />}> </Route>
+                <Route path='/citas' element={<CitasAdopcion />}></Route>
+                <Route path='/administracion' element={<AdminPage />}></Route>
+                <Route path='/pet' element={<SetAnimalPage />}></Route>
+                <Route path='/product' element={<SetProductPage />}></Route>
+                <Route path='/products' element={<ProductsPage />}></Route>
+                <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
+                <Route path='/product/:id' element={<DetailProduct />}></Route>
+                <Route path='/users' element={<ListUser />}></Route>
+            </Routes>
+            <Footer />
+        </>
+    );
 }
 export default App
