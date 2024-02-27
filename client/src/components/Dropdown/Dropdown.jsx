@@ -12,7 +12,6 @@ function Dropdown({ items = [], dropdownTitle, children, _logout }) {
     };
 
     const keyHandler = event => {
-        // console.log(event);
         if (event.key === "Escape" && isOpen) {
             setIsOpen(false);
         }
