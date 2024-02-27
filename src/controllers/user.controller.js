@@ -33,13 +33,15 @@ export const deletUser = async (req, res) => {
     const deleteUser = await User.findByIdAndDelete(req.params.id);
 
     if (!deleteUser)
-      return res.status(400).json({ message: "El usuario no se puede eliminar" });
+      return res
+        .status(400)
+        .json({ message: "El usuario no se puede eliminar" });
 
     return res.status(200).json(deleteUser);
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
-}
+};
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
@@ -78,6 +80,8 @@ export const updateUser = async (req, res) => {
       }),
       ...(req.body.state && { "address.state": req.body.state }),
       ...(req.body.city && { "address.city": req.body.city }),
+      ...(req.body.rol && { rol: req.body.rol }),
+      ...(req.body.status && { status: req.body.status }),
     };
 
     const updatedUser = await User.findOneAndUpdate({ _id: id }, updateData, {
