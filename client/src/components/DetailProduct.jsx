@@ -25,11 +25,11 @@ const DetailProduct = () => {
     // }, [id, _getProduct]);
 
     const product = {
-        name: 'Product Name',
-        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit molestias in illo placeat tenetur tempore dolores sunt aut. Sunt voluptas nam similique libero perferendis provident molestias esse reiciendis magni qui?',
-        price: 20.99,
-        stock: 100,
-        image: 'https://i.blogs.es/1cc33c/iphone-15-analisis-aps-02/375_375.webp'
+        name: 'Prueba',
+        description: 'Este texto es de relleno para saber como se puede modificar en el datail de los productos, solucion de errores y posibles fallos de diseño establecidos',
+        price: 5000,
+        stock: 12,
+        image: 'https://res.cloudinary.com/duvbxqzxx/image/upload/v1708876339/media/r3avcp0slz7qe23mo4c8.png'
     };
 
     return (

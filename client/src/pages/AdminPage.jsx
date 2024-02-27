@@ -6,23 +6,28 @@ import { useAnimal } from '../context/AnimalContext';
 import { useProduct } from '../context/ProductContext';
 
 function AdminPage() {
-    const { user } = useAuth();
+    const { user, _getUsers, users } = useAuth();
     const { animals, _getAnimals } = useAnimal();
     const { products, _getProducts } = useProduct();
-    if (animals.length < 1) {
-        useEffect(() => {
-            const loadAnimal = async () => {
-                await _getAnimals();
-            }
-            const loadProduct = async () => {
-                await _getProducts();
-            }
-            if (products.length < 1) {
-                loadProduct();
-            }
+    useEffect(() => {
+        const loadAnimal = async () => {
+            await _getAnimals();
+        }
+        const loadProduct = async () => {
+            await _getProducts();
+        }
+        const loadUsers = async () => {
+            await _getUsers();
+        }
+
+        if (products.length < 1)
+            loadProduct();
+        if (animals.length < 1)
             loadAnimal();
-        });
-    }
+        if (users.length < 1)
+            loadUsers();
+
+    });
     return (
         <div className='container-adminPage'>
             <h3>Bienvenido {user.name}, <span className='txt-morado'>¿Que quieres hacer hoy?</span></h3>
@@ -40,7 +45,7 @@ function AdminPage() {
                 <div className='section bg-amethyst txt-white'>
                     <h4>Usuarios</h4>
                     <Link to={'/users'} className='bg-white txt-amethyst'>Ver usuarios</Link>
-                    <p>Numero de usuarios :</p>
+                    <p>Numero de usuarios : {users.length}</p>
                 </div>
             </div>
         </div>

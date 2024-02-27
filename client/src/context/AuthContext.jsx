@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { authRegister, authLogin, verityTokenRequest, logout } from '../api/auth';
 import Cookies from 'js-cookie'
-import { profile, update } from './../api/user';
+import { deleteUser, getUsers, profile, update } from './../api/user';
 
 export const AuthContext = createContext()
 
@@ -17,6 +17,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+    const [users, setUsers] = useState([]);
     const [isAuthen, setIsAuthen] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -58,10 +59,27 @@ export const AuthProvider = ({ children }) => {
     const updateUser = async (id, user) => {
         try {
             const res = await update(id, user);
-            console.log(res.data)
+            console.log(res.data);
             setUser(res.data);
         } catch (error) {
             console.error(error)
+        }
+    }
+    const _getUsers = async () => {
+        try {
+            const res = await getUsers();
+            setUsers(res.data);
+            return res.data;
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    const _deleteUser = async (id) => {
+        try {
+            const deletUser = await deleteUser(id);
+            if (deletUser.status === 200) setUsers(users.filter((user) => user._id !== id));
+        } catch (error) {
+            console.error(error);
         }
     }
     const _logout = async () => {
@@ -104,7 +122,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ signup, login, user, isAuthen, errors, loading, rol, getProfile, updateUser, _logout }}>
+        <AuthContext.Provider value={{ signup, login, user,users, isAuthen, errors, loading, rol, getProfile, updateUser, _logout, _getUsers, _deleteUser }}>
             {children}
         </AuthContext.Provider>
     )

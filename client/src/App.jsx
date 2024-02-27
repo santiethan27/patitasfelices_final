@@ -18,11 +18,7 @@ import SetProductPage from './pages/SetProductPage';
 import CitasAdopcion from './components/CitasAdopcion';
 import DetailAdoption from './components/DetailAdoption';
 import DetailProduct from './components/DetailProduct';
-
-
-
-
-
+import ListUser from './components/ListUser';
 
 function App() {
   return (
@@ -58,6 +54,7 @@ function MainApp() {
         <Route path='/products' element={<ProductsPage />}></Route>
         <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
         <Route path='/product/:id' element={<DetailProduct />}></Route>
+        <Route path='/users' element={<ListUser />}></Route>
       </Routes>
       <Footer />
     </>
