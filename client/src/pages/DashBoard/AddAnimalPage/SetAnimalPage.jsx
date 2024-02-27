@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { useAnimal } from '../../contexts/AnimalContext';
-import { useAuth } from '../../contexts/AuthContext';
-import '../../styled-components/Forms.css'
-import Modal from '../../components/Modal/Modal';
+import { useAnimal } from '../../../contexts/AnimalContext';
+import { useAuth } from '../../../contexts/AuthContext';
+import '../../../styled-components/Forms.css'
+import Modal from '../../../components/Modal/Modal';
 
 function SetAnimalPage() {
     const { user } = useAuth();

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../../contexts/AuthContext'
 import './adminPage.css'
 import { Link } from 'react-router-dom';
-import { useAnimal } from '../../contexts/AnimalContext';
-import { useProduct } from '../../contexts/ProductContext';
+import { useAnimal } from '../../../contexts/AnimalContext';
+import { useProduct } from '../../../contexts/ProductContext';
 
 function AdminPage() {
     const { user, _getUsers, users } = useAuth();

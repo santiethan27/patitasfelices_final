@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useProduct } from '../../contexts/ProductContext'
+import { useProduct } from '../../../contexts/ProductContext'
 import { useForm } from 'react-hook-form';
-import '../../styled-components/Forms.css'
-import Modal from '../../components/Modal/Modal';
+import '../../../styled-components/Forms.css'
+import Modal from '../../../components/Modal/Modal';
 
 function SetProductPage() {
     const { register, handleSubmit, formState: {

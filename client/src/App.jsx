@@ -4,7 +4,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ProductProvider } from './contexts/ProductContext';
 import Navbar from './components/Navbar/Navbar';
 import Adopcion from './pages/AdoptionPage/Adopcion';
-import AdminPage from './pages/AdminPage/AdminPage';
+import AdminPage from './pages/DashBoard/AdminPage/AdminPage';
 import ListUser from './pages/DashBoard/User/ListUser';
 import { AnimalProvider } from './contexts/AnimalContext';
 import ProtectedRoute from './utils/hooks/ProtectedRoute';
@@ -13,12 +13,12 @@ import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import BlogPage from './pages/BlogPage/BlogPage';
 import { CitasAdopcion } from './pages/CitasPage/CitasAdopcion';
-import SetAnimalPage from './pages/AddAnimalPage/SetAnimalPage';
-import SetProductPage from './pages/AddProductPage/SetProductPage';
 import ProductsPage from './pages/ProductPage/ProductsPage';
 import DetailAdoption from './pages/PetPage/DetailAdoption';
 import DetailProduct from './pages/DetailProductPage/DetailProduct';
 import Footer from './components/Footer/Footer';
+import SetProductPage from './pages/DashBoard/AddProductPage/SetProductPage';
+import SetAnimalPage from './pages//DashBoard/AddAnimalPage/SetAnimalPage';
 
 function App() {
     return (
