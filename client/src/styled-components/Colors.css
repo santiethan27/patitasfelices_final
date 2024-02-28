@@ -1,0 +1,78 @@
+.bg-lavender {
+    background-color: #ffebf3;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .bg-black {
+    background-color: #111010;
+  }
+  
+  .bg-azul {
+    background-color: #5b54ca;
+  }
+  
+  .bg-morado2 {
+    background: #ac66c3;
+  }
+  
+  .bg-amethyst {
+    background-color: #8f79e7;
+  }
+  
+  .bg-amethyst2 {
+    background-color: #8f79e7bd;
+  }
+  
+  .bg-rosa {
+    background-color: #e6a4d0;
+  }
+  
+  .bg-rosa2 {
+    background-color: #e6a4d090;
+  }
+  
+  .bg-rosa-gradient {
+    background: rgb(230, 164, 208);
+    background: radial-gradient(circle, rgba(230, 164, 208, 1) 0%, rgba(255, 235, 243, 1) 73%);
+  }
+  
+  .bg-morado-gradient {
+    background: rgb(230, 164, 208);
+    background: linear-gradient(270deg, rgba(230, 164, 208, 1) 10%, rgba(172, 102, 195, 1) 100%);
+  }
+  
+  .bg-rosa-gradient2 {
+    background: rgb(172, 102, 195);
+    background: linear-gradient(270deg, rgba(172, 102, 195, 1) 10%, rgba(230, 164, 208, 1) 100%);
+  }
+  
+  .txt-blue {
+    color: #454fc7;
+  }
+  
+  .txt-amethyst {
+    color: #8f79e7;
+  }
+  
+  .txt-morado {
+    color: #ac66c3;
+  }
+  
+  .txt-rosado {
+    color: #e6a4d0;
+  }
+  
+  .txt-palorosa {
+    color: #dd6e84;
+  }
+  
+  .txt-white {
+    color: #fff;
+  }
+  
+  .txt-black {
+    color: #111;
+  }

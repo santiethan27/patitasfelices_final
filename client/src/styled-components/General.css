@@ -1,0 +1,15 @@
+.cursor-pointer {
+    cursor: pointer;
+  
+  }
+  .transition {
+    transition: all 1s;
+  }
+  
+  .opacity1 {
+    opacity: 1;
+  }
+  
+  .opacity0 {
+    opacity: 0;
+  }

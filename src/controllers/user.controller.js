@@ -3,12 +3,44 @@ import fs from "fs-extra";
 import { deleteImage, uploadImage } from "../utils/cloudinary.js";
 
 export const getUser = async (req, res) => {
-  const userFound = await User.findById(req.user.id);
+  try {
+    const userFound = await User.findById(req.user.id);
 
-  if (!userFound)
-    return res.status(400).json({ message: "Usuario no encontrado" });
+    if (!userFound)
+      return res.status(400).json({ message: "Usuario no encontrado" });
 
-  return res.status(200).json(userFound);
+    return res.status(200).json(userFound);
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+};
+
+export const getUsers = async (req, res) => {
+  try {
+    const users = await User.find(req.user);
+
+    if (!users)
+      return res.status(400).json({ message: "Usuarios no encontrados" });
+
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+};
+
+export const deletUser = async (req, res) => {
+  try {
+    const deleteUser = await User.findByIdAndDelete(req.params.id);
+
+    if (!deleteUser)
+      return res
+        .status(400)
+        .json({ message: "El usuario no se puede eliminar" });
+
+    return res.status(200).json(deleteUser);
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
 };
 
 export const updateUser = async (req, res) => {
@@ -30,7 +62,7 @@ export const updateUser = async (req, res) => {
         await fs.unlink(photo.tempFilePath);
         return res.status(400).send({ message: "Extensión no válida" });
       }
-      if(existingUser.photo?.public_id){
+      if (existingUser.photo?.public_id) {
         await deleteImage(existingUser.photo?.public_id);
       }
       result = await uploadImage(photo.tempFilePath);
@@ -48,6 +80,8 @@ export const updateUser = async (req, res) => {
       }),
       ...(req.body.state && { "address.state": req.body.state }),
       ...(req.body.city && { "address.city": req.body.city }),
+      ...(req.body.rol && { rol: req.body.rol }),
+      ...(req.body.status && { status: req.body.status }),
     };
 
     const updatedUser = await User.findOneAndUpdate({ _id: id }, updateData, {

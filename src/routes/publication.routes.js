@@ -19,5 +19,5 @@ router.post("/publication", fileUp, postPublication);
 router.get("/publications", getPublications);
 router.get("/publication/:id", getPublication);
 router.delete("/publication/:id", deletePublication);
-router.put("/publication", editPublication);
+router.put("/publication", fileUp, editPublication);
 export default router;
