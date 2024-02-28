@@ -37,6 +37,43 @@ Esto iniciará un servidor local y podrás acceder a la aplicación desde tu nav
 - Navega a la página "Acerca de" para obtener más información sobre el proyecto.
 - Interactúa con los diferentes componentes de la aplicación para ver cómo funcionan._
 
+## Estructura del Proyecto
+
+El proyecto está organizado en dos partes principales: el cliente (frontend) y el servidor (backend).
+
+### Cliente (Frontend)
+
+En la carpeta `client`, se encuentran los archivos relacionados con el cliente de la aplicación:
+
+- **public/**: Contiene archivos estáticos que serán accesibles públicamente, como el archivo `index.html`.
+- **src/**: Contiene el código fuente del cliente.
+  - **components/**: Componentes reutilizables de la interfaz de usuario.
+  - **contexts/**: Contextos de React para la gestión de estados globales.
+  - **pages/**: Componentes de las páginas de la aplicación.
+  - **styled-components/**: Estilos utilizando la librería styled-components.
+  - **utils/**: Utilidades y funciones auxiliares.
+  - **app.jsx**: Punto de entrada principal de la aplicación.
+  - **index.css**: Archivo de estilos globales.
+  - **main.jsx**: Punto de entrada principal para la renderización de la aplicación.
+
+### Servidor (Backend)
+
+En la carpeta `backend/src`, se encuentran los archivos relacionados con el servidor de la aplicación:
+
+- **controllers/**: Controladores que manejan las solicitudes HTTP.
+- **libs/**: Librerías y herramientas adicionales.
+- **middlewares/**: Middlewares para el manejo de solicitudes y respuestas.
+- **model/**: Modelos de datos y esquemas de la base de datos.
+- **routes/**: Rutas de la API.
+- **schemas/**: Esquemas de validación de datos.
+- **utils/**: Utilidades y funciones auxiliares.
+- **config.js**: Archivo de configuración del servidor.
+- **database.js**: Configuración de la base de datos.
+- **index.js**: Punto de entrada principal del servidor.
+- **server.js**: Configuración y creación del servidor.
+
+Esta estructura organizativa facilita la administración y el desarrollo tanto del cliente como del servidor de la aplicación.
+
 ## Construido con 🛠️
 
 _Menciona las herramientas que utilizaste para crear tu proyecto_
