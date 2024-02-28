@@ -19,9 +19,23 @@ _Lo primero, es instalar el client, abrimos la consola ubicada en la carpeta cli
 
 _Ahora, se debe importar la base de datos en mongoose y ser iniciada._
 
-## Despliegue 📦
+## Uso 📦
 
-_Para iniciar la aplicacion, debemos iniciar el client (react), el backend (node.js), y por ultimo la base de datos._
+_Para utilizar este proyecto, sigue los siguientes pasos:
+
+1. **Clonar el Repositorio:** Clona este repositorio en tu máquina local utilizando el siguiente comando en tu terminal:
+
+2. **Instalar Dependencias:** Ve al directorio del proyecto e instala las dependencias necesarias utilizando npm (o yarn):
+
+3. **Ejecutar la Aplicación:** Una vez que las dependencias se hayan instalado, puedes ejecutar la aplicación localmente. Dependiendo de cómo esté configurado el proyecto, podrías ejecutar algo como:
+
+Esto iniciará un servidor local y podrás acceder a la aplicación desde tu navegador web.
+
+4. **Explorar la Aplicación:** Una vez que la aplicación esté en funcionamiento, puedes explorar las diferentes páginas y características que ofrece. Por ejemplo:
+
+- Visita la página de inicio para obtener una visión general del proyecto.
+- Navega a la página "Acerca de" para obtener más información sobre el proyecto.
+- Interactúa con los diferentes componentes de la aplicación para ver cómo funcionan._
 
 ## Construido con 🛠️
 
@@ -30,6 +44,9 @@ _Menciona las herramientas que utilizaste para crear tu proyecto_
 * [React](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
 * [NPM](https://maven.apache.org/) - Manejador de dependencias
 * [Node.js](https://rometools.github.io/rome/) - Lenguaje de backend
+
+## Estado del proyecto 💻
+_El proyectgo actualmente esta en construccion, esta en su version 1._
 
 ## Autores ✒️
 
