@@ -4,6 +4,9 @@ import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Modal from '../../../components/Modal/Modal';
 import { useForm } from 'react-hook-form';
+import "../../../styled-components/Tables.css";
+import "./ListUser.css"
+import "./../../../styled-components/Forms.css"
 
 const ListUser = () => {
     const { users, _getUsers, _deleteUser, updateUsers } = useAuth();
@@ -73,34 +76,34 @@ const ListUser = () => {
         reset();
     }
     return (
-        <div>
+        <div className='us-container'>
             {loading ? (
                 <h1>Cargando usuarios...</h1>
             ) : error ? (
                 <h1>Error al cargar los usuarios: {error.message}</h1>
             ) : (
-                <table className='container-table'>
-                    <thead>
-                        <tr className='container-tittles'>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Rol</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
+                <table className='pf-table'>
+                    <thead className='bg-rosa txt-white'>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </thead>
                     <tbody className='container-body_table'>
                         {users.map(user => (
                             <tr key={user._id}>
-                                <td>{user.nombre}</td>
+                                <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.phone}</td>
                                 <td>{user.rol}</td>
                                 <td>{user.status}</td>
-                                <td className='action_button'>
-                                    <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer' onClick={() => toggleModifyModal([user._id, user.rol, user.status])} />
-                                    <FontAwesomeIcon icon={faTrash} className='cursor-pointer' onClick={() => toggleDeleteModal(user._id)} />
+                                <td>
+                                    <div className='tb-actions'>
+                                        <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer tb-edit' onClick={() => toggleModifyModal([user._id, user.rol, user.status])} />
+                                        <FontAwesomeIcon icon={faTrash} className='cursor-pointer tb-trash' onClick={() => toggleDeleteModal(user._id)} />
+                                    </div>
                                 </td>
                             </tr>
                         ))}
@@ -114,23 +117,26 @@ const ListUser = () => {
                 </div>
             </Modal>
             <Modal className="modal" show={toggleModify !== null} title='Modificar Rol' close={closedModifyModal} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
-                <form onSubmit={handleSubmit(onModify)}>
-                    <label>
-                        Nuevo Rol:
+                <form className='formPatitas' onSubmit={handleSubmit(onModify)}>
+                    <div className="group">
+                        <label>Nuevo Rol</label>
+
                         <select {...register("rol", { required: true })} defaultValue={userSelect && userSelect[1]}>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
                         </select>
-                    </label>
-                    <label>
-                        Nuevo Estado:
+                    </div>
+                    <div className="group">
+                        <label>Nuevo Estado</label>
                         <select {...register("status", { required: true })} defaultValue={userSelect && userSelect[2]}>
                             <option value="active">Activo</option>
                             <option value="inactive">Inactivo</option>
                         </select>
-                    </label>
-                    <button type="submit" className="bg-morado2">Guardar</button>
-                    <button onClick={closedModifyModal} className="bg-morado2">Cancelar</button>
+                    </div>
+                    <div className="buttons">
+                        <button type="submit" className="bg-morado2">Guardar</button>
+                        <button onClick={closedModifyModal} className="bg-morado2">Cancelar</button>
+                    </div>
                 </form>
             </Modal>
         </div>

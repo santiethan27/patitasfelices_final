@@ -1,0 +1,35 @@
+:root {
+    --primaryTable: black;
+}
+
+.pf-table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    height: min-content;
+
+    th,
+    td {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 500;
+
+        .tb-actions {
+            display: flex;
+            justify-content: space-between;
+
+            .tb-edit {
+                color: rgb(0, 255, 145);
+            }
+
+            .tb-trash {
+                color: rgba(255, 0, 0, 0.548);
+            }
+        }
+    }
+
+    tr:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
