@@ -62,21 +62,21 @@ const Navbar = () => {
 
   return (
     // Version navbar 2.0 (Posibles cambios !)
-    <div className={showMenu && showIconMenu ? "back active" : "back bg-lavender"} onClick={showMenu && showIconMenu ? toggleShow : null}>
+    <div className={showMenu && showIconMenu ? "back active" : "back bg-white"} onClick={showMenu && showIconMenu ? toggleShow : null}>
       <div className='container-navbar' onClick={(e) => e.stopPropagation()}>
         <div className='container-iconBar'>
           {showIconMenu ? (<FontAwesomeIcon icon={changeIcon ? faX : faBars} size='2x' color='#fff' className={`cursor-pointer icon-bar transition ${txtChangeColor ? 'txt-white' : 'txt-black'}`} onClick={toggleShow} />) : null}
         </div>
-        {showMenu ? (<nav className='transition bg-lavender'>
+        {showMenu ? (<nav className='transition bg-white'>
           <div className='brand'>
-            <Link to='/' className='cursor-pointer txt-black'>Patitas Felices</Link>
+            <Link to='/' className='cursor-pointer txt-black logo'><img src='./logo4.png' alt='Logo' className='cursor-pointer logoPatitas' />PatitasFelices</Link>
           </div>
           <div className='div-nav'>
             <ul>
               <NavLink to={`/`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Inicio</NavLink>
               <NavLink to={`/adoptar`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Adoptar</NavLink>
               <NavLink to={`/products`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Productos</NavLink>
-              <NavLink to={`/donaciones`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
+              <NavLink to={`/donations`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Donaciones</NavLink>
               <NavLink to={`/blog`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Blog</NavLink>
               {user.rol == "admin" && <NavLink to={`/administracion`} className='cursor-pointer txt-black link' onClick={showMenu && showIconMenu ? toggleShow : null} activeclassname="active">Administracion</NavLink>}
             </ul>
@@ -85,7 +85,7 @@ const Navbar = () => {
             {/* Se crea un contenedor para poder mover el icono desde el css ya que sin el contenedor es imposible o no encontre forma */}
             <div className='icon-user'>
               <Dropdown dropdownTitle="Dropdown" items={items} _logout={_logout}>
-                {user.photo ? <img src={user.photo} className='perfil' alt="Perfil" /> : <FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' />}
+                {user.photo ? <img src={user.photo} className='perfil borde-morado' alt="Perfil" /> : <FontAwesomeIcon icon={faUser} className='fa-2x cursor-pointer' />}
               </Dropdown>
             </div>
           </div>

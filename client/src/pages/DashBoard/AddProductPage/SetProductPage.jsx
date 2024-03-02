@@ -1,18 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useProduct } from '../../../contexts/ProductContext'
 import { useForm } from 'react-hook-form';
 import '../../../styled-components/Forms.css'
-import Modal from '../../../components/Modal/Modal';
+import { toast } from 'sonner';
 
 function SetProductPage() {
     const { register, handleSubmit, formState: {
         errors
     }, reset } = useForm();
-    const [modal, setModal] = useState(false);
-    const Toggle = (open) => {
-        setModal(open);
-    }
     const { _postProducts } = useProduct();
+
     const onSubmit = async (data) => {
         const formData = new FormData();
         for (let i = 0; i < data.image.length; i++) {
@@ -24,20 +21,20 @@ function SetProductPage() {
         formData.append('description', data.description);
         formData.append('category', data.category)
         try {
-            Toggle(true);
             await _postProducts(formData);
             reset();
         } catch (error) {
-            Toggle(false);
             console.error('Error al actualizar el producto: ', error)
-        } finally {
-            Toggle(false);
         }
     };
 
     return (
         <>
-            <form className='w50 formPatitas m5' onSubmit={handleSubmit(onSubmit)}>
+            <form className='w50 formPatitas m5' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
+                loading: 'Cargando...',
+                success: 'Se agregó el producto',
+                error: 'Ocurrió un error al agregar el producto'
+            }))}>
                 <h2 className='title'>AGREGAR UN PRODUCTO</h2>
                 <div className="groups">
                     <div className='group'>
@@ -75,9 +72,6 @@ function SetProductPage() {
                 </div>
                 <button className='bg-morado2' type='submit'>Agregar</button>
             </form>
-            <Modal className="modalLoading" show={modal} title="CARGANDO..." close={Toggle} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>
-                <h3>CARGANDO...</h3>
-            </Modal>
         </>
 
 

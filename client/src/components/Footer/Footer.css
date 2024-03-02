@@ -1,7 +1,6 @@
 /* Diseño del apartado de footer */
 
 footer {
-  background-color: #ffebf3;
   display: flex;
   flex-direction: column;
   flex: 1;

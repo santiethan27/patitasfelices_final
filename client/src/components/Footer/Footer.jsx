@@ -12,7 +12,7 @@ const Footer = () => {
     const name = 'Fundación Patitas Felices';
     const reserve = 'Todos los derechos reservados';
     return (
-        <footer>
+        <footer className='bg-white'>
             <article className='article'>
                 <section className='icon-footer container-email'>
                     <img src='./logo4.png' alt='Logo' className='cursor-pointer logoPatitas' />

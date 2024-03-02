@@ -2,6 +2,7 @@
 .container-condiciones {
   width: 100%;
   display: flex;
+  margin-top: 3rem;
 
   .container-b {
     display: flex;
@@ -10,17 +11,18 @@
     a {
       position: relative;
       text-decoration: none;
-      background-color: #ffebf3;
       padding: 5px 10px;
-      border-radius: 5px;
+      border-radius: 10px;
       margin-top: 2rem;
       width: 30%;
       text-align: center;
 
+      box-shadow: rgba(100, 100, 111, .4) 0px 7px 29px 0px;
+      animation: flotante 3s ease-in-out infinite alternate;
+
       .hand {
         position: absolute;
         font-size: 1.5rem;
-        color: white;
         bottom: -1.5rem;
         left: 0;
       }
@@ -39,9 +41,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-top: 2rem;
+      margin-top: 1rem;
       font-size: 1.1rem;
-      gap: 1.5rem;
+      gap: 1.2rem;
     }
 
     .container-tittle {
@@ -57,10 +59,6 @@
         border-radius: 10px;
       }
     }
-
-    .container-condicion {
-      color: white;
-    }
   }
 
   .c-img-condiones {
@@ -75,8 +73,6 @@
       height: 400px;
       width: 400px;
       border-radius: 100%;
-      background-color: #e6a4d0;
-      overflow: hidden;
 
       img {
         position: absolute;
@@ -90,16 +86,30 @@
       position: absolute;
       bottom: 10%;
       right: 0;
-      width: 50%;
+      width: 25%;
       transform: rotate(-30deg);
     }
 
     .line2 {
       position: absolute;
-      top: 20%;
+      top: 10%;
       left: 0;
       width: 40%;
-      transform: rotate(-65deg);
+      transform: rotate(-80deg);
     }
+  }
+}
+
+@keyframes flotante {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(5px);
   }
 }

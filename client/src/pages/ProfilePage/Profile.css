@@ -1,3 +1,8 @@
+.prof-cont {
+    min-width: 80vh;
+    position: relative;
+}
+
 .secondC {
     color: rgb(193, 188, 188);
 }
@@ -7,6 +12,8 @@
 }
 
 .contProfile {
+    padding: 1em;
+
     .banner {
         width: 100%;
         height: 200px;

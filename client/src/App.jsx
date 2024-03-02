@@ -19,6 +19,8 @@ import DetailProduct from './pages/DetailProductPage/DetailProduct';
 import Footer from './components/Footer/Footer';
 import SetProductPage from './pages/DashBoard/AddProductPage/SetProductPage';
 import SetAnimalPage from './pages//DashBoard/AddAnimalPage/SetAnimalPage';
+import { Toaster } from 'sonner';
+import Donations from './pages/Donations/Donations';
 
 function App() {
     return (
@@ -55,8 +57,10 @@ function MainApp() {
                 <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
                 <Route path='/product/:id' element={<DetailProduct />}></Route>
                 <Route path='/users' element={<ListUser />}></Route>
+                <Route path='/donations' element={<Donations/>}></Route>
             </Routes>
             <Footer />
+            <Toaster richColors theme='dark' />
         </>
     );
 }

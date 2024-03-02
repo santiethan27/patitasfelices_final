@@ -5,18 +5,41 @@ import { useAnimal } from "../../contexts/AnimalContext";
 import Modal from "../../components/Modal/Modal";
 import { useForm } from "react-hook-form";
 import "../../styled-components/Forms.css";
+import ToasterCustom from './../../components/ToasterCustom/ToasterCustom';
+import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCat, faCircle, faDog, faVenusMars, faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
+import MyListbox from './../../components/ListBox/ListBox';
 
 const Adopcion = () => {
   const { animals, _getAnimals, _deleteAnimal } = useAnimal();
   const [selectedItem, setSelectedPetKey] = useState(null);
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
-  const [modal3, setModal3] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const options = [{ id: 0, name: 'Nombre' }, { id: 1, name: 'Raza' }];
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+
+  const loadAnimals = async () => {
+    await _getAnimals()
+  }
   useEffect((() => {
-    _getAnimals();
+    loadAnimals();
   }), []);
 
+  const searcher = (e) => {
+    setSearch(e.target.value)
+  }
+  let results = []
+  if (!search) {
+    results = animals;
+  } else {
+
+    results = animals.filter((dato) => selectedOption.name == options[0].name ? dato.name.toLowerCase().includes(search.toLocaleLowerCase()) : dato.raza.toLowerCase().includes(search.toLocaleLowerCase()));
+  }
   const { register, handleSubmit, formState: {
     errors
   }, reset } = useForm();
@@ -34,9 +57,6 @@ const Adopcion = () => {
     setSelectedPetKey(animal);
     setModal2(!modal2);
   };
-  const Toggle3 = (show) => {
-    setModal3(show);
-  };
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
@@ -49,10 +69,7 @@ const Adopcion = () => {
       const res = await _putAnimal(formData);
       setSelectedPetKey(await res);
     } catch (error) {
-      Toggle3(false);
       console.log(error);
-    } finally {
-      Toggle3(false);
     }
   };
   const onDelete = async () => {
@@ -78,25 +95,65 @@ const Adopcion = () => {
   return (
     <>
       <div className="container-adopcion">
-        <header className="txt-white">
-          <div className="col2 bg-rosa">
-            <img className="img1 bg-morado-gradient" src="./images/gato3.png" alt="" />
+        <div className="c-header  bg-morado2">
+          <header className="adop-header txt-black">
+            <div className="adop-col1">
+              <div className="adop-col-cont bg-white">
+                <FontAwesomeIcon icon={faPaw} className="txt-morado adop-icon" />
+                <h3 className="txt-black">Dale hogar a un amigo peludo</h3>
+              </div>
+              <div className="adop-col-cont bg-white">
+                <FontAwesomeIcon icon={faHeart} className="txt-morado adop-icon" />
+                <h3 className="txt-black">Encuentra tu nuevo mejor amigo</h3>
+              </div>
+            </div>
+            <div className="adop-col2">
+              <img src="./images/bone2.png" alt="" className="bone" />
+              <img src="./images/mascotaLogin.png" alt="" />
+            </div>
+          </header>
+        </div>
+        <div className="pet-icons">
+          <div className="c-pet-icon">
+            <div className="pet-icon bg-morado2">
+              <img src="./images/dog.png" alt="" />
+            </div>
+            <p className="pet-class"><span><FontAwesomeIcon icon={faCircle} className="txt-morado" /></span> Perros</p>
           </div>
-          <div className="col1 bg-rosa">
-            <h3>AYUDA A LA FUNDACIÓN COMPRANDO PRODUCTOS</h3>
-            <p>Comprando productos ayudas a la fundacion a mantener a los animales con un hogar digno mientras alguien los adopta, ademas de ayudar a la fundacion a pagar a sus empleados y mantener nuestro sueño de restacar perritos</p>
+          <div className="c-pet-icon">
+            <div className="pet-icon borde-morado">
+              <img src="./images/black-cat.png" alt="" />
+            </div>
+            <p className="pet-class">Gatos</p>
           </div>
-        </header>
-        <div className="container-cards bg-white">{
-          animals.map((animal) => (
-            <CardsAdopcion key={animal._id} animal={animal} onDelete={() => Toggle2(animal._id)} onModify={() => Toggle(animal)} />
-          ))
+        </div>
+        <div className="c-search">
+          <div className="pet-search">
+            <input type="text" placeholder="Buscar..." value={search} onChange={searcher} className="in-search" />
+            <MyListbox options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+          </div>
+        </div>
+        <div className="adop-container-cards">{
+          results.length > 0 ? (
+            results.map((animal) => (
+              <CardsAdopcion key={animal._id} animal={animal} onDelete={() => Toggle2(animal._id)} onModify={() => Toggle(animal)} />
+            ))
+          ) : (
+            <p>No se encontraron resultados</p>
+          )
         }</div>
       </div>
 
       {/* */}
       <Modal show={modal} title={`EDITAR MASCOTA: ${selectedItem?.name}`} close={Toggle} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
-        {selectedItem && selectedItem.multimedia && (<form className="w80 formPatitas" onSubmit={handleSubmit(onSubmit)}>
+        {selectedItem && selectedItem.multimedia && (<form className="w80 formPatitas" onSubmit={(e) => {
+          e.preventDefault();
+          toast.promise(handleSubmit(onSubmit), {
+            error: "Ocurrio un error al actualizar la mascota",
+            success: "Actualizando la mascota",
+            loading: "Se esta actualizando la mascota"
+          });
+        }}>
           <input type="text" {...register("idPublication", { required: true })} value={selectedItem._id} hidden />
           <div className="groups">
             <div className="group">
@@ -168,13 +225,18 @@ const Adopcion = () => {
       </Modal>
       <Modal className="modal" show={modal2} title="¿ESTAS SEGURO?" close={Toggle2} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
         <div className="buttons">
-          <button onClick={() => onDelete()} className="bg-morado2">ACEPTAR</button>
+          <button onClick={(e) => {
+            e.preventDefault();
+            toast.promise(onDelete(), {
+              error: "Ocurrio un error al eliminar la mascota",
+              success: "Mascota eliminada",
+              loading: "Se esta eliminando la mascota"
+            });
+          }} className="bg-morado2">ACEPTAR</button>
           <button onClick={() => Toggle2()} className="bg-morado2">CANCELAR</button>
         </div>
       </Modal>
-      <Modal className="modalLoading" show={modal3} title="CARGANDO..." close={Toggle3} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>
-        <h3>CARGANDO...</h3>
-      </Modal>
+      <ToasterCustom />
     </>
   );
 };

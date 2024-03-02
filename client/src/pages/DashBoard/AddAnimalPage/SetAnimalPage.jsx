@@ -3,17 +3,14 @@ import { useForm } from 'react-hook-form';
 import { useAnimal } from '../../../contexts/AnimalContext';
 import { useAuth } from '../../../contexts/AuthContext';
 import '../../../styled-components/Forms.css'
-import Modal from '../../../components/Modal/Modal';
+import { toast } from "sonner";
 
 function SetAnimalPage() {
     const { user } = useAuth();
     const { register, handleSubmit, formState: {
         errors
     }, reset } = useForm();
-    const [loading, setLoading] = useState();
-    const Toggle = (open) => {
-        setLoading(open);
-    }
+
     const { _postAnimals } = useAnimal();
     const onSubmit = async (data) => {
         const formData = new FormData();
@@ -31,21 +28,20 @@ function SetAnimalPage() {
         formData.append('isVaccinated', data.isVaccinated);
         formData.append('isCastrated', data.isCastrated);
         try {
-            Toggle(true);
             await _postAnimals(formData);
             reset();
         } catch (error) {
-            Toggle(false);
             console.error('Error al actualizar el usuario:', error);
-        } finally {
-            Toggle(false);
         }
-
     };
 
     return (
         <>
-            <form className='w50 formPatitas m5' onSubmit={handleSubmit(onSubmit)}>
+            <form className='w50 formPatitas m5' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
+                loading: 'Cargando...',
+                success: 'Se agregó la mascota',
+                error: 'Ocurrió un error al agregar la mascota'
+            }))}>
                 <h2 className='title'>REGISTRAR UNA MASCOTA</h2>
                 <div className="groups">
                     <div className='group'>
@@ -110,9 +106,6 @@ function SetAnimalPage() {
 
                 <button className='bg-morado2' type="submit">Guardar</button>
             </form>
-            <Modal className="modalLoading" show={loading} title="CARGANDO..." close={Toggle} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>
-                <h3>CARGANDO...</h3>
-            </Modal>
         </>
     );
 }

@@ -7,9 +7,10 @@ import { useForm } from 'react-hook-form';
 import "../../../styled-components/Tables.css";
 import "./ListUser.css"
 import "./../../../styled-components/Forms.css"
+import { toast } from 'sonner';
 
 const ListUser = () => {
-    const { users, _getUsers, _deleteUser, updateUsers } = useAuth();
+    const { users, _getUsers, _deleteUser, updateUser } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [toggleDelete, setToggleDelete] = useState(null);
@@ -46,14 +47,10 @@ const ListUser = () => {
     }
 
     const onModify = async (data) => {
-        setLoading(true);
         try {
-            const res = await updateUsers(userSelect[0], data);
-            setToggleModify(null);
+            const res = await updateUser(userSelect[0], data);
         } catch (error) {
             console.log(error);
-        } finally {
-            setLoading(false);
         }
     }
 
@@ -112,12 +109,21 @@ const ListUser = () => {
             )}
             <Modal className="modal" show={toggleDelete !== null} title='¿Estás seguro?' close={closedDeleteModal} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
                 <div className="buttons">
-                    <button onClick={() => onDelete(toggleDelete)} className="bg-morado2">Aceptar</button>
+                    <button onClick={() =>
+                        toast.promise(onDelete(toggleDelete), {
+                            loading: 'Eliminando...',
+                            success: 'Se elimino el usuario',
+                            error: 'Ocurrio un error al eliminar el usuario'
+                        })} className="bg-morado2">Aceptar</button>
                     <button onClick={closedDeleteModal} className="bg-morado2">Cancelar</button>
                 </div>
             </Modal>
             <Modal className="modal" show={toggleModify !== null} title='Modificar Rol' close={closedModifyModal} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
-                <form className='formPatitas' onSubmit={handleSubmit(onModify)}>
+                <form className='formPatitas' onSubmit={handleSubmit((data) => toast.promise(onModify(data), {
+                    loading: 'Actualizando...',
+                    success: 'Se actualizo el usuario',
+                    error: 'Ocurrio un error al actualizar el usuario'
+                }))}>
                     <div className="group">
                         <label>Nuevo Rol</label>
 
