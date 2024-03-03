@@ -8,18 +8,18 @@ import "../../../styled-components/Tables.css";
 import "./ListUser.css"
 import "./../../../styled-components/Forms.css"
 import { toast } from 'sonner';
+import SideBarAdmin from './../SideBarAdmin/SideBarAdmin';
+import Tabla from './../Components/Tabla';
+import EditUser from './Components/EditUser';
+import DeleteUser from './Components/DeleteUser';
 
 const ListUser = () => {
-    const { users, _getUsers, _deleteUser, updateUser } = useAuth();
+    const { users, _getUsers } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [toggleDelete, setToggleDelete] = useState(null);
     const [toggleModify, setToggleModify] = useState(null);
     const [userSelect, setUser] = useState(null);
-
-    const { register, handleSubmit, formState: {
-        errors
-    }, reset } = useForm();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,29 +37,8 @@ const ListUser = () => {
         }
     }, [_getUsers]);
 
-    const onDelete = async (id) => {
-        try {
-            await _deleteUser(id);
-            setToggleDelete(null);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const onModify = async (data) => {
-        try {
-            const res = await updateUser(userSelect[0], data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const toggleDeleteModal = (_id) => {
         setToggleDelete(_id);
-    }
-
-    const closedDeleteModal = () => {
-        setToggleDelete(null);
     }
 
     const toggleModifyModal = (user) => {
@@ -67,84 +46,51 @@ const ListUser = () => {
         setToggleModify(true);
     }
 
-    const closedModifyModal = () => {
-        setUser(null);
-        setToggleModify(null);
-        reset();
-    }
+    const options = [{ id: 'name', name: 'Nombre' }, { id: 'email', name: 'Email' }, { id: 'phone', name: 'Telefono' }, { id: 'rol', name: 'Rol' }, { id: 'status', name: 'Estado' }, { id: 'gender', name: 'Sexo' }, { id: 'color', name: 'Color' }];
     return (
-        <div className='us-container'>
+        <div className='ad-product'>
+            <SideBarAdmin />
             {loading ? (
                 <h1>Cargando usuarios...</h1>
             ) : error ? (
                 <h1>Error al cargar los usuarios: {error.message}</h1>
             ) : (
-                <table className='pf-table'>
-                    <thead className='bg-rosa txt-white'>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Rol</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </thead>
-                    <tbody className='container-body_table'>
-                        {users.map(user => (
-                            <tr key={user._id}>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
-                                <td>{user.rol}</td>
-                                <td>{user.status}</td>
-                                <td>
-                                    <div className='tb-actions'>
-                                        <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer tb-edit' onClick={() => toggleModifyModal([user._id, user.rol, user.status])} />
-                                        <FontAwesomeIcon icon={faTrash} className='cursor-pointer tb-trash' onClick={() => toggleDeleteModal(user._id)} />
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <Tabla options={options} list={users} toggleDeleteModal={toggleDeleteModal} toggleModifyModal={toggleModifyModal} isButtonNew={false}>
+                    {(results) => (
+                        <>
+                            <thead className='bg-morado2 txt-white'>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody className='container-body_table'>
+                                {results.map(user => (
+                                    <tr key={user._id}>
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.phone}</td>
+                                        <td>{user.rol}</td>
+                                        <td>{user.status}</td>
+                                        <td>
+                                            <div className='tb-actions'>
+                                                <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer txt-morado' onClick={() => toggleModifyModal([user._id, user.rol, user.status])} />
+                                                <FontAwesomeIcon icon={faTrash} className='cursor-pointer txt-rosado' onClick={() => toggleDeleteModal(user._id)} />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </>
+                    )}
+                </Tabla>
             )}
-            <Modal className="modal" show={toggleDelete !== null} title='¿Estás seguro?' close={closedDeleteModal} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
-                <div className="buttons">
-                    <button onClick={() =>
-                        toast.promise(onDelete(toggleDelete), {
-                            loading: 'Eliminando...',
-                            success: 'Se elimino el usuario',
-                            error: 'Ocurrio un error al eliminar el usuario'
-                        })} className="bg-morado2">Aceptar</button>
-                    <button onClick={closedDeleteModal} className="bg-morado2">Cancelar</button>
-                </div>
-            </Modal>
-            <Modal className="modal" show={toggleModify !== null} title='Modificar Rol' close={closedModifyModal} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
-                <form className='formPatitas' onSubmit={handleSubmit((data) => toast.promise(onModify(data), {
-                    loading: 'Actualizando...',
-                    success: 'Se actualizo el usuario',
-                    error: 'Ocurrio un error al actualizar el usuario'
-                }))}>
-                    <div className="group">
-                        <label>Nuevo Rol</label>
-
-                        <select {...register("rol", { required: true })} defaultValue={userSelect && userSelect[1]}>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
-                    </div>
-                    <div className="group">
-                        <label>Nuevo Estado</label>
-                        <select {...register("status", { required: true })} defaultValue={userSelect && userSelect[2]}>
-                            <option value="active">Activo</option>
-                            <option value="inactive">Inactivo</option>
-                        </select>
-                    </div>
-                    <div className="buttons">
-                        <button type="submit" className="bg-morado2">Guardar</button>
-                        <button onClick={closedModifyModal} className="bg-morado2">Cancelar</button>
-                    </div>
-                </form>
-            </Modal>
+            <EditUser setToggleModify={setToggleModify} toggleModify={toggleModify} userSelect={userSelect} setUser={setUser} />
+            <DeleteUser toggleDelete={toggleDelete} setToggleDelete={setToggleDelete} />
         </div>
     );
 }

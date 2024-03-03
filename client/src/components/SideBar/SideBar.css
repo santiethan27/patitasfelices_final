@@ -4,7 +4,7 @@
     min-height: 100%;
     left: -200px;
     transition: left 0.3s ease-in-out;
-    z-index: 1000;
+    z-index: 2;
     border-top: 2px solid #b3a8e2;
     border-bottom: 2px solid #b3a8e2;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

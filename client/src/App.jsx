@@ -17,10 +17,10 @@ import ProductsPage from './pages/ProductPage/ProductsPage';
 import DetailAdoption from './pages/PetPage/DetailAdoption';
 import DetailProduct from './pages/DetailProductPage/DetailProduct';
 import Footer from './components/Footer/Footer';
-import SetProductPage from './pages/DashBoard/AddProductPage/SetProductPage';
-import SetAnimalPage from './pages//DashBoard/AddAnimalPage/SetAnimalPage';
 import { Toaster } from 'sonner';
 import Donations from './pages/Donations/Donations';
+import Animal from './pages/DashBoard/Animal/Animal';
+import Product from './pages/DashBoard/Product/Product';
 
 function App() {
     return (
@@ -50,14 +50,16 @@ function MainApp() {
                 <Route path='/perfil' element={<ProfilePage />} />
                 <Route path='/blog' element={<BlogPage />}> </Route>
                 <Route path='/citas' element={<CitasAdopcion />}></Route>
-                <Route path='/administracion' element={<AdminPage />}></Route>
-                <Route path='/pet' element={<SetAnimalPage />}></Route>
-                <Route path='/product' element={<SetProductPage />}></Route>
+                <Route path='/administracion/inicio' element={<AdminPage />}></Route>
+                <Route path='/administracion/mascotas' element={<Animal />}></Route>
+                <Route path='/administracion/productos' element={<Product />}></Route>
+                <Route path='/administracion/usuarios' element={<ListUser />}></Route>
+                <Route path='/administracion/reportes' element={<AdminPage />}></Route>
+                <Route path='/administracion/entrevistas' element={<ListUser />}></Route>
                 <Route path='/products' element={<ProductsPage />}></Route>
                 <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
                 <Route path='/product/:id' element={<DetailProduct />}></Route>
-                <Route path='/users' element={<ListUser />}></Route>
-                <Route path='/donations' element={<Donations/>}></Route>
+                <Route path='/donations' element={<Donations />}></Route>
             </Routes>
             <Footer />
             <Toaster richColors theme='dark' />

@@ -1,48 +1,52 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Modal from './../../../../components/Modal/Modal';
 import { useForm } from 'react-hook-form';
-import { useAnimal } from '../../../contexts/AnimalContext';
-import { useAuth } from '../../../contexts/AuthContext';
-import '../../../styled-components/Forms.css'
-import { toast } from "sonner";
+import { useAuth } from '../../../../contexts/AuthContext';
+import { useAnimal } from '../../../../contexts/AnimalContext';
+import { toast } from 'sonner';
 
-function SetAnimalPage() {
-    const { user } = useAuth();
+function NewAnimal({ toggleNew, setToggleNew }) {
     const { register, handleSubmit, formState: {
         errors
     }, reset } = useForm();
-
+    const { user } = useAuth();
     const { _postAnimals } = useAnimal();
-    const onSubmit = async (data) => {
-        const formData = new FormData();
-        for (let i = 0; i < data.image.length; i++) {
-            formData.append('images', data.image[i]);
-        }
-        formData.append('idUser', user.id);
-        formData.append('name', data.name);
-        formData.append('age', data.age);
-        formData.append('history', data.history);
-        formData.append('raza', data.raza);
-        formData.append('gender', data.gender);
-        formData.append('color', data.color);
-        formData.append('size', data.size);
-        formData.append('isVaccinated', data.isVaccinated);
-        formData.append('isCastrated', data.isCastrated);
+    const onNew = async (data) => {
         try {
+            console.log(data)
+            const formData = new FormData();
+            for (let i = 0; i < data.image.length; i++) {
+                formData.append('images', data.image[i]);
+            }
+            formData.append('idUser', user.id);
+            formData.append('name', data.name);
+            formData.append('age', data.age);
+            formData.append('history', data.history);
+            formData.append('raza', data.raza);
+            formData.append('gender', data.gender);
+            formData.append('color', data.color);
+            formData.append('size', data.size);
+            formData.append('isVaccinated', data.isVaccinated);
+            formData.append('isCastrated', data.isCastrated);
             await _postAnimals(formData);
             reset();
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
         }
     };
-
+    const closedNewModal = () => {
+        setToggleNew(false);
+    }
     return (
-        <>
-            <form className='w50 formPatitas m5' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
-                loading: 'Cargando...',
-                success: 'Se agregó la mascota',
-                error: 'Ocurrió un error al agregar la mascota'
-            }))}>
-                <h2 className='title'>REGISTRAR UNA MASCOTA</h2>
+        <Modal show={toggleNew} title='AGREGAR MASCOTA' close={closedNewModal} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
+            {toggleNew && (<form className="w80 formPatitas" onSubmit={(e) => {
+                e.preventDefault();
+                toast.promise(handleSubmit(onNew), {
+                    error: "Ocurrio un error al agregar la mascota",
+                    success: "Mascota agregada",
+                    loading: "Se esta agregando la mascota"
+                });
+            }}>
                 <div className="groups">
                     <div className='group'>
                         <label>Nombre:</label>
@@ -105,9 +109,9 @@ function SetAnimalPage() {
                 </div>
 
                 <button className='bg-morado2' type="submit">Guardar</button>
-            </form>
-        </>
-    );
+            </form>)}
+        </Modal>
+    )
 }
 
-export default SetAnimalPage
+export default NewAnimal

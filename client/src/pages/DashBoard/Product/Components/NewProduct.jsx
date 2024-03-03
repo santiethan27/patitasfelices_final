@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useProduct } from '../../../contexts/ProductContext'
+import React from 'react'
+import Modal from './../../../../components/Modal/Modal';
+import { useProduct } from '../../../../contexts/ProductContext';
 import { useForm } from 'react-hook-form';
-import '../../../styled-components/Forms.css'
 import { toast } from 'sonner';
 
-function SetProductPage() {
+function NewProduct({ toggleNew, setToggleNew }) {
     const { register, handleSubmit, formState: {
         errors
     }, reset } = useForm();
@@ -27,15 +27,16 @@ function SetProductPage() {
             console.error('Error al actualizar el producto: ', error)
         }
     };
-
+    const closedNewModal = () => {
+        setToggleNew(false);
+    }
     return (
-        <>
-            <form className='w50 formPatitas m5' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
+        <Modal show={toggleNew} title='AGREGAR PRODUCTO' close={closedNewModal} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
+            {toggleNew && (<form className='w80 formPatitas' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
                 loading: 'Cargando...',
                 success: 'Se agregó el producto',
                 error: 'Ocurrió un error al agregar el producto'
             }))}>
-                <h2 className='title'>AGREGAR UN PRODUCTO</h2>
                 <div className="groups">
                     <div className='group'>
                         <label>Nombre:</label>
@@ -71,11 +72,10 @@ function SetProductPage() {
                     {errors.image && <span>Es necesario rellenar este campo</span>}
                 </div>
                 <button className='bg-morado2' type='submit'>Agregar</button>
-            </form>
-        </>
-
+            </form>)}
+        </Modal>
 
     )
 }
 
-export default SetProductPage
+export default NewProduct
