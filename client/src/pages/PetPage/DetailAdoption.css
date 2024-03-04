@@ -1,71 +1,124 @@
 .container-detailAdoption {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  min-height: 70vh;
+
   .detailAdoption {
-    height: 400px;
-    width: 70%;
+    height: min-content;
     max-width: 800px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    display: flex; 
-    border: 2px solid #8f79e7;
-  }
-  
-  .container-img {
-    width: 60%;
-    border: 2px solid #8f79e7;
+    display: flex;
+    position: relative;
+    z-index: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-  }
-  
-  .container-img img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .container-info {
-    width: 60%;
-    padding: 20px;
-  }
-  
-  .info-section {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .info-general {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px;
-  }
-  
-  .list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .info-item {
-    display: flex;
-    align-items: center; 
-  }
-  
-  .description {
-    margin-top: 40px;
-  }
-  
-  .description h4 {
-    margin-bottom: 10px;
-  }
-  
-  h2{
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5em;
+    }
 
-@media (max-width: 1250px) {}
+    svg.ondas {
+      width: 100%;
+      z-index: 2;
+      height: auto;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .container-info {
+      position: relative;
+      flex: 1;
+      padding: 2em;
+      z-index: 0;
+      height: 100%;
+
+      p.status {
+        position: absolute;
+        right: .5em;
+        top: .5em;
+        font-weight: 100;
+        padding: .4em 1em;
+        font-size: .8em;
+        border-radius: 10px;
+        text-align: end;
+      }
+
+      .item {
+        min-width: 100px;
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+          text-wrap: nowrap;
+          font-weight: 600;
+
+          svg {
+            color: #f98cf9;
+          }
+        }
+
+        p {
+          text-transform: lowercase;
+        }
+      }
+
+      .list {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+
+        .info-general {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1em;
+          font-weight: 100;
+        }
+      }
+
+      .item.description {
+        width: 100%;
+        margin-top: 2em;
+
+        p {
+          margin-top: .5em;
+          font-weight: 100;
+        }
+      }
+
+      .button-adoptar {
+        button {
+          border: none;
+          padding: .5em 1em;
+          border-radius: 7px;
+          margin-top: 2em;
+          cursor: pointer;
+          font-size: .9em;
+          transition: all 1s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    .container-img {
+      width: 45%;
+      max-height: 100%;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+      padding-left: .6em;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

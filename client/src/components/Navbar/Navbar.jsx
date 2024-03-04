@@ -69,7 +69,7 @@ const Navbar = () => {
         </div>
         {showMenu ? (<nav className='transition bg-white'>
           <div className='brand'>
-            <Link to='/' className='cursor-pointer txt-black logo'><img src='./logo4.png' alt='Logo' className='cursor-pointer logoPatitas' />PatitasFelices</Link>
+            <Link to='/' className='cursor-pointer txt-black logo'><img src='../../../public/logo4.png' alt='Logo' className='cursor-pointer logoPatitas' />PatitasFelices</Link>
           </div>
           <div className='div-nav'>
             <ul>
