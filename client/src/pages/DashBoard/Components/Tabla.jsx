@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Tabla({ children, setToggleNew, options, list }) {
-    const [selectedOption, setSelectedOption] = useState(options[0]);
+    const [selectedOption, setSelectedOption] = useState(options && options[0]);
     const searcher = (e) => {
         setSearch(e.target.value)
     }
@@ -20,10 +20,10 @@ function Tabla({ children, setToggleNew, options, list }) {
     return (
         <div className="adtable-container">
             <div className="adds">
-                <div className="pet-search">
+{options &&                <div className="pet-search">
                     <input type="text" placeholder="Buscar..." value={search} onChange={searcher} className="in-search" />
                     <MyListbox options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-                </div>
+                </div>}
                 {setToggleNew && (<button onClick={() => setToggleNew(true)} className='add bg-rosa txt-white'>Agregar nuevo</button>)}
             </div>
             <table className='pf-table'>

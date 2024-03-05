@@ -2,7 +2,7 @@
     --color-primary: #8f79e7bd;
 }
 
-form.formPatitas {
+.formPatitas {
     display: flex;
     flex-direction: column;
     margin: auto;

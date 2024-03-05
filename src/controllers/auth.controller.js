@@ -65,6 +65,7 @@ export const register = async (req, res) => {
       id: userSaved._id,
       name: userSaved.name,
       email: userSaved.email,
+      email: userSaved.phone,
       rol: userSaved.rol,
       photo: userSaved.photo.secure_url
     });
@@ -111,6 +112,7 @@ export const login = async (req, res) => {
       name: userFound.name,
       email: userFound.email,
       rol: userFound.rol,
+      rol: userFound.phone,
       photo: userFound.photo.secure_url
     });
   } catch (error) {
@@ -150,7 +152,8 @@ export const verify = async (req, res) => {
       name: userFound.name,
       email: userFound.email,
       rol: userFound.rol,
-      photo: userFound.photo.secure_url
+      photo: userFound.photo.secure_url,
+      phone: userFound.phone
     });
   });
 };

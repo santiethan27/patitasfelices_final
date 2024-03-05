@@ -7,6 +7,7 @@ import '../../styled-components/Forms.css'
 import { toast } from 'sonner';
 import SideBar from './../../components/SideBar/SideBar';
 import { NavLink } from 'react-router-dom';
+import SideBarUser from './Components/SideBarUser';
 
 function ProfilePage() {
   const { user, getProfile, updateUser } = useAuth();
@@ -64,14 +65,7 @@ function ProfilePage() {
   };
   return (
     <div className='prof-cont'>
-      <SideBar>
-        <ul>
-          <li><NavLink to={'/perfil'}>Perfil</NavLink></li>
-          <li><NavLink to={'/cuenta'}>Cuenta</NavLink></li>
-          <li><NavLink to={'/cuenta'}>Entrevistas</NavLink></li>
-          <li><NavLink to={'/cuenta'}>Mis reportes</NavLink></li>
-        </ul>
-      </SideBar>
+      <SideBarUser/>
       <form className='contProfile formPatitas w80' encType='multipart/form-data' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
         loading: 'Actualizando informacion...',
         success: 'Se actualizo la información',

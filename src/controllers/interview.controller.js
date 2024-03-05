@@ -1,73 +1,88 @@
-import Interview from "../models/interview.model";
+import Interview from "../models/interview.model.js";
 
-export const postInterview = async (req, res) =>{
-    try {
-        const {userAdopter, userAdmin, animalAdopted, date} = req.body;
+export const postInterview = async (req, res) => {
+  try {
+    const { userAdmin, idAdoption, date, idUser, idPet } = req.body;
+    console.log(date);
+    const newInterview = new Interview({
+      idAdoption,
+      userAdmin,
+      date: date.date,
+      idUser,
+      idPet,
+    });
 
-        const newInterview = new Interview({
-            userAdopter,
-            userAdmin,
-            animalAdopted,
-            date,
-        })
+    const interview = await newInterview.save();
+    res.status(200).json(interview);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
 
-        const interview = await newInterview.save();
-        res.status(200).json(interview);
-    } catch (error) {
-        res.status(400).send(error);
-    }
-}
+export const putInterview = async (req, res) => {
+  try {
+    const idInterview = req.params.id;
+    const { date } = req.body;
+    const updateInterview = await Interview.findByIdAndUpdate(
+      idInterview,
+      {
+        date,
+      },
+      { new: true }
+    );
+    console.log(updateInterview);
+    res.status(200).json(updateInterview);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
 
-export const putInterview = async (req, res) =>{
-    try {
-        const idInterview = req.params.id;
-        const {userAdopter, animalAdopted, date} = req.body;
+export const deleteInterview = async (req, res) => {
+  try {
+    const idInterview = req.params.id;
 
-        const updateInterview = await Interview.findByIdAndUpdate({
-            idInterview
-        }, {
-            userAdopter,
-            animalAdopted,
-            date
-        }, {new: true});
-        res.status(200).json(updateInterview);
-    } catch (error) {
-        res.status(400).send(error);
-    }
-}
+    await Interview.findByIdAndDelete({
+      _id: idInterview,
+    });
 
-export const deleteInterview = async(req, res) =>{
-    try {
-        const idInterview = req.params.id;
-        
-        await Interview.findByIdAndDelete({
-            _id: idInterview,
-        });
+    res.status(200).send({ message: "Se elimino con exito." });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
 
-        res.status(200).send({message: "Se elimino con exito."});
+export const getInterviewAdoption = async (req, res) => {
+  try {
+    const idInterview = req.params.id;
 
-    } catch (error) {
-        res.status(400).send(error);
-    }
-}
+    const interview = await Interview.findOne({ idAdoption: idInterview });
+    res.status(200).json(interview);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
 
-export const getInterview = async(req, res) =>{
-    try {
-      const idInterview = req.params.id;
-      
-      const interview = Interview.findById({_id: idInterview});
-
-      res.status(200).json(interview);
-    } catch (error) {
-        res.status(400).send(error);        
-    }
-}
-
-export const getInterviews = async(req, res) =>{
-    try {
-        const interviews = await Interview.find({});
-        res.status(200).json(interviews);
-    } catch (error) {
-        res.status(400).send(error);        
-    }
-}
+export const getInterviewUser = async (req, res) => {
+  try {
+    const idInterview = req.params.id;
+    const interviews = await Interview.find({ idUser: idInterview })
+      .populate({ path: "userAdmin", select: "name" })
+      .populate({ path: "idPet", select: "name" })
+      .exec();
+    console.log(interviews);
+    const mappedInterviews = interviews.map((interview) => ({
+      _id: interview._id,
+      date: interview.date,
+      user: interview.userAdmin.name,
+      animal: interview.idPet.name,
+      status: interview.status,
+    }));
+    res.status(200).json(mappedInterviews);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};

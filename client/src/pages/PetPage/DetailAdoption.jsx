@@ -3,18 +3,26 @@ import { useParams } from 'react-router-dom';
 import { useAnimal } from '../../contexts/AnimalContext';
 import "./DetailAdoption.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVenusMars, faCat, faDroplet, faClockRotateLeft, faDownLeftAndUpRightToCenter, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
+import { faVenusMars, faCat, faDroplet, faClockRotateLeft, faDownLeftAndUpRightToCenter, faNoteSticky, faTriangleExclamation, faEnvelope, faMobileScreenButton } from '@fortawesome/free-solid-svg-icons';
+import Modal from './../../components/Modal/Modal';
+import { useAuth } from '../../contexts/AuthContext';
+import { toast } from 'sonner';
+import { useAdoption } from '../../contexts/AdoptionContext';
 
 const DetailAdoption = () => {
   const { id } = useParams();
   const { _getAnimal } = useAnimal();
   const [animal, setAnimal] = useState();
-
+  const { user } = useAuth();
+  const { _postAdoption, _verifyAdoption } = useAdoption();
+  const [status, setStatus] = useState();
   useEffect(() => {
     const fetchAnimal = async () => {
       try {
         const animalData = await _getAnimal(id);
         setAnimal(animalData);
+        const res = await _verifyAdoption(user._id || user.id);
+        setStatus(res);
       } catch (error) {
         console.error('Error al obtener información del animal:', error);
       }
@@ -25,7 +33,30 @@ const DetailAdoption = () => {
     }
   }, [id, _getAnimal]);
 
-  {/*Diseño por mejorar*/ }
+  const [toggleModifyModal, setToggleModify] = useState(false);
+
+  const onAdoption = async () => {
+    try {
+      const id = user.id || user._id;
+      const data = {
+        userId: id,
+        animalId: animal._id
+      }
+      await _postAdoption(data);
+      const res = await _verifyAdoption(user._id || user.id);
+      setStatus(res);
+      closedModifyModal();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const closedModifyModal = () => {
+    setToggleModify(false);
+  }
+  const toggleModify = () => {
+    setToggleModify(true);
+  }
   return (
     <div className='container-detailAdoption'>
 
@@ -74,13 +105,34 @@ const DetailAdoption = () => {
                 <p>{animal.history} Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero amet quos nihil commodi voluptatibus, atque molestiae facere voluptatum fugiat distinctio dolore ipsam delectus velit et ex quibusdam assumenda enim ullam!</p>
               </div>
               <div className="button-adoptar">
-                <button className='bg-morado2 txt-white'>ADOPTAR AHORA</button>
+                <button className='bg-morado2 txt-white' onClick={toggleModify}>ADOPTAR AHORA</button>
               </div>
             </div>
             <div className='container-img bg-morado2'>
               <img className='bg-white' src={animal.multimedia[0]?.secure_url} alt='' />
             </div>
           </section>
+          <Modal className="modal" show={toggleModifyModal} title='¿Quieres aplicar para adoptar?' close={closedModifyModal} showHeader={true} showOverlay={true} size={"medium"} align={"center"} iClose={true}>
+            {status === 'OK' ? (<div className="c-adoptar">
+              <p>Para adoptar, primero debemos tener una entrevista contigo para saber si eres apto para adoptar.</p>
+              <p>Nos comunicaremos contigo para establecer el dia en el cual podamos hacer la entrevista, es totalmente virtual</p>
+              <p className='info'><span><FontAwesomeIcon icon={faEnvelope} /> Correo: {user.email}</span><span><FontAwesomeIcon icon={faMobileScreenButton} /> Celular: {user.phone}</span></p>
+              <p className='txt-rosado'><FontAwesomeIcon icon={faTriangleExclamation} /> Si la informacion es incorrecta, edita tu informacion en el perfil de usuario.</p>
+              <div className="buttons">
+                <button onClick={(e) => {
+                  e.preventDefault();
+                  toast.promise(onAdoption(), {
+                    error: "Ocurrio un error al hacer la solicitud",
+                    success: "Se registro la solicitud, nos comunicaremos contigo",
+                    loading: "Procesando solicitud, espera un momento"
+                  });
+                }} className="bg-morado2 txt-white">SOLICITAR</button>
+                <button onClick={() => closedDeleteModal()} className="bg-morado2 txt-white">CANCELAR</button>
+              </div>
+            </div>) : (
+              <h3>Ya tienes un proceso de adopcion pendiente, revisa tu perfil</h3>
+            )}
+          </Modal>
         </>
       ) : (
         <p>No se pudo cargar la información del animal.</p>
