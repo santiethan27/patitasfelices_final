@@ -129,7 +129,7 @@ export const getProduct = async (req, res) => {
     const id = req.params.id;
 
     const product = await Product.findById({
-      _id: req.params.id,
+      _id: id,
     });
     if (!product)
       return res.status(404).json({ error: "No se encontro el producto" });

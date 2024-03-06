@@ -1,23 +1,28 @@
 import mongoose, { Schema } from "mongoose";
 
 const interviewShema = new mongoose.Schema({
-    userAdopter: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
     userAdmin: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
     },
-    animalAdopted: {
+    idAdoption: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Adoption",
+        required: true,
+    },
+    idUser:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+    idPet:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Publication",
-        required: true
+        required: true,
     },
     date: {
-        type: datetime,
+        type: String,
         required: true
     },
     comments:[

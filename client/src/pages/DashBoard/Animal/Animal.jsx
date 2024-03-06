@@ -32,10 +32,8 @@ function Animal() {
                 setLoading(false);
             }
         };
-        if (animals.length === 0) {
-            fetchData();
-        }
-    }, [_getAnimals]);
+        fetchData();
+    }, []);
     const toggleDeleteModal = (_id) => {
         setToggleDelete(_id);
     }
@@ -93,8 +91,8 @@ function Animal() {
             )
             }
             <NewAnimal toggleNew={toggleNew} setToggleNew={setToggleNew} />
-            <EditAnimal setToggleModify={setToggleModify} toggleModify={toggleModify} animalSelect={animalSelect} setAnimal={setAnimal}/>
-            <DeleteAnimal toggleDelete={toggleDelete} setToggleDelete={setToggleDelete}/>
+            <EditAnimal setToggleModify={setToggleModify} toggleModify={toggleModify} animalSelect={animalSelect} setAnimal={setAnimal} />
+            <DeleteAnimal toggleDelete={toggleDelete} setToggleDelete={setToggleDelete} />
             <ToasterCustom />
         </div>
     )

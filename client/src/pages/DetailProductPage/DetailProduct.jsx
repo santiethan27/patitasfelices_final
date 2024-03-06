@@ -1,55 +1,71 @@
 import React, { useEffect, useState } from 'react'
-// import { useParams } from 'react-router-dom';
-// import { useProduct } from '../context/ProductContext';
+import { useParams } from 'react-router-dom';
+import { useProduct } from '../../contexts/ProductContext';
 import './DetailProduct.css';
+import CardProduct from '../ProductPage/components/CardProduct';
 
 const DetailProduct = () => {
-    // const { id } = useParams();
-    // const { _getProduct } = useProduct();
-    // const [product, setProduct] = useState();
+    const { id } = useParams();
+    const { _getProduct, _getProducts, products } = useProduct();
+    const [product, setProduct] = useState();
 
-    // useEffect(() => {
-    //     const fetchProduct = async () => {
-    //         try {
-    //             const productData = await _getProduct(id);
-    //             setProduct(productData);
-    //             console.log(productData);
-    //         } catch (error) {
-    //             console.error('Error al obtener información del producto:', error);
-    //         }
-    //     };
-
-    //     if (id) {
-    //         fetchProduct();
-    //     }
-    // }, [id, _getProduct]);
-
-    const product = {
-        name: 'Prueba',
-        description: 'Este texto es de relleno para saber como se puede modificar en el datail de los productos, solucion de errores y posibles fallos de diseño establecidos',
-        price: 5000,
-        stock: 12,
-        image: 'https://res.cloudinary.com/duvbxqzxx/image/upload/v1708876339/media/r3avcp0slz7qe23mo4c8.png'
-    };
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const productData = await _getProduct(id);
+                setProduct(await productData);
+                await _getProducts();
+                console.log(productData);
+            } catch (error) {
+                console.error('Error al obtener información del producto:', error);
+            }
+        };
+        fetchProduct();
+    }, [id]);
 
     return (
-        <div>
-            <div className="product-detail">
-                <div className="container-main bg-white">
-                    <div className="product-image">
-                        <figure className='container-img'>
-                            <img src={product.image} alt={product.name} />
-                        </figure>
-                    </div>
-                    <div className="product-info">
-                        <h1>{product.name}</h1>
-                        <h2>$ {product.price}</h2>
-                        <p>Cantidad disponible: <span>{product.stock}</span> Unidades</p>
-                        <p className='description'>Descripcion : {product.description}</p>
+        product ? (
+            <div className="body-product">
+                <div className="c-product-detail  bg-white">
+                    <div className="product-detail">
+                        <div className="container-main">
+                            <div className='product-image'>
+                                <img src={product.multimedia[0].secure_url} alt={product.name} />
+                            </div>
+                            <div className="product-info">
+                                <div className="header-product">
+                                    <h1>{product.name}</h1>
+                                    <h5 className='category txt-rosado'>{product.category}</h5>
+                                    <div className="info">
+                                        <p className='product-description'>{product.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facilis nesciunt dignissimos quisquam aut nulla velit ipsum quam temporibus et voluptates vitae sed assumenda repellat mollitia, vero quo aliquid voluptatem!</p>
+                                    </div>
+                                </div>
+                                <div className="footer-product">
+                                    <p><span>{product.stock}</span> unidades disponibles</p>
+                                    <div className="price">
+                                        <h2 className='txt-morado'>$ {product.price}</h2>
+                                        <button className='comprar-product bg-morado2'>Comprar ahora</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="others-product">
+                            <h4>Otros productos</h4>
+                            {
+                                products.map((product) => (
+                                    <>
+                                        { product._id != id &&
+                                            <CardProduct key={product._id} product={product} />}
+                                    </>
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        ) : (
+            <h1>Cargando...</h1>
+        )
     )
 }
 

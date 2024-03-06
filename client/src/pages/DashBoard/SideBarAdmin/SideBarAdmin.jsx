@@ -10,7 +10,7 @@ function SideBarAdmin() {
             <li><NavLink to={'/administracion/mascotas'}>Mascotas</NavLink></li>
             <li><NavLink to={'/administracion/usuarios'}>Usuarios</NavLink></li>
             <li><NavLink to={'/administracion/reportes'}>Reportes</NavLink></li>
-            <li><NavLink to={'/administracion/entrevistas'}>Entrevistas</NavLink></li>
+            <li><NavLink to={'/administracion/adopciones'}>Adopciones</NavLink></li>
         </ul></SideBar>
     )
 }
