@@ -9,6 +9,7 @@ import publicationRoutes from "./routes/publication.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import adoptionRoutes from "./routes/adoption.routes.js";
 import interviewRoutes from "./routes/interview.routes.js";
+import reportRoutes from "./routes//report.routes.js";
 //INICIALIZACIONES
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/api", publicationRoutes);
 app.use("/api", productRoutes);
 app.use("/api", adoptionRoutes);
 app.use("/api", interviewRoutes);
+app.use("/api", reportRoutes);
 app.set("port", process.env.PORT || 3000);
 
 export default app;
