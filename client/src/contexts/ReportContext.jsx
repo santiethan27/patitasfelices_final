@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { getReports, postReport } from '../utils/services/reports';
+import { deleteReport, getReports, postReport } from '../utils/services/reports';
 
 export const ReportContext = createContext();
 
@@ -28,8 +28,17 @@ export const ReportProvider = ({ children }) => {
             console.log(error);
         }
     }
+
+    const _deleteReport = async (report) => {
+        try {
+            await deleteReport(report);
+            await _getReports();
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
-        <ReportContext.Provider value={{ _getReports, _postReport, reports }}>
+        <ReportContext.Provider value={{ _getReports, _postReport, reports, _deleteReport }}>
             {children}
         </ReportContext.Provider>
     )

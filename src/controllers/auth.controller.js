@@ -112,7 +112,7 @@ export const login = async (req, res) => {
       name: userFound.name,
       email: userFound.email,
       rol: userFound.rol,
-      rol: userFound.phone,
+      phone: userFound.phone,
       photo: userFound.photo.secure_url
     });
   } catch (error) {
