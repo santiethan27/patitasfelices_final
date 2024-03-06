@@ -126,10 +126,10 @@ export const deleteProduct = async (req, res) => {
 
 export const getProduct = async (req, res) => {
   try {
-    const id = req.param.id;
+    const id = req.params.id;
 
     const product = await Product.findById({
-      _id: req.param.id,
+      _id: req.params.id,
     });
     if (!product)
       return res.status(404).json({ error: "No se encontro el producto" });

@@ -21,21 +21,24 @@ import { Toaster } from 'sonner';
 import Donations from './pages/Donations/Donations';
 import Animal from './pages/DashBoard/Animal/Animal';
 import Product from './pages/DashBoard/Product/Product';
+import { PaymentProvider } from './contexts/PaymentContext';
 
 function App() {
     return (
         <AuthProvider>
             <AnimalProvider>
-                <ProductProvider>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path='/auth' element={<AuthPage />} />
-                            <Route element={<ProtectedRoute />}>
-                                <Route path='/*' element={<MainApp />} />
-                            </Route>
-                        </Routes>
-                    </BrowserRouter>
-                </ProductProvider>
+                <PaymentProvider>
+                    <ProductProvider>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path='/auth' element={<AuthPage />} />
+                                <Route element={<ProtectedRoute />}>
+                                    <Route path='/*' element={<MainApp />} />
+                                </Route>
+                            </Routes>
+                        </BrowserRouter>
+                    </ProductProvider>
+                </PaymentProvider>
             </AnimalProvider>
         </AuthProvider>
     )
