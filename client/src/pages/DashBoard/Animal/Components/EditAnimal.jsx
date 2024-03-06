@@ -100,6 +100,11 @@ function EditAnimal({ setToggleModify, toggleModify, animalSelect, setAnimal }) 
                         <input type="text" name="isCastrated" defaultValue={animalSelect.isCastrated} {...register("isCastrated", { required: true })} />
                         {errors.isCastrated && <span>This field is required</span>}
                     </div>
+                    <div className="group">
+                        <label>Tipo</label>
+                        <input type="text" name="category" defaultValue={animalSelect.category && animalSelect.category} {...register("category", { required: true })} />
+                        {errors.isCastrated && <span>This field is required</span>}
+                    </div>
                 </div>
                 <div className="group">
                     <label>Historia:</label>

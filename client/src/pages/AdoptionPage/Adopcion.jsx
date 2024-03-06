@@ -19,6 +19,7 @@ const Adopcion = () => {
   const [modal2, setModal2] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [search, setSearch] = useState("");
+  const [type, setType] = useState("PERROS");
 
   const options = [{ id: 0, name: 'Nombre' }, { id: 1, name: 'Raza' }];
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -33,17 +34,28 @@ const Adopcion = () => {
   const searcher = (e) => {
     setSearch(e.target.value)
   }
+
+  const handleType = () => {
+    if (type == "PERROS") {
+      setType("GATOS");
+    }
+    if (type == "GATOS") {
+      setType("PERROS");
+    }
+  }
+
+  let filters = animals?.filter((dato) => dato.category.toLowerCase().includes(type.toLowerCase()));
+
   let results = []
   if (!search) {
-    results = animals;
+    results = filters;
   } else {
-
-    results = animals.filter((dato) => selectedOption.name == options[0].name ? dato.name.toLowerCase().includes(search.toLocaleLowerCase()) : dato.raza.toLowerCase().includes(search.toLocaleLowerCase()));
+    results = filters.filter((dato) => selectedOption.name == options[0].name ? dato.name.toLowerCase().includes(search.toLocaleLowerCase()) : dato.raza.toLowerCase().includes(search.toLocaleLowerCase()));
   }
+
   const { register, handleSubmit, formState: {
     errors
   }, reset } = useForm();
-  const { _putAnimal } = useAnimal();
 
   const Toggle = (animal) => {
     if (animal == undefined) {
@@ -57,41 +69,7 @@ const Adopcion = () => {
     setSelectedPetKey(animal);
     setModal2(!modal2);
   };
-  const onSubmit = async (data) => {
-    try {
-      const formData = new FormData();
-      if (selectedImage) {
-        formData.append('images', selectedImage);
-      }
-      for (const key in data) {
-        formData.append(key, data[key]);
-      }
-      const res = await _putAnimal(formData);
-      setSelectedPetKey(await res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const onDelete = async () => {
-    try {
-      await _deleteAnimal(selectedItem);
-      setSelectedPetKey(false);
-      Toggle2();
-    } catch (error) {
-      console.error(error)
-    }
 
-  };
-  const fileInputRef = useRef(null);
-
-  const handleImageClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-  };
   return (
     <>
       <div className="container-adopcion">
@@ -114,17 +92,17 @@ const Adopcion = () => {
           </header>
         </div>
         <div className="pet-icons">
-          <div className="c-pet-icon">
-            <div className="pet-icon bg-morado2">
+          <div className="c-pet-icon cursor-pointer" onClick={() => handleType("PERROS")}>
+            <div className={`pet-icon ${type == "PERROS" ? "bg-morado2" : "borde-morado"}`}>
               <img src="./images/dog.png" alt="" />
             </div>
-            <p className="pet-class"><span><FontAwesomeIcon icon={faCircle} className="txt-morado" /></span> Perros</p>
+            <p className="pet-class">{type == "PERROS" && <span><FontAwesomeIcon icon={faCircle} className="txt-morado" /></span>} Perros</p>
           </div>
-          <div className="c-pet-icon">
-            <div className="pet-icon borde-morado">
+          <div className="c-pet-icon cursor-pointer" onClick={() => handleType("GATOS")}>
+            <div className={`pet-icon ${type == "GATOS" ? "bg-morado2" : "borde-morado"}`}>
               <img src="./images/black-cat.png" alt="" />
             </div>
-            <p className="pet-class">Gatos</p>
+            <p className="pet-class">{type == "GATOS" && <span><FontAwesomeIcon icon={faCircle} className="txt-morado" /></span>} Gatos</p>
           </div>
         </div>
         <div className="c-search">

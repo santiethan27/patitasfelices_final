@@ -15,12 +15,15 @@ export const postPublication = async (req, res) => {
       size,
       isVaccinated,
       isCastrated,
+      category,
     } = req.body;
 
     let infoMultimedia = [];
     if (req.files?.images) {
       console.log(req.files);
-      let images = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
+      let images = Array.isArray(req.files.images)
+        ? req.files.images
+        : [req.files.images];
       await Promise.all(
         images.map(async (image) => {
           if (
@@ -40,6 +43,8 @@ export const postPublication = async (req, res) => {
       );
     }
 
+    const categoryConvert = category.toUpperCase();
+
     const newPublication = new Publication({
       user: idUser,
       name,
@@ -52,6 +57,7 @@ export const postPublication = async (req, res) => {
       isVaccinated,
       isCastrated,
       multimedia: infoMultimedia,
+      category: categoryConvert
     });
     const publicationSaved = await newPublication.save();
     res.status(200).json(publicationSaved);
@@ -73,6 +79,7 @@ export const editPublication = async (req, res) => {
       size,
       isVaccinated,
       isCastrated,
+      category
     } = req.body;
 
     const existingPublication = await Publication.findById(idPublication);
@@ -106,6 +113,7 @@ export const editPublication = async (req, res) => {
         })
       );
     }
+    const categoryConvert = category.toUpperCase();
 
     const updatePublication = await Publication.findOneAndUpdate(
       { _id: idPublication },
@@ -122,6 +130,7 @@ export const editPublication = async (req, res) => {
         ...(req.files?.images && {
           multimedia: infoMultimedia,
         }),
+        category: categoryConvert,
       },
       { new: true }
     );

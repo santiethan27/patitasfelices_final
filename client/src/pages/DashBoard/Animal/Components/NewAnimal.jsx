@@ -28,6 +28,7 @@ function NewAnimal({ toggleNew, setToggleNew }) {
             formData.append('size', data.size);
             formData.append('isVaccinated', data.isVaccinated);
             formData.append('isCastrated', data.isCastrated);
+            formData.append('category', data.category);
             await _postAnimals(formData);
             reset();
         } catch (error) {
@@ -94,6 +95,11 @@ function NewAnimal({ toggleNew, setToggleNew }) {
                     <div className='group'>
                         <label>¿Esta castrado?:</label>
                         <input type="text" name="isCastrated" {...register("isCastrated", { required: true })} />
+                        {errors.isCastrated && <span>This field is required</span>}
+                    </div>
+                    <div className='group'>
+                        <label>Tipo de animal:</label>
+                        <input type="text" name="category" {...register("category", { required: true })} />
                         {errors.isCastrated && <span>This field is required</span>}
                     </div>
                 </div>

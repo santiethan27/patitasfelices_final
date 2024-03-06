@@ -63,6 +63,7 @@ function Animal() {
                                     <th>Edad</th>
                                     <th>Sexo</th>
                                     <th>Color</th>
+                                    <th>Tipo</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -77,6 +78,7 @@ function Animal() {
                                         <td>{animal.age}</td>
                                         <td>{animal.gender}</td>
                                         <td>{animal.color}</td>
+                                        {animal.category && <td>{animal.category}</td>}
                                         <td>
                                             <div className='tb-actions'>
                                                 <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer txt-morado' onClick={() => toggleModifyModal(animal)} />

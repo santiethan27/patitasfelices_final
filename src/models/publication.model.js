@@ -44,6 +44,11 @@ const publicationShema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
+  category: {
+    type: String,
+    required: true,
+    enum: ["GATOS", "PERROS"]
+  }, 
   multimedia: [
     {
       public_id: {
