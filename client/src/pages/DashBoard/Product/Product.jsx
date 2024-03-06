@@ -32,10 +32,8 @@ function Product() {
                 setLoading(false);
             }
         };
-        if (products.length === 0) {
-            fetchData();
-        }
-    }, [_getProducts]);
+        fetchData();
+    }, []);
     const toggleDeleteModal = (_id) => {
         setToggleDelete(_id);
     }

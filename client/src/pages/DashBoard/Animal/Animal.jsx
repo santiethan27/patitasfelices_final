@@ -33,7 +33,7 @@ function Animal() {
             }
         };
         fetchData();
-    }, [_getAnimals]);
+    }, []);
     const toggleDeleteModal = (_id) => {
         setToggleDelete(_id);
     }
