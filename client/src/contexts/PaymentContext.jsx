@@ -12,14 +12,13 @@ export const usePayment = () => {
 }
 
 export const PaymentProvider = ({ children }) => {
-    
-    
-    const _postPayment = async (payment) => {
+    const _postPayment = async (payment,description) => {
         try {
-            const res = await postPayment(payment);
-            return res.data.id;
+            const response = await postPayment(payment,description);
+            return response.data;
         } catch (error) {
             console.log(error);
+            throw new Error('Error al realizar el pago');
         }
     }
 

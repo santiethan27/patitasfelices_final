@@ -4,32 +4,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShieldDog, faPaw, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { usePayment } from '../../contexts/PaymentContext';
-import axios from 'axios';
+
 import './Donations.css'
 
 function Donations() {
     initMercadoPago('TEST-5debe8b1-62f0-48af-96d8-a790fefd85cb', {
         locale: "es-CO",
     });
-    const [preferenceId, setPreferenceId] = useState();
+    const [redirectUrl, setRedirectUrl] = useState();
     const { _postPayment } = usePayment();
 
-    const createPreference = async (amount) => {
+    const createPreference = async (amount, description) => {
         try {
-            const res = await _postPayment(amount);
+            const res = await _postPayment(amount, description);
             return res;
         } catch (error) {
             console.log(error);
         }
     }
-    const habdleDonation = async (amount) => {
-        const id = await createPreference(amount);
-        if (id) {
-            setPreferenceId(id);
-            console.log(id);
-        }
-    }
 
+    const habdleDonation = async (amount, description) => {
+        const { init_point } = await createPreference(amount, description);
+        setRedirectUrl(init_point);
+    }
+    if (redirectUrl) {
+        console.log(redirectUrl)
+        window.location.href = redirectUrl;
+    }
     return (
         <div className='dt-container'>
             <header className='dt-header bg-morado2'>
@@ -37,45 +38,43 @@ function Donations() {
             </header>
             <div className="dt-donations">
                 <div className="dt-donation">
-                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(2000)}>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(2000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$2.000COP</p>
                     </button>
-
-                    <div className="dt-detail bg-morado2">
+                    <button className="dt-detail bg-morado2"onClick={() => habdleDonation(5000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$5.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(10000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$10.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(20000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$20.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(25000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$25.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(30000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$30.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(40000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$40.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(50000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$50.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$80.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(100000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$100.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$50.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$80.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$100.000 COP</p>
-                    </div>
+                    </button>
                 </div>
-                {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />}
                 <div className="dt-img-donation">
                     <img src="./images/donation.gif" alt="" />
                 </div>

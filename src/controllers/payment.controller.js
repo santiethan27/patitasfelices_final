@@ -8,14 +8,14 @@ const client = new MercadoPagoConfig({
 export const postPayment = async (req, res) => {
     
     try {
-        const { amount } = req.body;
-        if (!amount) {
-            return res.status(400).send({ error: "Faltan campos obligatorios: monto " });
+        const { amount, description } = req.body;
+        if (!amount || !description) {
+            return res.status(400).send({ error: "Faltan campos obligatorios: monto o descripcion"});
         }
         const body = {
             items: [
                 {
-                    title: "Donacion a patitas felices",
+                    title: description,
                     unit_price: Number(amount),
                     quantity: 1,
                     currency_id: "COP"
@@ -31,7 +31,7 @@ export const postPayment = async (req, res) => {
 
         const preference = new Preference(client);
         const result = await preference.create({ body });
-        res.status(200).json({ id: result.id });
+        res.status(200).json({ id: result.id , init_point: result.init_point });
     } catch (error) {
         console.error('Error al crear el pago:', error);
         return res.status(500).send({ error: 'Ocurrió un error inesperado' });
