@@ -34,6 +34,7 @@ function Adoption() {
                 setLoading(false);
             }
         };
+        fetchData();
     }, []);
     const toggleDeleteModal = (_id) => {
         setToggleDelete(_id);
