@@ -6,7 +6,7 @@ export const ProductContext = createContext();
 export const useProduct = () => {
     const context = useContext(ProductContext);
     if (!context) {
-        throw new Error("El useAuth debe estar dentro del contexto");
+        throw new Error("El useProduct debe estar dentro del contexto");
     }
     return context;
 }

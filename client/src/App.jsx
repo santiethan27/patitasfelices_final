@@ -28,6 +28,7 @@ import InterviewsUser from './pages/ProfilePage/InterviewsUser/InterviewsUser';
 import ReportsUser from './pages/ProfilePage/ReportsUser/ReportsUser';
 import ReportPage from './pages/DashBoard/ReportPage/ReportPage';
 import { ReportProvider } from './contexts/ReportContext';
+import { PaymentProvider } from './contexts/PaymentContext';
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
             <ReportProvider>
                 <AdoptionProvider>
                     <AnimalProvider>
+                    <PaymentProvider>
                         <InterviewProvider>
                             <ProductProvider>
                                 <BrowserRouter>
@@ -47,6 +49,7 @@ function App() {
                                 </BrowserRouter>
                             </ProductProvider>
                         </InterviewProvider>
+                        </PaymentProvider>
                     </AnimalProvider>
                 </AdoptionProvider>
             </ReportProvider>

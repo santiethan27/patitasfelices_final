@@ -1,76 +1,36 @@
-import React from 'react'
-import './Donations.css'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDog, faShieldDog, faPaw, faTruckMedical, faHouse } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { faShieldDog, faPaw, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { usePayment } from '../../contexts/PaymentContext';
+
+import './Donations.css'
 
 function Donations() {
-    initMercadoPago('YOUR_PUBLIC_KEY');
+    initMercadoPago('TEST-5debe8b1-62f0-48af-96d8-a790fefd85cb', {
+        locale: "es-CO",
+    });
+    const [redirectUrl, setRedirectUrl] = useState();
+    const { _postPayment } = usePayment();
 
-    const payDonation = async (price) => {
-        const formData =
-        {
-            "merchantId": 508029,
-            "referenceCode": "112",
-            "accountId": "512321",
-            "description": "Donacion patitas felices",
-            "amount": "price",
-            "tax": 0.0,
-            "taxReturnBase": 0.0,
-            "currency": "COP",
-            "shipmentValue": 0.00,
-            "signature": "8bbe9122975951663c70ec588e1ef76e"
-        }
+    const createPreference = async (amount, description) => {
         try {
-            await axios.post('https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/', formData);
+            const res = await _postPayment(amount, description);
+            return res;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
-    const handlePayment = async () => {
-        try {
-            const signature = '8bbe9122975951663c70ec588e1ef76e'
-            const formData = new FormData()
-            formData.append('merchantId', '508029');
-            formData.append('accountId', '512321');
-            formData.append('description', 'Donacion patitas felices');
-            formData.append('referenceCode', '112');
-            formData.append('amount', '20000');
-            formData.append('tax', '0.00');
-            formData.append('taxReturnBase', '0.00');
-            formData.append('shipmentValue', '0.00');
-            formData.append('currency', 'COP');
-            formData.append('lng', 'es');
-            formData.append('displayBuyerComments', 'true');
-            formData.append('buyerCommentsLabel', 'es:¿Quieres escribir un comentario para la fundación?|en:Want to add a comment for the foundation?');
-            formData.append('sourceUrl', window.location.href);
-            formData.append('buttonType', 'SIMPLE');
-            formData.append('signature', signature
-            );
 
-            const form = document.createElement('form');
-            form.setAttribute('method', 'POST');
-            form.setAttribute('action', 'https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/');
-            form.setAttribute('acceptCharset', 'UTF-8');
-
-            for (const [key, value] of formData) {
-                const input = document.createElement('input');
-                input.setAttribute('type', 'hidden');
-                input.setAttribute('name', key);
-                input.setAttribute('value', value);
-                form.appendChild(input);
-            }
-
-            document.body.appendChild(form);
-            form.submit();
-
-        } catch (error) {
-            console.error('Error al iniciar el proceso de pago:', error);
-        }
-    };
-
+    const habdleDonation = async (amount, description) => {
+        const { init_point } = await createPreference(amount, description);
+        setRedirectUrl(init_point);
+    }
+    if (redirectUrl) {
+        console.log(redirectUrl)
+        window.location.href = redirectUrl;
+    }
     return (
         <div className='dt-container'>
             <header className='dt-header bg-morado2'>
@@ -78,44 +38,42 @@ function Donations() {
             </header>
             <div className="dt-donations">
                 <div className="dt-donation">
-                    <Link className="dt-detail bg-morado2" onClick={handlePayment}>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(2000, 'Donacion patitas felices')}>
                         <p>Donar</p>
-                        <p>$2.000 COP</p>
-                    </Link>
-                    <Wallet initialization={{ preferenceId: '<PREFERENCE_ID>' }} customization={{ texts: { valueProp: 'smart_option' } }} />
-
-                    <div className="dt-detail bg-morado2">
+                        <p>$2.000COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2"onClick={() => habdleDonation(5000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$5.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(10000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$10.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(20000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$20.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(25000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$25.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(30000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$30.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(40000, 'Donacion patitas felices')}>
+                        <p>Donar</p>
+                        <p>$40.000 COP</p>
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(50000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$50.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$80.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
+                    </button>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(100000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$100.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$50.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$80.000 COP</p>
-                    </div>
-                    <div className="dt-detail bg-morado2">
-                        <p>Donar</p>
-                        <p>$100.000 COP</p>
-                    </div>
+                    </button>
                 </div>
                 <div className="dt-img-donation">
                     <img src="./images/donation.gif" alt="" />
