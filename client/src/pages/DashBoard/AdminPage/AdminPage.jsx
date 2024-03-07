@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAuth } from '../../../contexts/AuthContext'
-import './adminPage.css'
+import './AdminPage.css';
 import { Link, NavLink } from 'react-router-dom';
 import { useAnimal } from '../../../contexts/AnimalContext';
 import { useProduct } from '../../../contexts/ProductContext';
