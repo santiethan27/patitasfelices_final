@@ -41,7 +41,7 @@ function Product() {
         setProduct(product);
         setToggleModify(true);
     }
-    const options = [{ id: 'name', name: 'Nombre' }, { id: 'status', name: 'Estado' }];
+    const options = [{ id: 'name', name: 'Nombre' }, { id: 'status', name: 'Estado' }, { id: 'category', name: 'Categoria' }];
 
     return (
         <div className='ad-product'>
@@ -63,6 +63,7 @@ function Product() {
                                     <th>Precio</th>
                                     <th>Estado</th>
                                     <th>Stock</th>
+                                    <th>Categoria</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -75,6 +76,7 @@ function Product() {
                                         <td>$ {animal.price}</td>
                                         <td>{animal.status}</td>
                                         <td>{animal.stock}</td>
+                                        <td>{animal.category}</td>
                                         <td>
                                             <div className='tb-actions'>
                                                 <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer txt-morado' onClick={() => toggleModifyModal(animal)} />

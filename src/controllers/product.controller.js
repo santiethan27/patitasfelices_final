@@ -29,12 +29,15 @@ export const postProduct = async (req, res) => {
         })
       );
     }
+
+    const categoryUp =  category.toUpperCase();
+
     const newProducts = new Product({
       name,
       price,
       stock,
       description,
-      category,
+      category: categoryUp,
       multimedia: infoMultimedia,
     });
     const productsSave = await newProducts.save();
@@ -79,7 +82,7 @@ export const editProduct = async (req, res) => {
         })
       );
     }
-
+    const categoryUp =  category.toUpperCase();
     const updateProduct = await Product.findOneAndUpdate(
       { _id: idProduct },
       {
@@ -87,7 +90,7 @@ export const editProduct = async (req, res) => {
         price,
         stock,
         description,
-        category,
+        category: categoryUp,
         ...(req.files?.images && {
           multimedia: infoMultimedia,
         }),

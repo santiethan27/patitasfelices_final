@@ -20,6 +20,7 @@ const productShema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
+        enum: ["OBJETOS", "JUGUETES", "ROPA"]
     },
     multimedia: [
         {
