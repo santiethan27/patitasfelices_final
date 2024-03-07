@@ -12,8 +12,15 @@ main {
       width: 80%;
       border-radius: 10px;
       padding: 1em;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
+  }
+
+  .salvando-patitas {
+    width: 70%;
+    max-height: 350px;
+    object-fit: fill;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 
   .c-header {

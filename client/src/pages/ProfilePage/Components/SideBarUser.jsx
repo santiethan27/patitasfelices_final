@@ -8,7 +8,7 @@ function SideBarUser() {
         <SideBar>
             <ul>
                 <li><NavLink to={'/perfil'}>Perfil</NavLink></li>
-                <li><NavLink to={'/cuenta'}>Cuenta</NavLink></li>
+                <li><NavLink to={'/usuario/cuenta'}>Cuenta</NavLink></li>
                 <li><NavLink to={'/usuario/entrevistas'}>Entrevistas</NavLink></li>
                 <li><NavLink to={'/usuario/reportes'}>Mis reportes</NavLink></li>
             </ul>

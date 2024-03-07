@@ -5,8 +5,6 @@ import useLocationData from '../../utils/hooks/useLocationData';
 import './Profile.css';
 import '../../styled-components/Forms.css'
 import { toast } from 'sonner';
-import SideBar from './../../components/SideBar/SideBar';
-import { NavLink } from 'react-router-dom';
 import SideBarUser from './Components/SideBarUser';
 
 function ProfilePage() {
@@ -69,7 +67,7 @@ function ProfilePage() {
       <form className='contProfile formPatitas w80' encType='multipart/form-data' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
         loading: 'Actualizando informacion...',
         success: 'Se actualizo la información',
-        error: 'Ocurrió un error al agregar el producto'
+        error: 'Ocurrió un error al actualizar'
       }))}>
         <h2>Editar perfil</h2>
         <div className="banner">

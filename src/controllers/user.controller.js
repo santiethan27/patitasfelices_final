@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import fs from "fs-extra";
+import bcrypt from "bcryptjs";
 import { deleteImage, uploadImage } from "../utils/cloudinary.js";
 
 export const getUser = async (req, res) => {
@@ -69,6 +70,13 @@ export const updateUser = async (req, res) => {
       await fs.unlink(photo.tempFilePath); // Eliminar el archivo temporal después de usarlo
     }
 
+    let passwordHash = false;
+
+    if (req.body.password) {
+      const password = req.body.password;
+      passwordHash = await bcrypt.hash(password, 10);
+    }
+
     const updateData = {
       ...(req.files?.image && {
         photo: { public_id: result.public_id, secure_url: result.secure_url },
@@ -82,6 +90,8 @@ export const updateUser = async (req, res) => {
       ...(req.body.city && { "address.city": req.body.city }),
       ...(req.body.rol && { rol: req.body.rol }),
       ...(req.body.status && { status: req.body.status }),
+      ...(req.body.email && { email: req.body.email }),
+      ...(req.body.password && { password: passwordHash }),
     };
 
     const updatedUser = await User.findOneAndUpdate({ _id: id }, updateData, {

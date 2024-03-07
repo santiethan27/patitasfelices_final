@@ -42,11 +42,6 @@ function HomePage() {
                         <p className='txt-morado'>Revisa nuestro blog <FontAwesomeIcon className='icon txt-morado' icon={faArrowCircleRight} /></p>
                     </div>
                 </div>
-                <div className="report-ad">
-                    <div className="container bg-white">
-                        <h1>Reporta animales en situacion de calle</h1>
-                    </div>
-                </div>
                 <CondicionesAdopcion />
             </main>
         </div>

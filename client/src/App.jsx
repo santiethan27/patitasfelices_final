@@ -29,6 +29,7 @@ import ReportsUser from './pages/ProfilePage/ReportsUser/ReportsUser';
 import ReportPage from './pages/DashBoard/ReportPage/ReportPage';
 import { ReportProvider } from './contexts/ReportContext';
 import { PaymentProvider } from './contexts/PaymentContext';
+import AcountUser from './pages/ProfilePage/AcountUser/AcountUser';
 
 function App() {
     return (
@@ -36,19 +37,19 @@ function App() {
             <ReportProvider>
                 <AdoptionProvider>
                     <AnimalProvider>
-                    <PaymentProvider>
-                        <InterviewProvider>
-                            <ProductProvider>
-                                <BrowserRouter>
-                                    <Routes>
-                                        <Route path='/auth' element={<AuthPage />} />
-                                        <Route element={<ProtectedRoute />}>
-                                            <Route path='/*' element={<MainApp />} />
-                                        </Route>
-                                    </Routes>
-                                </BrowserRouter>
-                            </ProductProvider>
-                        </InterviewProvider>
+                        <PaymentProvider>
+                            <InterviewProvider>
+                                <ProductProvider>
+                                    <BrowserRouter>
+                                        <Routes>
+                                            <Route path='/auth' element={<AuthPage />} />
+                                            <Route element={<ProtectedRoute />}>
+                                                <Route path='/*' element={<MainApp />} />
+                                            </Route>
+                                        </Routes>
+                                    </BrowserRouter>
+                                </ProductProvider>
+                            </InterviewProvider>
                         </PaymentProvider>
                     </AnimalProvider>
                 </AdoptionProvider>
@@ -74,6 +75,7 @@ function MainApp() {
                 <Route path='/administracion/adopciones' element={<Adoption />}></Route>
                 <Route path='/usuario/entrevistas' element={<InterviewsUser />}></Route>
                 <Route path='/usuario/reportes' element={<ReportsUser />}></Route>
+                <Route path='/usuario/cuenta' element={<AcountUser />}></Route>
                 <Route path='/products' element={<ProductsPage />}></Route>
                 <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
                 <Route path='/product/:id' element={<DetailProduct />}></Route>
