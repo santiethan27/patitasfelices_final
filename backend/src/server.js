@@ -11,6 +11,7 @@ import adoptionRoutes from "./routes/adoption.routes.js";
 import interviewRoutes from "./routes/interview.routes.js";
 import reportRoutes from "./routes//report.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import { FRONT_URL, PORT } from "./config.js";
 //INICIALIZACIONES
 const app = express();
 
@@ -18,7 +19,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: `${FRONT_URL}`,
     credentials: true,
   })
 );
@@ -34,6 +35,6 @@ app.use("/api", adoptionRoutes);
 app.use("/api", interviewRoutes);
 app.use("/api", reportRoutes);
 app.use("/api", paymentRoutes);
-app.set("port", process.env.PORT || 3000);
+app.set("port", PORT);
 
 export default app;
