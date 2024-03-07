@@ -1,5 +1,5 @@
 .prof-cont {
-    min-width: 80vh;
+    width: 100%;
     min-height: 80vh;
     position: relative;
 }
@@ -14,6 +14,8 @@
 
 .contProfile {
     padding: 1em;
+    margin: auto;
+    width: 60% !important;
 
     .banner {
         width: 100%;
