@@ -30,6 +30,7 @@ import ReportPage from './pages/DashBoard/ReportPage/ReportPage';
 import { ReportProvider } from './contexts/ReportContext';
 import { PaymentProvider } from './contexts/PaymentContext';
 import AcountUser from './pages/ProfilePage/AcountUser/AcountUser';
+import Prueba from './prueba';
 
 function App() {
     return (
@@ -80,6 +81,7 @@ function MainApp() {
                 <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
                 <Route path='/product/:id' element={<DetailProduct />}></Route>
                 <Route path='/donations' element={<Donations />}></Route>
+                <Route path='/prueba' element={<Prueba />}></Route>
             </Routes>
             <Footer />
             <Toaster richColors theme='dark' />
