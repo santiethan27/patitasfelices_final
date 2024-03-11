@@ -1,9 +1,5 @@
-import {
-  MercadoPagoConfig,
-  PaymentMethod,
-  Preference,
-  Payment,
-} from "mercadopago";
+import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
+import Order from "../models/orders.model.js";
 
 // Configurar la instancia de Mercado Pago
 const client = new MercadoPagoConfig({
@@ -30,7 +26,7 @@ export const postPayment = async (req, res) => {
       ],
       external_reference: id,
       notification_url:
-        "https://bd88-170-245-158-66.ngrok-free.app/api/webhook",
+        "https://c3ab-170-245-158-66.ngrok-free.app/api/webhook",
       back_urls: {
         success: "http://localhost:5173/donations",
         // failure: "http://localhost:5173/donations",
@@ -52,11 +48,33 @@ export const receiveWebhook = async (req, res) => {
     const paymentRest = req.query;
     const payment = new Payment(client);
     if (paymentRest.type === "payment") {
-      console.log(paymentRest["data.id"])
-      const id =  paymentRest["data.id"]
-      const data = await payment.get({id:id});
-      // const data = await mercadopage.payment.findById(payment["data.id"]);
-      console.log(data);
+      const id = paymentRest["data.id"];
+      const data = await payment.get({ id: id });
+      if (data.status === "approved") {
+        const externalReference = data.external_reference;
+        console.log(externalReference);
+        const order = await Order.findOneAndUpdate(
+          { _id: externalReference },
+          { status: "APPROVED" },
+          { new: true }
+        );
+        if (!order) {
+          console.log("aprovado")
+          return res.status(404).json({ message: "Order not found" });
+        }
+        console.log("Order approved:", order);
+      } else if (data.status === "rejected" || data.status === "cancelled") {
+        const externalReference = data.external_reference;
+        const deletedOrder = await Order.findOneAndDelete({
+          _id: externalReference,
+        });
+
+        if (!deletedOrder) {
+          console.log("elimando")
+          return res.status(404).json({ message: "Order not found" });
+        }
+        console.log("Order deleted:", deletedOrder);
+      }
     }
 
     res.sendStatus(204);

@@ -12,8 +12,10 @@ function NewProduct({ toggleNew, setToggleNew }) {
 
     const onSubmit = async (data) => {
         const formData = new FormData();
-        for (let i = 0; i < data.image.length; i++) {
-            formData.append('options', data.image[i]);
+        if(data.image){
+            for (let i = 0; i < data.image.length; i++) {
+                formData.append('options', data.image[i]);
+            }
         }
         formData.append('primary', data.primary[0]);
         formData.append('name', data.name);
@@ -69,7 +71,7 @@ function NewProduct({ toggleNew, setToggleNew }) {
                 </div>
                 <div className='group'>
                     <label>Opciones:</label>
-                    <input type="file" name="image" {...register("image", { required: true })} multiple />
+                    <input type="file" name="image" {...register("image", { required: false })} multiple />
                     {errors.image && <span>Es necesario rellenar este campo</span>}
                 </div>
                 <div className='group'>

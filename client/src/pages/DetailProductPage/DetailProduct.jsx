@@ -5,9 +5,10 @@ import './DetailProduct.css';
 import CardProduct from '../ProductPage/components/CardProduct';
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import { usePayment } from '../../contexts/PaymentContext';
-import Prueba from '../../prueba';
+import EditImage from './Components/EditImage';
 import { useOrder } from './../../contexts/OrderContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { toast } from 'sonner';
 
 const DetailProduct = () => {
     const { id } = useParams();
@@ -34,12 +35,17 @@ const DetailProduct = () => {
 
     const habdleBuys = async (amount, description) => {
         try {
+            if (optionsImage.length > 0 && imgOrder === null) {
+                throw new Error('Debes guardar la imagen');
+            }
             const res = await onOrder();
-            console.log(res);
+            if (!res) {
+                throw new Error('Ocurrio un error al crear la orden');
+            }
             const { init_point } = await createPreference(amount, description, res);
             setRedirectUrl(init_point);
         } catch (error) {
-            console.log(error)
+            throw error;
         }
     }
 
@@ -65,15 +71,13 @@ const DetailProduct = () => {
     }, [id]);
 
     const onOrder = async () => {
-        if (imgOrder == null) {
-            return;
-        }
-        console.log("hola")
-        const blob = dataURLtoBlob(imgOrder);
-
-        // Crear un FormData y agregar la imagen como un archivo
         const formData = new FormData();
-        formData.append('image', blob, 'image.png');
+
+        if (optionsImage.length > 0) {
+            const blob = dataURLtoBlob(imgOrder);
+            formData.append('image', blob, 'image.png');
+        }
+        // Crear un FormData y agregar la imagen como un archivo
         formData.append('product', id);
         formData.append('user', user.id || user._id);
         const res = await addOrder(formData);
@@ -98,8 +102,10 @@ const DetailProduct = () => {
                     <div className="product-detail">
                         <div className="container-main">
                             <div className='product-image'>
-                                <Prueba options={optionsImage} setImgOrder={setImgOrder}></Prueba>
-                                {/* <img src={product.multimedia[0].secure_url} alt={product.name} /> */}
+                                {optionsImage?.length > 0 ?
+                                    <EditImage options={optionsImage} setImgOrder={setImgOrder}></EditImage> :
+                                    <img src={product.primary.secure_url} alt={product.name} />
+                                }
                             </div>
                             <div className="product-info">
                                 <div className="header-product">
@@ -113,7 +119,19 @@ const DetailProduct = () => {
                                     {/* <p><span>{product.stock}</span> unidades disponibles</p> */}
                                     <div className="price">
                                         <h2 className='txt-morado'>$ {product.price}</h2>
-                                        <button className='comprar-product bg-morado2' onClick={() => habdleBuys(product.price, product.name)}>Comprar ahora</button>
+                                        <button
+                                            className='comprar-product bg-morado2'
+                                            onClick={() =>
+                                                toast.promise(habdleBuys(product.price, product.name),
+                                                    {
+                                                        loading: 'Espera...',
+                                                        success: 'Se creó el pedido',
+                                                        error: (error) => `${error.message}` // Mostrar el mensaje de error
+                                                    }
+                                                )
+                                            }
+                                        >Comprar ahora</button>
+
                                         {/* <button className='comprar-product bg-morado2' onClick={() => onOrder()}>Comprar ahora</button> */}
                                     </div>
                                 </div>

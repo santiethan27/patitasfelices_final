@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
-import './prueba.css';
-import html2canvas from 'html2canvas'
+import './EditImage.css';
+import { toast } from 'sonner';
 
-function Prueba({ options, setImgOrder }) {
+function EditImage({ options, setImgOrder }) {
   const secureUrls = options?.map(option => option.secure_url);
   const inputRef = useRef(null);
   const { editor, onReady } = useFabricJSEditor();
@@ -16,11 +16,13 @@ function Prueba({ options, setImgOrder }) {
       loadImage(secureUrls[0]);
       console.log(secureUrls);
     }
-  }, [editor]);
+  }, [editor, options]);
 
   const resetCanvas = () => {
     editor?.canvas.clear();
+    setImgOrder(null);
     loadImage(secureUrls[0]);
+    toast.success('Imagen reseteado');
   }
 
   const loadImage = (imageUrl) => {
@@ -109,6 +111,7 @@ function Prueba({ options, setImgOrder }) {
 
     // Establecer la imagen exportada
     setImgOrder(dataURL);
+    toast.success('Imagen guardada')
   };
 
 
@@ -153,4 +156,4 @@ function Prueba({ options, setImgOrder }) {
   );
 }
 
-export default Prueba;
+export default EditImage;

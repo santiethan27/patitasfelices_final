@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getOrders, postOrder, updateOrder, deleteOrder } from '../utils/services/order';
+import { getOrders, postOrder, updateOrder, deleteOrder, getOrdersById } from '../utils/services/order';
 
 // Creamos el contexto
 const OrderContext = createContext();
@@ -23,7 +23,14 @@ export const OrderProvider = ({ children }) => {
       console.error('Error fetching orders:', error);
     }
   };
-
+  const fetchOrdersById = async (id) => {
+    try {
+      const response = await getOrdersById(id);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
   const addOrder = async (newOrder) => {
     try {
       const response = await postOrder(newOrder);
@@ -56,7 +63,7 @@ export const OrderProvider = ({ children }) => {
   };
 
   return (
-    <OrderContext.Provider value={{ orders, addOrder, updateOrderById, deleteOrderById }}>
+    <OrderContext.Provider value={{ fetchOrdersById, orders, addOrder, updateOrderById, deleteOrderById }}>
       {children}
     </OrderContext.Provider>
   );

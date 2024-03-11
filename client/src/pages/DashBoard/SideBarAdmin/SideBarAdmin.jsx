@@ -11,6 +11,7 @@ function SideBarAdmin() {
             <li><NavLink to={'/administracion/usuarios'}>Usuarios</NavLink></li>
             <li><NavLink to={'/administracion/reportes'}>Reportes</NavLink></li>
             <li><NavLink to={'/administracion/adopciones'}>Adopciones</NavLink></li>
+            <li><NavLink to={'/administracion/pedidos'}>Pedidos</NavLink></li>
         </ul></SideBar>
     )
 }

@@ -8,7 +8,7 @@ import { usePayment } from '../../contexts/PaymentContext';
 import './Donations.css'
 
 function Donations() {
-    initMercadoPago('TEST-5debe8b1-62f0-48af-96d8-a790fefd85cb', {
+    initMercadoPago('TEST-a2493766-2e31-4138-ab08-63203d0fd71b', {
         locale: "es-CO",
     });
     const [redirectUrl, setRedirectUrl] = useState();
@@ -42,7 +42,7 @@ function Donations() {
                         <p>Donar</p>
                         <p>$2.000COP</p>
                     </button>
-                    <button className="dt-detail bg-morado2"onClick={() => habdleDonation(5000, 'Donacion patitas felices')}>
+                    <button className="dt-detail bg-morado2" onClick={() => habdleDonation(5000, 'Donacion patitas felices')}>
                         <p>Donar</p>
                         <p>$5.000 COP</p>
                     </button>

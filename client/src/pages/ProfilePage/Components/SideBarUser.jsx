@@ -11,6 +11,7 @@ function SideBarUser() {
                 <li><NavLink to={'/usuario/cuenta'}>Cuenta</NavLink></li>
                 <li><NavLink to={'/usuario/entrevistas'}>Entrevistas</NavLink></li>
                 <li><NavLink to={'/usuario/reportes'}>Mis reportes</NavLink></li>
+                <li><NavLink to={'/usuario/pedidos'}>Mis pedidos</NavLink></li>
             </ul>
         </SideBar>
     )

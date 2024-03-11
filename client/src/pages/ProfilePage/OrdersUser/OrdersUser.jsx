@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import SideBarAdmin from './../SideBarAdmin/SideBarAdmin';
-import './OrderPage.css'
-import Tabla from './../Components/Tabla';
 import { useOrder } from './../../../contexts/OrderContext';
 import Modal from './../../../components/Modal/Modal';
+import SideBarUser from './../Components/SideBarUser';
+import Tabla from './../../DashBoard/Components/Tabla';
+import { useAuth } from '../../../contexts/AuthContext';
 
-function OrderPage() {
-    const { orders } = useOrder();
+function OrderUser() {
+    const { fetchOrdersById } = useOrder();
     const [image, setImage] = useState(null);
     const [toggleImage, setToggleImage] = useState(null);
+    const [orders, setOrders] = useState([]);
+    const { user } = useAuth();
     const closedImageModal = () => {
         setImage(null);
         setToggleImage(null);
@@ -18,9 +20,24 @@ function OrderPage() {
         setToggleImage(true);
         console.log(url);
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await fetchOrdersById(user.id || user._id);
+                setOrders(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
+
+    }, [])
+
     return (
-        <div className='report-page'>
-            <SideBarAdmin />
+        <div className="prof-cont">
+            <SideBarUser />
             <Tabla list={orders} >
                 {(results) => (
                     <>
@@ -60,4 +77,4 @@ function OrderPage() {
     )
 }
 
-export default OrderPage
+export default OrderUser

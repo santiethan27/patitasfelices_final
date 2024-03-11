@@ -17,7 +17,7 @@ const router = Router();
 
 router.post("/order", fileUp, postOrder);
 router.get("/orders", getOrders);
-router.get("/order/:id", getOrderById);
+router.get("/orderid/:id", getOrderById);
 router.patch("/order/:id", updateOrderById);
 router.delete("/order/:id", deleteOrderById);
 export default router;

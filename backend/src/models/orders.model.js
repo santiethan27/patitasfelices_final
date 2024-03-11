@@ -27,8 +27,8 @@ const orderShema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["ACTIVE", "CLOSE"],
-    default: "ACTIVE",
+    enum: ["PENDING", "APPROVED", "CLOSE"],
+    default: "PENDING",
   },
 });
 

@@ -6,7 +6,7 @@ export const postOrder = async (req, res) => {
   const { user, product } = req.body;
   try {
     let obj = {};
-    if (req.files.image) {
+    if (req.files?.image) {
       const image = req.files.image;
       if (image.mimetype !== "image/png" && image.mimetype !== "image/jpeg") {
         await fs.unlink(image.tempFilePath);
@@ -22,7 +22,7 @@ export const postOrder = async (req, res) => {
       user,
       product,
       date: new Date(),
-        image: obj,
+      image: obj,
     });
 
     const newOrder = await order.save();
@@ -36,8 +36,24 @@ export const postOrder = async (req, res) => {
 // Controlador para obtener todos los pedidos
 export const getOrders = async (req, res) => {
   try {
-    const orders = await Order.find();
-    res.status(200).json(orders);
+    const orders = await Order.find({ status: "APPROVED" })
+      .populate({ path: "user", select: "name last_name email phone" })
+      .populate({ path: "product", select: "name price primary" })
+      .exec();
+    const mappedOrders = orders.map((order) => ({
+      _id: order._id,
+      image: order.image,
+      user: order.user._id,
+      user_name: order.user.name + " " + order.user.last_name,
+      user_email: order.user.email,
+      user_phone: order.user.phone,
+      product: order.product ? order.product._id || "N/A" : "N/A",
+      product_name: order.product ? order.product.name || "N/A" : "N/A",
+      product_price: order.product ? order.product.price || "N/A" : "N/A",
+      product_primary: order.product ? order.product.primary || null : null,
+    }));
+
+    res.status(200).json(mappedOrders);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -46,11 +62,25 @@ export const getOrders = async (req, res) => {
 // Controlador para obtener un pedido por su ID
 export const getOrderById = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ message: "Order not found" });
-    }
-    res.status(200).json(order);
+    const userId = req.params.id;
+
+    const orders = await Order.find({ user: userId, status: "APPROVED" })
+      .populate({ path: "user", select: "name last_name email phone" })
+      .populate({ path: "product", select: "name price primary" })
+      .exec();
+    const mappedOrders = orders.map((order) => ({
+      _id: order._id,
+      image: order.image,
+      user: order.user._id,
+      user_name: order.user.name + " " + order.user.last_name,
+      user_email: order.user.email,
+      user_phone: order.user.phone,
+      product: order.product ? order.product._id || "N/A" : "N/A",
+      product_name: order.product ? order.product.name || "N/A" : "N/A",
+      product_price: order.product ? order.product.price || "N/A" : "N/A",
+      product_primary: order.product ? order.product.primary || null : null,
+    }));
+    res.status(200).json(mappedOrders);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

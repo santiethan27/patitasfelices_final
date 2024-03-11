@@ -30,8 +30,9 @@ import ReportPage from './pages/DashBoard/ReportPage/ReportPage';
 import { ReportProvider } from './contexts/ReportContext';
 import { PaymentProvider } from './contexts/PaymentContext';
 import AcountUser from './pages/ProfilePage/AcountUser/AcountUser';
-import Prueba from './prueba';
 import { OrderProvider } from './contexts/OrderContext';
+import OrderPage from './pages/DashBoard/OrderPage/OrderPage';
+import OrderUser from './pages/ProfilePage/OrdersUser/OrdersUser';
 
 function App() {
     return (
@@ -80,11 +81,12 @@ function MainApp() {
                 <Route path='/usuario/entrevistas' element={<InterviewsUser />}></Route>
                 <Route path='/usuario/reportes' element={<ReportsUser />}></Route>
                 <Route path='/usuario/cuenta' element={<AcountUser />}></Route>
+                <Route path='/usuario/pedidos' element={<OrderUser />}></Route>
                 <Route path='/products' element={<ProductsPage />}></Route>
                 <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
                 <Route path='/product/:id' element={<DetailProduct />}></Route>
                 <Route path='/donations' element={<Donations />}></Route>
-                <Route path='/prueba' element={<Prueba />}></Route>
+                <Route path='/administracion/pedidos' element={<OrderPage />}></Route>
             </Routes>
             <Footer />
             <Toaster richColors theme='dark' />
