@@ -155,3 +155,26 @@ header {
         }
     }
 }
+
+@media only screen and (max-width: 1000px) {
+    .pro-header {
+        flex-direction: column;
+
+        h1 {
+            display: none;
+        }
+
+        .col-buttons {
+            display: none !important;
+        }
+
+        .pro-images.imagenes2 {
+            flex-direction: row;
+            width: 100%;
+
+            img {
+                width: 100% !important;
+            }
+        }
+    };
+}

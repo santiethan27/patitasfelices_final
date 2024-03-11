@@ -11,7 +11,7 @@ function CardProduct({ onModify, onDelete, product }) {
         <div className='card bg-white txt-black'>
             <div className="img bg-morado2">
                 <Link to={`/product/${product._id}`} key={product._id} className='cursor-pointer'>
-                    <img src={product.multimedia[0].secure_url} alt="" />
+                    <img src={product.primary.secure_url} alt="" />
                 </Link>
             </div>
             <div className="body">

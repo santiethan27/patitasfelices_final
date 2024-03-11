@@ -22,7 +22,18 @@ const productShema = new mongoose.Schema({
         required: true,
         enum: ["OBJETOS", "JUGUETES", "ROPA"]
     },
-    multimedia: [
+    primary:
+        {
+            public_id: {
+                type: String,
+                default: null,
+            },
+            secure_url: {
+                type: String,
+                default: null,
+            },
+        },
+    options: [
         {
             public_id: {
                 type: String,

@@ -166,3 +166,19 @@
     }
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .c-search {
+    .pet-search {
+      width: 60%;
+    }
+  }
+
+  .container-adopcion {
+    .adop-header {
+      .adop-col1 {
+        flex-direction: column;
+      }
+    }
+  }
+}

@@ -117,3 +117,36 @@
     }
 
 }
+
+@media only screen and (max-width: 1000px) {
+    .c-product-detail {
+        height: min-content !important;
+        max-height: min-content;
+
+        .container-main {
+            flex-direction: column;
+
+            .product-image {
+                justify-content: center;
+            }
+
+            .product-info {
+                width: 100%;
+                padding: 1em;
+            }
+        }
+
+        .product-detail {
+            flex-direction: column;
+
+            .others-product {
+                flex-direction: row;
+                width: 100%;
+
+                h4 {
+                    display: none;
+                }
+            }
+        }
+    }
+}

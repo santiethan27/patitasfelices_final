@@ -6,11 +6,12 @@ export const postProduct = async (req, res) => {
   try {
     const { name, price, stock, description, category } = req.body;
 
-    let infoMultimedia = [];
-    if (req.files?.images) {
-      let images = Array.isArray(req.files.images)
-        ? req.files.images
-        : [req.files.images];
+    let infOptions = [];
+    if (req.files?.options) {
+      console.log(req.files.options);
+      let images = Array.isArray(req.files.options)
+        ? req.files.options
+        : [req.files.options];
       await Promise.all(
         images.map(async (image) => {
           if (
@@ -24,13 +25,25 @@ export const postProduct = async (req, res) => {
           let obj = {};
           obj["public_id"] = media.public_id;
           obj["secure_url"] = media.secure_url;
-          infoMultimedia.push(obj);
+          infOptions.push(obj);
           await fs.unlink(image.tempFilePath);
         })
       );
     }
 
-    const categoryUp =  category.toUpperCase();
+    const image = req.files.primary;
+
+    if (image.mimetype !== "image/png" && image.mimetype !== "image/jpeg") {
+      await fs.unlink(image.tempFilePath);
+      throw new Error("Extensión no válida");
+    }
+    const media = await uploadImage(image.tempFilePath);
+    let obj = {};
+    obj["public_id"] = media.public_id;
+    obj["secure_url"] = media.secure_url;
+    await fs.unlink(image.tempFilePath);
+
+    const categoryUp = category.toUpperCase();
 
     const newProducts = new Product({
       name,
@@ -38,7 +51,8 @@ export const postProduct = async (req, res) => {
       stock,
       description,
       category: categoryUp,
-      multimedia: infoMultimedia,
+      options: infOptions,
+      primary: obj,
     });
     const productsSave = await newProducts.save();
     res.status(200).json(productsSave);
@@ -82,7 +96,7 @@ export const editProduct = async (req, res) => {
         })
       );
     }
-    const categoryUp =  category.toUpperCase();
+    const categoryUp = category.toUpperCase();
     const updateProduct = await Product.findOneAndUpdate(
       { _id: idProduct },
       {

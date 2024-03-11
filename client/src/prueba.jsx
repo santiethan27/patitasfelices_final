@@ -1,69 +1,156 @@
-import React, { ChangeEvent, useEffect, useRef } from 'react';
-import { fabric } from "fabric";
+import React, { useEffect, useRef, useState } from 'react';
+import { fabric } from 'fabric';
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
+import './prueba.css';
+import html2canvas from 'html2canvas'
 
-function Prueba() {
+function Prueba({ options, setImgOrder }) {
+  const secureUrls = options?.map(option => option.secure_url);
   const inputRef = useRef(null);
   const { editor, onReady } = useFabricJSEditor();
 
   useEffect(() => {
-    editor?.canvas.setHeight(500);
-    editor?.canvas.setWidth(500);
-    fabric.Image.fromURL('./gorra-negra.png', function (oImg) {
-      const canvasHeight = editor?.canvas.getHeight(); // Obtener la altura del canvas
-      oImg.scaleToHeight(canvasHeight);
-      oImg.set({
-        selectable: false // Bloquear la imagen para que no sea editable
+    editor?.canvas.setWidth(250);
+    editor?.canvas.setHeight(300);
+    if (secureUrls?.length > 0) {
+      loadImage(secureUrls[0]);
+      console.log(secureUrls);
+    }
+  }, [editor]);
+
+  const resetCanvas = () => {
+    editor?.canvas.clear();
+    loadImage(secureUrls[0]);
+  }
+
+  const loadImage = (imageUrl) => {
+    fetch(imageUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const file = new File([blob], "image.png", { type: "image/png" });
+        const url = URL.createObjectURL(file);
+
+        fabric.Image.fromURL(url, function (oImg) {
+          const canvas = editor?.canvas;
+          const canvasWidth = canvas?.getWidth();
+          const canvasHeight = canvas?.getHeight();
+          oImg.scaleToWidth(canvasWidth);
+          const leftPosition = (canvasWidth - oImg.getScaledWidth()) / 2;
+
+          oImg.set({
+            left: leftPosition,
+            top: (canvasHeight - oImg.getScaledHeight()) / 2,
+            selectable: false
+          });
+          oImg.set({
+            crossOrigin: 'anonymous'
+          });
+          editor?.canvas.clear();
+          editor?.canvas.add(oImg);
+        });
+      })
+      .catch(error => {
+        console.error('Error al descargar la imagen:', error);
       });
-      editor?.canvas.add(oImg);
-    });
-  }, [fabric, editor]);
+  };
+
+
 
   const handlePic = (event) => {
     if (!event.target.files) return;
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
-    console.log(url);
     fabric.Image.fromURL(url, (oImg) => {
-      oImg.scale(0.1).set('flipX', true);
+      oImg.scale(0.2).set('flipX', true);
       editor?.canvas.add(oImg);
     });
   };
-
   const generateImage = () => {
-    const dataURL = editor?.canvas.toDataURL();
-    const a = document.createElement('a');
-    a.download = 'image.png';
-    a.href = dataURL;
-    a.click();
+    const canvas = editor?.canvas;
+
+    // Aumentar la resolución del lienzo
+    const originalWidth = canvas.getWidth();
+    const originalHeight = canvas.getHeight();
+    const scaleFactor = 2; // Factor de escala, ajusta según sea necesario
+    const scaledWidth = originalWidth * scaleFactor;
+    const scaledHeight = originalHeight * scaleFactor;
+
+    // Establecer el fondo del lienzo como transparente
+    canvas.backgroundColor = 'rgba(0, 0, 0, 0)';
+
+    canvas.setDimensions({ width: scaledWidth, height: scaledHeight });
+
+    // Escalar todos los objetos dentro del lienzo
+    canvas.getObjects().forEach(obj => {
+      obj.scaleX *= scaleFactor;
+      obj.scaleY *= scaleFactor;
+      obj.left *= scaleFactor;
+      obj.top *= scaleFactor;
+      obj.setCoords();
+    });
+
+    // Redibujar el lienzo con la nueva resolución
+    canvas.renderAll();
+
+    // Exportar la imagen con la mayor calidad posible
+    const dataURL = canvas.toDataURL({ format: 'png', multiplier: scaleFactor, backgroundColor: 'rgba(0, 0, 0, 0)' });
+
+    // Restaurar la resolución original del lienzo
+    canvas.setDimensions({ width: originalWidth, height: originalHeight });
+
+    // Restaurar los objetos a su tamaño y posición originales
+    canvas.getObjects().forEach(obj => {
+      obj.scaleX /= scaleFactor;
+      obj.scaleY /= scaleFactor;
+      obj.left /= scaleFactor;
+      obj.top /= scaleFactor;
+      obj.setCoords();
+    });
+
+    // Establecer la imagen exportada
+    setImgOrder(dataURL);
   };
 
+
+
+
   return (
-    <article    >
-      <button
-        onClick={() => inputRef.current?.click()}
-        className="py-2 px-6 bg-yellow-500 text-white rounded-xl m-4"
-      >
-        subir archivo
-      </button>
+    <article>
       <input
         ref={inputRef}
         onChange={handlePic}
         type="file"
+        style={{ display: 'none' }}
         className="hidden"
       />
-      <div className="rounded-xl border border-4 border-yellow-500 ">
-        <FabricJSCanvas onReady={onReady} />
+      <div className="image-list">
+        {secureUrls?.map((imageUrl, index) =>
+        (
+          <img
+            key={index}
+            src={imageUrl}
+            alt={`Imagen ${index}`}
+            className="color-image"
+            onClick={() => loadImage(imageUrl)}
+          />
+        ))}
       </div>
-      <button
-        onClick={generateImage}
-        className="py-2 px-6 bg-indigo-500 text-white rounded-xl m-4"
-      >
-        Generar archivo
-      </button>
+      <div className="c-fabric">
+        <FabricJSCanvas onReady={onReady} />
+        <div className="e-buttons">
+          <button className='bg-morado2 txt-white' onClick={() => inputRef.current?.click()}>
+            Subir archivo
+          </button>
+          <button className='bg-morado2 txt-white' onClick={() => generateImage()}>
+            Guardar
+          </button>
+          <button className='bg-morado2 txt-white' onClick={() => resetCanvas()}>
+            Resetear
+          </button>
+        </div>
+      </div>
     </article>
   );
 }
 
 export default Prueba;
-

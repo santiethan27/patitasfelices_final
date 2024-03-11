@@ -12,9 +12,10 @@ export const usePayment = () => {
 }
 
 export const PaymentProvider = ({ children }) => {
-    const _postPayment = async (payment,description) => {
+    const _postPayment = async (payment, description, id) => {
         try {
-            const response = await postPayment(payment,description);
+            const response = await postPayment(payment, description, id);
+            console.log(response)
             return response.data;
         } catch (error) {
             console.log(error);

@@ -13,8 +13,9 @@ function NewProduct({ toggleNew, setToggleNew }) {
     const onSubmit = async (data) => {
         const formData = new FormData();
         for (let i = 0; i < data.image.length; i++) {
-            formData.append('images', data.image[i]);
+            formData.append('options', data.image[i]);
         }
+        formData.append('primary', data.primary[0]);
         formData.append('name', data.name);
         formData.append('price', data.price);
         formData.append('stock', data.stock);
@@ -67,9 +68,14 @@ function NewProduct({ toggleNew, setToggleNew }) {
                     {errors.description && <span>Es necesario rellenar este campo</span>}
                 </div>
                 <div className='group'>
-                    <label>Imagenes:</label>
-                    <input type="file" name="image" {...register("image", { required: true })} />
+                    <label>Opciones:</label>
+                    <input type="file" name="image" {...register("image", { required: true })} multiple />
                     {errors.image && <span>Es necesario rellenar este campo</span>}
+                </div>
+                <div className='group'>
+                    <label>Imagen principal:</label>
+                    <input type="file" name="primary" {...register("primary", { required: true })} />
+                    {errors.primary && <span>Es necesario rellenar este campo</span>}
                 </div>
                 <button className='bg-morado2' type='submit'>Agregar</button>
             </form>)}

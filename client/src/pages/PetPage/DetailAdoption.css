@@ -143,3 +143,17 @@
     font-weight: 100;
   }
 }
+
+@media only screen and (max-width: 700px) {
+  .container-detailAdoption {
+    .detailAdoption {
+      flex-direction: column-reverse;
+    }
+
+    .container-img {
+      background-color: transparent !important;
+      width: 100% !important;
+      padding-left: 0em !important;
+    }
+  }
+}

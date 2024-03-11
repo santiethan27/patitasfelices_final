@@ -70,7 +70,7 @@ function Product() {
                             <tbody className='container-body_table'>
                                 {results.map(animal => (
                                     <tr key={animal._id}>
-                                        <td><img src={animal.multimedia[0].secure_url} alt="" /></td>
+                                        <td><img src={animal.primary.secure_url} alt="" /></td>
                                         <td>{animal.name}</td>
                                         <td>{animal.description}</td>
                                         <td>$ {animal.price}</td>

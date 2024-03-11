@@ -11,6 +11,7 @@ import adoptionRoutes from "./routes/adoption.routes.js";
 import interviewRoutes from "./routes/interview.routes.js";
 import reportRoutes from "./routes//report.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import orderRoutes from "./routes/order.routes.js";
 import { FRONT_URL, PORT } from "./config.js";
 //INICIALIZACIONES
 const app = express();
@@ -34,6 +35,7 @@ app.use("/api", productRoutes);
 app.use("/api", adoptionRoutes);
 app.use("/api", interviewRoutes);
 app.use("/api", reportRoutes);
+app.use("/api", orderRoutes);
 app.use("/api", paymentRoutes);
 app.set("port", PORT);
 

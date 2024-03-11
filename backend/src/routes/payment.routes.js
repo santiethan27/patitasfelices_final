@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { postPayment } from "../controllers/payment.controller.js";
-
+import { postPayment, receiveWebhook } from "../controllers/payment.controller.js";
 
 const router = Router();
 
 router.post("/create_payment", postPayment);
+router.post("/webhook", receiveWebhook);
 
-export default router
+export default router;

@@ -5,20 +5,27 @@ import './DetailProduct.css';
 import CardProduct from '../ProductPage/components/CardProduct';
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import { usePayment } from '../../contexts/PaymentContext';
+import Prueba from '../../prueba';
+import { useOrder } from './../../contexts/OrderContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const DetailProduct = () => {
     const { id } = useParams();
-    initMercadoPago('TEST-5debe8b1-62f0-48af-96d8-a790fefd85cb', {
+    initMercadoPago('TEST-a2493766-2e31-4138-ab08-63203d0fd71b', {
         locale: "es-CO",
     })
     const { _getProduct, _getProducts, products } = useProduct();
     const [redirectUrl, setRedirectUrl] = useState();
     const { _postPayment } = usePayment();
     const [product, setProduct] = useState();
-
-    const createPreference = async (amount, description) => {
+    const [optionsImage, setOptions] = useState(null);
+    const { addOrder } = useOrder();
+    const [imgOrder, setImgOrder] = useState(null);
+    const { user } = useAuth();
+    const createPreference = async (amount, description, id) => {
         try {
-            const res = await _postPayment(amount, description);
+            console.log(id);
+            const res = await _postPayment(amount, description, id);
             return res;
         } catch (error) {
             console.log(error);
@@ -26,8 +33,14 @@ const DetailProduct = () => {
     }
 
     const habdleBuys = async (amount, description) => {
-        const { init_point } = await createPreference(amount, description);
-        setRedirectUrl(init_point);
+        try {
+            const res = await onOrder();
+            console.log(res);
+            const { init_point } = await createPreference(amount, description, res);
+            setRedirectUrl(init_point);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     if (redirectUrl) {
@@ -41,14 +54,43 @@ const DetailProduct = () => {
                 const productData = await _getProduct(id);
                 setProduct(await productData);
                 await _getProducts();
-                console.log(productData);
+                const productOptions = productData.options;
+                setOptions(productOptions);
             } catch (error) {
                 console.error('Error al obtener información del producto:', error);
             }
         };
+        console.log(optionsImage);
         fetchProduct();
     }, [id]);
 
+    const onOrder = async () => {
+        if (imgOrder == null) {
+            return;
+        }
+        console.log("hola")
+        const blob = dataURLtoBlob(imgOrder);
+
+        // Crear un FormData y agregar la imagen como un archivo
+        const formData = new FormData();
+        formData.append('image', blob, 'image.png');
+        formData.append('product', id);
+        formData.append('user', user.id || user._id);
+        const res = await addOrder(formData);
+        console.log(res);
+        return res;
+    }
+    function dataURLtoBlob(dataURL) {
+        const parts = dataURL.split(';base64,');
+        const contentType = parts[0].split(':')[1];
+        const byteCharacters = atob(parts[1]);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        return new Blob([byteArray], { type: contentType });
+    }
     return (
         product ? (
             <div className="body-product">
@@ -56,7 +98,8 @@ const DetailProduct = () => {
                     <div className="product-detail">
                         <div className="container-main">
                             <div className='product-image'>
-                                <img src={product.multimedia[0].secure_url} alt={product.name} />
+                                <Prueba options={optionsImage} setImgOrder={setImgOrder}></Prueba>
+                                {/* <img src={product.multimedia[0].secure_url} alt={product.name} /> */}
                             </div>
                             <div className="product-info">
                                 <div className="header-product">
@@ -70,7 +113,8 @@ const DetailProduct = () => {
                                     {/* <p><span>{product.stock}</span> unidades disponibles</p> */}
                                     <div className="price">
                                         <h2 className='txt-morado'>$ {product.price}</h2>
-                                        <button className='comprar-product bg-morado2' onClick={() => habdleBuys(product.price,product.name)}>Comprar ahora</button>
+                                        <button className='comprar-product bg-morado2' onClick={() => habdleBuys(product.price, product.name)}>Comprar ahora</button>
+                                        {/* <button className='comprar-product bg-morado2' onClick={() => onOrder()}>Comprar ahora</button> */}
                                     </div>
                                 </div>
                             </div>

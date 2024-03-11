@@ -31,30 +31,33 @@ import { ReportProvider } from './contexts/ReportContext';
 import { PaymentProvider } from './contexts/PaymentContext';
 import AcountUser from './pages/ProfilePage/AcountUser/AcountUser';
 import Prueba from './prueba';
+import { OrderProvider } from './contexts/OrderContext';
 
 function App() {
     return (
         <AuthProvider>
-            <ReportProvider>
-                <AdoptionProvider>
-                    <AnimalProvider>
-                        <PaymentProvider>
-                            <InterviewProvider>
-                                <ProductProvider>
-                                    <BrowserRouter>
-                                        <Routes>
-                                            <Route path='/auth' element={<AuthPage />} />
-                                            <Route element={<ProtectedRoute />}>
-                                                <Route path='/*' element={<MainApp />} />
-                                            </Route>
-                                        </Routes>
-                                    </BrowserRouter>
-                                </ProductProvider>
-                            </InterviewProvider>
-                        </PaymentProvider>
-                    </AnimalProvider>
-                </AdoptionProvider>
-            </ReportProvider>
+            <OrderProvider>
+                <ReportProvider>
+                    <AdoptionProvider>
+                        <AnimalProvider>
+                            <PaymentProvider>
+                                <InterviewProvider>
+                                    <ProductProvider>
+                                        <BrowserRouter>
+                                            <Routes>
+                                                <Route path='/auth' element={<AuthPage />} />
+                                                <Route element={<ProtectedRoute />}>
+                                                    <Route path='/*' element={<MainApp />} />
+                                                </Route>
+                                            </Routes>
+                                        </BrowserRouter>
+                                    </ProductProvider>
+                                </InterviewProvider>
+                            </PaymentProvider>
+                        </AnimalProvider>
+                    </AdoptionProvider>
+                </ReportProvider>
+            </OrderProvider>
         </AuthProvider>
     )
 }

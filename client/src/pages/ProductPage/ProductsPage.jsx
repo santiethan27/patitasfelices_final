@@ -57,7 +57,7 @@ function ProductsPage() {
                     <img className='col-paw' src="./images/paw3.png" alt="" />
                     <img className="col-img" src="./images/conjunto.png" alt="" />
                 </div>
-                <div className="pro-images">
+                <div className="pro-images imagenes2">
                     <div className="cont-img bg-morado2"><img src="./images/camiza.png" alt="" /></div>
                     <div className="cont-img bg-morado2"><img src="./images/taza.png" alt="" /></div>
                 </div>
