@@ -72,30 +72,21 @@ export const editProduct = async (req, res) => {
       return res.status(404).json({ message: "Producto no encontrado" });
     }
 
-    let infoMultimedia = [];
+    let obj = {};
     if (req.files?.images) {
-      let images = Array.isArray(req.files.images)
-        ? req.files.images
-        : [req.files.images];
-      await Promise.all(
-        images.map(async (image) => {
-          if (
-            image.mimetype !== "image/png" &&
-            image.mimetype !== "image/jpeg"
-          ) {
-            await fs.unlink(image.tempFilePath);
-            throw new Error("Extensión no válida");
-          }
-          const media = await uploadImage(image.tempFilePath);
-          let obj = {};
-          obj["public_id"] = media.public_id;
-          obj["secure_url"] = media.secure_url;
-          infoMultimedia.push(obj);
-          await deleteImage(existingProduct.multimedia[0]?.public_id);
-          await fs.unlink(image.tempFilePath);
-        })
-      );
+      const image = req.files.images;
+
+      if (image.mimetype !== "image/png" && image.mimetype !== "image/jpeg") {
+        await fs.unlink(image.tempFilePath);
+        throw new Error("Extensión no válida");
+      }
+      const media = await uploadImage(image.tempFilePath);
+
+      obj["public_id"] = media.public_id;
+      obj["secure_url"] = media.secure_url;
+      await fs.unlink(image.tempFilePath);
     }
+
     const categoryUp = category.toUpperCase();
     const updateProduct = await Product.findOneAndUpdate(
       { _id: idProduct },
@@ -106,7 +97,7 @@ export const editProduct = async (req, res) => {
         description,
         category: categoryUp,
         ...(req.files?.images && {
-          multimedia: infoMultimedia,
+          primary: obj,
         }),
       },
       { new: true }

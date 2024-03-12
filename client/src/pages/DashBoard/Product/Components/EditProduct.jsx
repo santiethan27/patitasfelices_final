@@ -45,9 +45,10 @@ function EditProduct({ setToggleModify, toggleModify, productSelect, setProduct 
     const file = event.target.files[0];
     setSelectedImage(file);
   };
+  console.log(productSelect);
   return (
     <Modal show={toggleModify} title={`EDITAR PRODUCTO: ${productSelect?.name}`} close={closedModifyModal} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
-      {productSelect && productSelect.multimedia && (<form className='w80 formPatitas' onSubmit={(e) => {
+      {productSelect && productSelect.primary && (<form className='w80 formPatitas' onSubmit={(e) => {
         toast.promise(handleSubmit(onSubmit), {
           error: "Ocurrio un error al actualizar la mascota",
           success: "Actualizando la mascota",
@@ -86,7 +87,7 @@ function EditProduct({ setToggleModify, toggleModify, productSelect, setProduct 
           {errors.description && <span>Es necesario rellenar este campo</span>}
         </div>
         <div className="edit-image" onClick={handleImageClick}>
-          <img className="img-edit" src={productSelect.multimedia[0]?.secure_url} alt="" />
+          <img className="img-edit" src={productSelect.primary.secure_url} alt="" />
         </div>
         <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileInputChange} />
         {selectedImage && (
