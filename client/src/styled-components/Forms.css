@@ -2,7 +2,7 @@
     --color-primary: #8f79e7bd;
 }
 
-form.formPatitas {
+.formPatitas {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -150,4 +150,18 @@ form.formPatitas {
 
 .m5 {
     margin: 5rem auto !important;
+}
+
+@media only screen and (max-width: 700px) {
+    .w50 {
+        width: 80% !important;
+    }
+
+    .w80 {
+        width: 100% !important;
+    }
+
+    .w100 {
+        width: 100% !important;
+    }
 }

@@ -36,6 +36,7 @@ export const AnimalProvider = ({ children }) => {
     const _postAnimals = async (animal) => {
         try {
             await postAnimal(animal);
+            await _getAnimals();
         } catch (error) {
             console.log(error);
         }

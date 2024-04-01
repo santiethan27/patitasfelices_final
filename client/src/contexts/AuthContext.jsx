@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     const updateUser = async (id, user) => {
         try {
             const res = await update(id, user);
-            console.log(res.data);
+            await _getUsers();
             setUser(res.data);
         } catch (error) {
             console.error(error)
@@ -93,7 +93,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         async function checkLogin() {
             const cookies = Cookies.get()
-
             if (!cookies.token) {
                 setIsAuthen(false);
                 setLoading(false);
@@ -122,8 +121,9 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ signup, login, user,users, isAuthen, errors, loading, rol, getProfile, updateUser, _logout, _getUsers, _deleteUser }}>
+        <AuthContext.Provider value={{ signup, login, user, users, isAuthen, errors, loading, rol, getProfile, updateUser, _logout, _getUsers, _deleteUser }}>
             {children}
         </AuthContext.Provider>
     )
 }
+

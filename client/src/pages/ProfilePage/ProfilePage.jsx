@@ -4,6 +4,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import useLocationData from '../../utils/hooks/useLocationData';
 import './Profile.css';
 import '../../styled-components/Forms.css'
+import { toast } from 'sonner';
+import SideBarUser from './Components/SideBarUser';
 
 function ProfilePage() {
   const { user, getProfile, updateUser } = useAuth();
@@ -11,7 +13,7 @@ function ProfilePage() {
   const [loading, setLoading] = useState(false);
 
 
-  const { register, handleSubmit, setValue, watch } = useForm();
+  const { register, handleSubmit, setValue, watch, resetField, reset } = useForm();
 
   useEffect(() => {
     async function loadProfile() {
@@ -52,6 +54,7 @@ function ProfilePage() {
       const updatedProfile = await getProfile(user);
       setRes(updatedProfile);
       setLoading(false);
+      reset();
     } catch (error) {
       console.error('Error al actualizar el usuario:', error);
     } finally {
@@ -59,8 +62,13 @@ function ProfilePage() {
     }
   };
   return (
-    <div>
-      <form className='contProfile formPatitas w80 m5' encType='multipart/form-data' onSubmit={handleSubmit(onSubmit)}>
+    <div className='prof-cont'>
+      <SideBarUser/>
+      <form className='contProfile formPatitas w80' encType='multipart/form-data' onSubmit={handleSubmit((data) => toast.promise(onSubmit(data), {
+        loading: 'Actualizando informacion...',
+        success: 'Se actualizo la información',
+        error: 'Ocurrió un error al actualizar'
+      }))}>
         <h2>Editar perfil</h2>
         <div className="banner">
           <img src="./Fondo.jpg" alt="" />

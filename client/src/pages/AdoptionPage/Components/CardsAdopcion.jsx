@@ -1,33 +1,29 @@
 import React from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-
+import "./CardAdoption.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faHeart, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 //Se crea un rafc
-const CardsAdopcion = ({ onModify, onDelete, animal }) => {
-  const { rol } = useAuth();
+const CardsAdopcion = ({ animal }) => {
   return (
     <article className='card-adoption'>
-      <div className="cont">
-        <p className='title'>{animal.name}</p>
-        <Link to={`/adoption/${animal._id}`} className='cursor-pointer' key={animal._id}>
-          <img src={animal.multimedia[0]?.secure_url} alt='' />
-        </Link>
-        <section className='info'>
-          <p><span>Edad: </span>{animal.age}</p>
-          <p><span>Raza: </span>{animal.raza}</p>
+      <Link to={`/adoption/${animal._id}`} className="c-pet-img">
+        <img className='pet-img' src={animal.multimedia[0]?.secure_url} alt='' />
+      </Link>
+      <div className="cont bg-gray">
+        <div className="title">
+          <p className='txt-black'>{animal.name}</p>
+          <Link to={`/adoption/${animal._id}`}><FontAwesomeIcon className='txt-rosado' icon={faHeart} /></Link>
+        </div>
+        <section className='info txt-black'>
+          <p>{animal.raza}</p>
         </section>
+        <div className="info2 txt-black">
+          <p><FontAwesomeIcon className='txt-rosado' icon={faClock} /> {animal.age}</p>
+          <p><FontAwesomeIcon className='txt-rosado' icon={faVenusMars} /> {animal.gender}</p>
+        </div>
       </div>
-      {rol === 'user' ? (
-        <div className="buttons">
-          <button onClick={onModify} className='cursor-pointer bg-amethyst'>Adoptar Ahora!</button>
-        </div>
-      ) : (
-        <div className="buttons">
-          <button onClick={onModify} className='cursor-pointer agregar bg-amethyst'>Modificar</button>
-          <button onClick={onDelete} className='cursor-pointer eliminar bg-amethyst2'>Eliminar</button>
-        </div>
-      )
-      }
     </article>
   );
 };

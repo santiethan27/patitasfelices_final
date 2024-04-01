@@ -13,6 +13,7 @@
     height: 100%;
     justify-content: center;
     background: white;
+    min-width: 250px;
 }
 
 .formClass .title {
@@ -21,6 +22,7 @@
     font-size: 40px;
     margin: 10px 0px;
     color: var(--color1);
+    text-wrap: nowrap;
 }
 
 .formClass .inputClass {
@@ -31,7 +33,7 @@
     background-color: gainsboro;
     font-weight: 200;
     width: 100%;
-    border-radius: 5px
+    border-radius: 5px;
 }
 
 .formClass .inputClass:focus {
@@ -47,7 +49,7 @@
 }
 
 .formClass .formButton {
-    width: 40%;
+    min-width: 50%;
     height: 45px;
     display: flex;
     align-items: center;
@@ -59,7 +61,7 @@
     color: white;
     font-size: 15px;
     cursor: pointer;
-
+    padding: 0 1em;
 }
 
 .formClass .icon {
@@ -89,7 +91,6 @@
 
 .colForm {
     padding: 10px;
-    width: 100%;
     background-color: var(--color1);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -105,7 +106,7 @@
 }
 
 .colForm .colButton {
-    width: 50%;
+    min-width: 50%;
     height: 40px;
     display: inline-block;
     margin: 10px auto;
@@ -115,6 +116,7 @@
     background-color: transparent;
     font-size: 15px;
     cursor: pointer;
+    padding: 0 1em;
 }
 
 .authForm {
@@ -124,6 +126,7 @@
     margin: 10vh auto;
     min-height: 500px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    flex-wrap: wrap;
 }
 
 .authForm.inverso {
@@ -152,8 +155,9 @@
     background-color: var(--color2);
 }
 
-.contForm {
-    width: 100%;
+.contForm,
+.colForm {
+    flex: 1 0 50%;
 }
 
 label {
@@ -180,10 +184,12 @@ label {
     display: flex;
     flex-direction: row;
     gap: 5px;
+    flex-wrap: wrap;
 }
 
 .formClass .subgroup {
-    width: 100%;
+    flex: 1;
+    min-width: 120px;
 }
 
 select {
@@ -194,4 +200,25 @@ select {
 label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
+}
+
+@media only screen and (max-width: 900px) {
+    .authForm {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .authForm {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .authForm.inverso .formClass {
+        transform: none;
+    }
+
+    .authForm.inverso .colForm {
+        transform: none;
+    }
 }

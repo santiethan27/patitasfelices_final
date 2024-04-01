@@ -5,22 +5,57 @@ import { useAnimal } from "../../contexts/AnimalContext";
 import Modal from "../../components/Modal/Modal";
 import { useForm } from "react-hook-form";
 import "../../styled-components/Forms.css";
+import ToasterCustom from './../../components/ToasterCustom/ToasterCustom';
+import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCat, faCircle, faDog, faVenusMars, faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
+import MyListbox from './../../components/ListBox/ListBox';
 
 const Adopcion = () => {
   const { animals, _getAnimals, _deleteAnimal } = useAnimal();
   const [selectedItem, setSelectedPetKey] = useState(null);
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
-  const [modal3, setModal3] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [search, setSearch] = useState("");
+  const [type, setType] = useState("PERROS");
+
+  const options = [{ id: 0, name: 'Nombre' }, { id: 1, name: 'Raza' }];
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+
+  const loadAnimals = async () => {
+    await _getAnimals()
+  }
   useEffect((() => {
-    _getAnimals();
+    loadAnimals();
   }), []);
+
+  const searcher = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleType = () => {
+    if (type == "PERROS") {
+      setType("GATOS");
+    }
+    if (type == "GATOS") {
+      setType("PERROS");
+    }
+  }
+
+  let filters = animals?.filter((dato) => dato.category.toLowerCase().includes(type.toLowerCase()));
+
+  let results = []
+  if (!search) {
+    results = filters;
+  } else {
+    results = filters.filter((dato) => selectedOption.name == options[0].name ? dato.name.toLowerCase().includes(search.toLocaleLowerCase()) : dato.raza.toLowerCase().includes(search.toLocaleLowerCase()));
+  }
 
   const { register, handleSubmit, formState: {
     errors
   }, reset } = useForm();
-  const { _putAnimal } = useAnimal();
 
   const Toggle = (animal) => {
     if (animal == undefined) {
@@ -34,147 +69,58 @@ const Adopcion = () => {
     setSelectedPetKey(animal);
     setModal2(!modal2);
   };
-  const Toggle3 = (show) => {
-    setModal3(show);
-  };
-  const onSubmit = async (data) => {
-    try {
-      const formData = new FormData();
-      if (selectedImage) {
-        formData.append('images', selectedImage);
-      }
-      for (const key in data) {
-        formData.append(key, data[key]);
-      }
-      const res = await _putAnimal(formData);
-      setSelectedPetKey(await res);
-    } catch (error) {
-      Toggle3(false);
-      console.log(error);
-    } finally {
-      Toggle3(false);
-    }
-  };
-  const onDelete = async () => {
-    try {
-      await _deleteAnimal(selectedItem);
-      setSelectedPetKey(false);
-      Toggle2();
-    } catch (error) {
-      console.error(error)
-    }
 
-  };
-  const fileInputRef = useRef(null);
-
-  const handleImageClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-  };
   return (
     <>
       <div className="container-adopcion">
-        <header className="txt-white">
-          <div className="col2 bg-rosa">
-            <img className="img1 bg-morado-gradient" src="./images/gato3.png" alt="" />
+        <div className="c-header  bg-morado2">
+          <header className="adop-header txt-black">
+            <div className="adop-col1">
+              <div className="adop-col-cont bg-white">
+                <FontAwesomeIcon icon={faPaw} className="txt-morado adop-icon" />
+                <h3 className="txt-black">Dale hogar a un amigo peludo</h3>
+              </div>
+              <div className="adop-col-cont bg-white">
+                <FontAwesomeIcon icon={faHeart} className="txt-morado adop-icon" />
+                <h3 className="txt-black">Encuentra tu nuevo mejor amigo</h3>
+              </div>
+            </div>
+            <div className="adop-col2">
+              <img src="./images/bone2.png" alt="" className="bone" />
+              <img src="./images/mascotaLogin.png" alt="" />
+            </div>
+          </header>
+        </div>
+        <div className="pet-icons">
+          <div className="c-pet-icon cursor-pointer" onClick={() => handleType("PERROS")}>
+            <div className={`pet-icon ${type == "PERROS" ? "bg-morado2" : "borde-morado"}`}>
+              <img src="./images/dog.png" alt="" />
+            </div>
+            <p className="pet-class">{type == "PERROS" && <span><FontAwesomeIcon icon={faCircle} className="txt-morado" /></span>} Perros</p>
           </div>
-          <div className="col1 bg-rosa">
-            <h3>AYUDA A LA FUNDACIÓN COMPRANDO PRODUCTOS</h3>
-            <p>Comprando productos ayudas a la fundacion a mantener a los animales con un hogar digno mientras alguien los adopta, ademas de ayudar a la fundacion a pagar a sus empleados y mantener nuestro sueño de restacar perritos</p>
+          <div className="c-pet-icon cursor-pointer" onClick={() => handleType("GATOS")}>
+            <div className={`pet-icon ${type == "GATOS" ? "bg-morado2" : "borde-morado"}`}>
+              <img src="./images/black-cat.png" alt="" />
+            </div>
+            <p className="pet-class">{type == "GATOS" && <span><FontAwesomeIcon icon={faCircle} className="txt-morado" /></span>} Gatos</p>
           </div>
-        </header>
-        <div className="container-cards bg-white">{
-          animals.map((animal) => (
-            <CardsAdopcion key={animal._id} animal={animal} onDelete={() => Toggle2(animal._id)} onModify={() => Toggle(animal)} />
-          ))
+        </div>
+        <div className="c-search">
+          <div className="pet-search">
+            <input type="text" placeholder="Buscar..." value={search} onChange={searcher} className="in-search" />
+            <MyListbox options={options} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+          </div>
+        </div>
+        <div className="adop-container-cards">{
+          results.length > 0 ? (
+            results.map((animal) => (
+              <CardsAdopcion key={animal._id} animal={animal} onDelete={() => Toggle2(animal._id)} onModify={() => Toggle(animal)} />
+            ))
+          ) : (
+            <p>No se encontraron resultados</p>
+          )
         }</div>
       </div>
-
-      {/* */}
-      <Modal show={modal} title={`EDITAR MASCOTA: ${selectedItem?.name}`} close={Toggle} showHeader={true} showOverlay={true} iClose={true} size={"medium"}>
-        {selectedItem && selectedItem.multimedia && (<form className="w80 formPatitas" onSubmit={handleSubmit(onSubmit)}>
-          <input type="text" {...register("idPublication", { required: true })} value={selectedItem._id} hidden />
-          <div className="groups">
-            <div className="group">
-              <label>Nombre:</label>
-              <input type="text" name="name" defaultValue={selectedItem.name}  {...register("name", { required: true })} />
-              {errors.name && <span>This field is required</span>}
-            </div>
-            <div className="group">
-              <label>Edad (En años): </label>
-              <input type="text" name="age" defaultValue={selectedItem.age} {...register("age", { required: true })} />
-              {errors.age && <span>This field is required</span>}
-            </div>
-          </div>
-          <div className="groups">
-            <div className="group">
-              <label>Raza:</label>
-              <input type="text" name="raza" defaultValue={selectedItem.raza} {...register("raza", { required: true })} />
-              {errors.raza && <span>This field is required</span>}
-            </div>
-            <div className="group">
-              <label>Sexo:</label>
-              <input type="text" name="gender" defaultValue={selectedItem.gender} {...register("gender", { required: true })} />
-              {errors.gender && <span>This field is required</span>}
-            </div>
-          </div>
-          <div className="groups">
-            <div className="group">
-              <label>Color:</label>
-              <input type="text" name="color" defaultValue={selectedItem.color} {...register("color", { required: true })} />
-              {errors.color && <span>This field is required</span>}
-            </div>
-            <div className="group">
-              <label>Size:</label>
-              <input type="text" name="size" defaultValue={selectedItem.size} {...register("size", { required: true })} />
-              {errors.size && <span>This field is required</span>}
-            </div>
-          </div>
-          <div className="groups">
-            <div className="group">
-              <label>¿Esta vacunado?:</label>
-              <input type="text" name="isVaccinated" defaultValue={selectedItem.isVaccinated} {...register("isVaccinated", { required: true })} />
-              {errors.isVaccinated && <span>This field is required</span>}
-            </div>
-            <div className="group">
-              <label>¿Esta castrado?:</label>
-              <input type="text" name="isCastrated" defaultValue={selectedItem.isCastrated} {...register("isCastrated", { required: true })} />
-              {errors.isCastrated && <span>This field is required</span>}
-            </div>
-          </div>
-          <div className="group">
-            <label>Historia:</label>
-            <textarea type="text" name="history" defaultValue={selectedItem.history} {...register("history", { required: true })} />
-            {errors.history && <span>This field is required</span>}
-          </div>
-          <div className="edit-image" onClick={handleImageClick}>
-            <img className="img-edit" src={selectedItem.multimedia[0]?.secure_url} alt="" />
-          </div>
-          <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileInputChange} />
-          {selectedImage && (
-            <div className="alert-load">
-              <p className="exito">Imagen cargada con exitoo:</p>
-              <p>{selectedImage.name}</p>
-            </div>
-          )
-          }
-          <button type="submit" className="bg-morado2">Actualizar</button>
-        </form>)}
-
-      </Modal>
-      <Modal className="modal" show={modal2} title="¿ESTAS SEGURO?" close={Toggle2} showHeader={true} showOverlay={true} size={"small"} align={"center"} iClose={true}>
-        <div className="buttons">
-          <button onClick={() => onDelete()} className="bg-morado2">ACEPTAR</button>
-          <button onClick={() => Toggle2()} className="bg-morado2">CANCELAR</button>
-        </div>
-      </Modal>
-      <Modal className="modalLoading" show={modal3} title="CARGANDO..." close={Toggle3} showHeader={false} showOverlay={true} size={"small"} align={"center"} iClose={false}>
-        <h3>CARGANDO...</h3>
-      </Modal>
     </>
   );
 };

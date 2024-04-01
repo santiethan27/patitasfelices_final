@@ -1,0 +1,130 @@
+.dt-container {
+    width: 70%;
+    margin: auto;
+    padding: 2em .5em;
+
+    .dt-header {
+        width: max-content;
+        padding: .5em;
+        color: white;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        /* Cambiar 'a' por el color deseado */
+    }
+
+    .dt-donations {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .dt-donation {
+            display: flex;
+            flex-wrap: wrap;
+            height: min-content;
+            justify-content: center;
+
+            .dt-detail {
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                margin: .5em 1em;
+                display: flex;
+                flex-direction: column;
+                width: 120px;
+                height: 120px;
+                border-radius: 100%;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                cursor: pointer;
+                transition: all 1s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .dt-img-donation {
+            /* height: 80%; Elimina esta línea si deseas que la altura sea ajustada automáticamente */
+            width: 100%;
+
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    .dt-razones {
+        width: 100%;
+        display: flex;
+        gap: 1em;
+        height: 250px;
+        justify-content: center;
+        padding: 1em 0em;
+
+        .dt-c-razon {
+            width: max-content;
+            display: flex;
+            gap: 1em;
+            flex-direction: column;
+
+            .dt-razon {
+                padding: .5em;
+                border-radius: 10px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                .icon {
+                    font-size: 2em;
+                    margin-right: .5em;
+                }
+            }
+        }
+
+        .dt-img-razones {
+            width: max-content;
+            overflow: hidden;
+            display: flex;
+            align-items: top;
+
+            img {
+                object-fit: contain;
+                width: 100%;
+                object-position: left;
+            }
+        }
+    }
+}
+
+button {
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+@media only screen and (max-width: 900px) {
+    .dt-header {
+        h1 {
+            font-size: 1.2em;
+            width: 100%;
+            text-wrap: wrap;
+        }
+    }
+
+    .dt-container {
+        width: 100%;
+
+        .dt-donations {
+            .dt-img-donation {
+                display: none;
+            }
+        }
+
+        .dt-razones {
+            height: auto;
+        }
+    }
+}

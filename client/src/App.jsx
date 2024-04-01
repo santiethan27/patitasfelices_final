@@ -17,24 +17,48 @@ import ProductsPage from './pages/ProductPage/ProductsPage';
 import DetailAdoption from './pages/PetPage/DetailAdoption';
 import DetailProduct from './pages/DetailProductPage/DetailProduct';
 import Footer from './components/Footer/Footer';
-import SetProductPage from './pages/DashBoard/AddProductPage/SetProductPage';
-import SetAnimalPage from './pages//DashBoard/AddAnimalPage/SetAnimalPage';
+import { Toaster } from 'sonner';
+import Donations from './pages/Donations/Donations';
+import Animal from './pages/DashBoard/Animal/Animal';
+import Product from './pages/DashBoard/Product/Product';
+import { AdoptionProvider } from './contexts/AdoptionContext';
+import Adoption from './pages/DashBoard/Adoption/Adoption';
+import { InterviewProvider } from './contexts/InterviewContext';
+import InterviewsUser from './pages/ProfilePage/InterviewsUser/InterviewsUser';
+import ReportsUser from './pages/ProfilePage/ReportsUser/ReportsUser';
+import ReportPage from './pages/DashBoard/ReportPage/ReportPage';
+import { ReportProvider } from './contexts/ReportContext';
+import { PaymentProvider } from './contexts/PaymentContext';
+import AcountUser from './pages/ProfilePage/AcountUser/AcountUser';
+import { OrderProvider } from './contexts/OrderContext';
+import OrderPage from './pages/DashBoard/OrderPage/OrderPage';
+import OrderUser from './pages/ProfilePage/OrdersUser/OrdersUser';
 
 function App() {
     return (
         <AuthProvider>
-            <AnimalProvider>
-                <ProductProvider>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path='/auth' element={<AuthPage />} />
-                            <Route element={<ProtectedRoute />}>
-                                <Route path='/*' element={<MainApp />} />
-                            </Route>
-                        </Routes>
-                    </BrowserRouter>
-                </ProductProvider>
-            </AnimalProvider>
+            <OrderProvider>
+                <ReportProvider>
+                    <AdoptionProvider>
+                        <AnimalProvider>
+                            <PaymentProvider>
+                                <InterviewProvider>
+                                    <ProductProvider>
+                                        <BrowserRouter>
+                                            <Routes>
+                                                <Route path='/auth' element={<AuthPage />} />
+                                                <Route element={<ProtectedRoute />}>
+                                                    <Route path='/*' element={<MainApp />} />
+                                                </Route>
+                                            </Routes>
+                                        </BrowserRouter>
+                                    </ProductProvider>
+                                </InterviewProvider>
+                            </PaymentProvider>
+                        </AnimalProvider>
+                    </AdoptionProvider>
+                </ReportProvider>
+            </OrderProvider>
         </AuthProvider>
     )
 }
@@ -48,15 +72,24 @@ function MainApp() {
                 <Route path='/perfil' element={<ProfilePage />} />
                 <Route path='/blog' element={<BlogPage />}> </Route>
                 <Route path='/citas' element={<CitasAdopcion />}></Route>
-                <Route path='/administracion' element={<AdminPage />}></Route>
-                <Route path='/pet' element={<SetAnimalPage />}></Route>
-                <Route path='/product' element={<SetProductPage />}></Route>
+                <Route path='/administracion/inicio' element={<AdminPage />}></Route>
+                <Route path='/administracion/mascotas' element={<Animal />}></Route>
+                <Route path='/administracion/productos' element={<Product />}></Route>
+                <Route path='/administracion/usuarios' element={<ListUser />}></Route>
+                <Route path='/administracion/reportes' element={<ReportPage />}></Route>
+                <Route path='/administracion/adopciones' element={<Adoption />}></Route>
+                <Route path='/usuario/entrevistas' element={<InterviewsUser />}></Route>
+                <Route path='/usuario/reportes' element={<ReportsUser />}></Route>
+                <Route path='/usuario/cuenta' element={<AcountUser />}></Route>
+                <Route path='/usuario/pedidos' element={<OrderUser />}></Route>
                 <Route path='/products' element={<ProductsPage />}></Route>
                 <Route path='/adoption/:id' element={<DetailAdoption />}></Route>
                 <Route path='/product/:id' element={<DetailProduct />}></Route>
-                <Route path='/users' element={<ListUser />}></Route>
+                <Route path='/donations' element={<Donations />}></Route>
+                <Route path='/administracion/pedidos' element={<OrderPage />}></Route>
             </Routes>
             <Footer />
+            <Toaster richColors theme='dark' />
         </>
     );
 }

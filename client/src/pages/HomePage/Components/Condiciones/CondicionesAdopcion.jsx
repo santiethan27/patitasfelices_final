@@ -9,29 +9,29 @@ import { Link } from 'react-router-dom';
 // Creamos un rafc para poder exportar este componente
 const CondicionesAdopcion = () => {
     return (
-        <div className="container-condiciones bg-morado2">
+        <div className="container-condiciones">
             <section className='container-codicionesAdopcion'>
-                <div className='container-tittle txt-white'>
+                <div className='container-tittle txt-black'>
                     <h3>¡Recuerda que al adoptar tienes que tener en cuenta lo siguiente!</h3>
                 </div>
                 <div className='container-condicion'>
                     <FontAwesomeIcon icon={faPaw} size='2x' />
-                    <p className='txt-white'>Obrar en concordancia a lo establecido en la ley 1774 del 6 de enero de 2016 y asumir la adopción del canino o felino, con responsabilidad y compromiso.</p>
+                    <p>Obrar en concordancia a lo establecido en la ley 1774 del 6 de enero de 2016 y asumir la adopción del canino o felino, con responsabilidad y compromiso.</p>
                 </div>
                 <div className='container-condicion'>
                     <FontAwesomeIcon icon={faPaw} size='2x' />
-                    <p className='txt-white'>No abandonar al animal adoptado por ninguna razón o motivo. Ni por problemas de comportamiento, vejez o enfermedad.</p>
+                    <p>No abandonar al animal adoptado por ninguna razón o motivo. Ni por problemas de comportamiento, vejez o enfermedad.</p>
                 </div>
                 <div className='container-condicion'>
                     <FontAwesomeIcon icon={faPaw} size='2x' />
-                    <p className='txt-white'>Garantizarle alimento, agua, abrigo, y protección contra el clima.</p>
+                    <p>Garantizarle alimento, agua, abrigo, y protección contra el clima.</p>
                 </div>
-                <div className="container-b txt-morado">
-                    <Link to='/adoptar'>VER MAS... <FontAwesomeIcon className='hand' icon={faHandPointer} /></Link>
+                <div className="container-b">
+                    <Link className='bg-morado2 txt-white' to='/adoptar'>VER MAS... <FontAwesomeIcon className='hand txt-black' icon={faHandPointer} /></Link>
                 </div>
                 {/*                <div className='container-condicion'>
                     <FontAwesomeIcon icon={faPaw} size='2x' />
-                    <p className='txt-white'>Prestarle el debido cuidado en caso de enfermedad y suministrarle atención veterinaria necesaria, evitando exponerlo al dolor o crueldad.</p>
+                    <p className='txt-black'>Prestarle el debido cuidado en caso de enfermedad y suministrarle atención veterinaria necesaria, evitando exponerlo al dolor o crueldad.</p>
                 </div>
                 <div className='container-condicion'>
                     <FontAwesomeIcon icon={faPaw} size='2x' />
@@ -47,11 +47,10 @@ const CondicionesAdopcion = () => {
     </div>*/}
             </section>
             <div className="c-img-condiones">
-                <div>
+                <div className='bg-rosa'>
                     <img className='img-condiones' src="./images/gato2.png" alt="" />
                 </div>
-                <img className='line1' src="./images/line1.png" alt="" />
-                <img className='line2' src="./images/image.png" alt="" />
+                <img className='line2' src="./images/lines.webp" alt="" />
             </div>
         </div>
     )

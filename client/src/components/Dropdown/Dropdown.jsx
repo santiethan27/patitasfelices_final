@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./dropdown.css";
+import "./Dropdown.css";
 import { Link } from "react-router-dom";
 
 function Dropdown({ items = [], dropdownTitle, children, _logout }) {
