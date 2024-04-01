@@ -26,19 +26,19 @@ function HomePage() {
                 </div>
                 <div className="services">
                     <div className="service">
-                        <div className="img"><img src="https://globalpetindustry.com/wp-content/uploads/2023/10/The-impact-of-inflation-on-pet-parents-wallets-April-2023.png" alt="" /></div>
+                        <div className="img"><Link to={'/donations'}><img src="https://globalpetindustry.com/wp-content/uploads/2023/10/The-impact-of-inflation-on-pet-parents-wallets-April-2023.png" alt="" /></Link></div>
                         <p className='txt-morado'>Donar dinero <FontAwesomeIcon className='icon txt-morado' icon={faArrowCircleRight} /></p>
                     </div>
                     <div className="service">
-                        <div className="img"><img src="https://lienzocreativo.com/img/cms/Retratos/mascota-lienzo-pru2.jpg" alt="" /></div>
+                        <div className="img"><Link to={'/products'}><img src="https://lienzocreativo.com/img/cms/Retratos/mascota-lienzo-pru2.jpg" alt="" /></Link></div>
                         <p className='txt-morado'>Comprar productos <FontAwesomeIcon className='icon txt-morado' icon={faArrowCircleRight} /></p>
                     </div>
                     <div className="service">
-                        <div className="img"><img src="https://t3.ftcdn.net/jpg/02/52/38/76/360_F_252387654_zToUZrtt7OzYv50aJ4XRqHtRukI5M0XB.jpg" alt="" /></div>
+                        <div className="img"><Link to={'/adoptar'}><img src="https://t3.ftcdn.net/jpg/02/52/38/76/360_F_252387654_zToUZrtt7OzYv50aJ4XRqHtRukI5M0XB.jpg" alt="" /></Link></div>
                         <p className='txt-morado'>Adopta una mascota <FontAwesomeIcon className='icon txt-morado' icon={faArrowCircleRight} /></p>
                     </div>
                     <div className="service">
-                        <div className="img"><img src="https://t3.ftcdn.net/jpg/05/24/56/46/360_F_524564695_g4vnTnywI45vKFc11Mqny1Ra5ZstyCEK.jpg" alt="" /></div>
+                        <div className="img"><Link to={'/blog'}><img src="https://t3.ftcdn.net/jpg/05/24/56/46/360_F_524564695_g4vnTnywI45vKFc11Mqny1Ra5ZstyCEK.jpg" alt="" /></Link></div>
                         <p className='txt-morado'>Revisa nuestro blog <FontAwesomeIcon className='icon txt-morado' icon={faArrowCircleRight} /></p>
                     </div>
                 </div>

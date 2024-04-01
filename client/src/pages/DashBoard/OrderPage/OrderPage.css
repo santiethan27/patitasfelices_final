@@ -1,0 +1,17 @@
+.pdf {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+    button {
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.tabla-disable{
+    display: none;
+}

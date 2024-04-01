@@ -4,6 +4,9 @@ import './OrderPage.css'
 import Tabla from './../Components/Tabla';
 import { useOrder } from './../../../contexts/OrderContext';
 import Modal from './../../../components/Modal/Modal';
+import OrderPDF from './Components/OrderPDF';
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import OrderExcel from './Components/OrderExcel';
 
 function OrderPage() {
     const { orders } = useOrder();
@@ -50,6 +53,19 @@ function OrderPage() {
                         </tbody>
                     </>)}
             </Tabla >
+            
+            <div className="pdf">
+                <PDFDownloadLink document={<OrderPDF orders={orders} />} fileName="ordenes.pdf">
+                    {({ loading, url, error, blob }) =>
+                        loading ? (
+                            <button className='pdf-download bg-morado2'>Generando pdf ...</button>
+                        ) : (
+                            <button className='pdf-download bg-morado2'>Generar pdf!</button>
+                        )
+                    }
+                </PDFDownloadLink>
+                <OrderExcel orders={orders} />
+            </div>
             <Modal className="modal" show={toggleImage} close={closedImageModal} title='Previsualización de pedido' showHeader={true} showOverlay={true} size={"small "} align={"center"} iClose={true}>
                 <img className='image-report' src={image} alt="" />
                 <div className="buttons">

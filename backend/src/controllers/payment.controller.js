@@ -26,9 +26,9 @@ export const postPayment = async (req, res) => {
       ],
       external_reference: id,
       notification_url:
-        "https://c3ab-170-245-158-66.ngrok-free.app/api/webhook",
+        "https://53a4-179-19-228-24.ngrok-free.app/api/webhook",
       back_urls: {
-        success: "http://localhost:5173/donations",
+        success: "http://localhost:5173/",
         // failure: "http://localhost:5173/donations",
         // pending: "https://mail.google.com",
       },
@@ -59,7 +59,7 @@ export const receiveWebhook = async (req, res) => {
           { new: true }
         );
         if (!order) {
-          console.log("aprovado")
+          console.log("aprovado");
           return res.status(404).json({ message: "Order not found" });
         }
         console.log("Order approved:", order);
@@ -70,7 +70,7 @@ export const receiveWebhook = async (req, res) => {
         });
 
         if (!deletedOrder) {
-          console.log("elimando")
+          console.log("elimando");
           return res.status(404).json({ message: "Order not found" });
         }
         console.log("Order deleted:", deletedOrder);
