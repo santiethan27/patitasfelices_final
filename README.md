@@ -89,8 +89,6 @@ _El proyectgo actualmente esta en construccion, esta en su version 1._
 
 _Este proyecto fue posible gracias a:_
 
-* **Marlon Gomez** - *Programador* - [Mailoon](https://github.com/villanuevand)
-* **Sirleny Osorio** - *Programador* - [Lenyoso](#fulanito-de-tal)
 * **Santiago Estrada** - *Programador* - [SantiEthan27](#fulanito-de-tal)
 
 ## Licencia 📄
